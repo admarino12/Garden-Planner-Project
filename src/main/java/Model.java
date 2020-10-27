@@ -42,3 +42,44 @@ class Plant {
 	}
 	
 }
+
+class Garden {
+
+	// The garden is a 2D array of Characters (each plant has its own character)
+	private char[][] garden;
+	private int width;
+	private int height;
+	
+	public Garden(int width, int height) {
+		this.width = width;
+		this.height = height;
+		
+		// Initialize garden based on input length and height
+		garden = new char[height][width];
+			for (int i = 0; i < height; i++) {
+				for (int j = 0; j < width; j++) {
+					garden[i][j] = 'Z';
+				}
+			}
+	}
+	
+	public void addPlant(Plant plant, int xCord, int yCord) {
+		
+	}
+	
+	public void removePlant(int xCord, int yCord) {
+		garden[yCord][xCord] = 'Z';
+	}
+	
+	public char[][] getGarden(){
+		return garden;
+	}
+	
+	public int getGardenWidth() {
+		return width;
+	}
+	
+	public int getGardenHeight() {
+		return height;
+	}
+}
