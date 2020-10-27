@@ -41,10 +41,10 @@ public class Controller {
 					
 				case 2:
 					
-					System.out.println("Name of Plant to add: ");
-					String userInputString = scan.next();
-					model.getPlant("fake name");
-					view.addPlant();
+					//System.out.println("Name of Plant to add: ");
+					//String userInputString = scan.next();
+					//model.getPlant("fake name");
+					view.addPlant(scan);
 					break;
 				case 3:
 					view.movePlant();
