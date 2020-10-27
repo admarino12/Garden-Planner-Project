@@ -32,7 +32,7 @@ public class Controller {
 				int menuChoice = view.mainMenu(scan);
 				
 				switch(menuChoice) {
-				case 1:
+				case 1: //Load Plant
 					
 					System.out.println("Name of Plant:");
 					String plantName = scan.next();
@@ -48,27 +48,35 @@ public class Controller {
 						}
 					break;
 					
-				case 2:
+				case 2: //Add Plant
 					
+					//TODO: Ask user for plant which plant they want to use.
 					//System.out.println("Name of Plant to add: ");
 					//String userInputString = scan.next();
 					//model.getPlant("fake name");
 					Plant plant = new Plant("fake");
+					
+					
+					
 					System.out.println("Please enter X-coordinate for plant: ");
-					int xCord = scan.nextInt();
+					int xCord = scan.nextInt() - 1;
 					while (xCord >= gardenWidth) {
-						xCord = scan.nextInt();
+						System.out.println("Number Cannot Exceed the Garden Width of: "+ garden.getGardenWidth());
+						view.printLine();
 						System.out.println("Please enter X-coordinate for plant: ");
+						xCord = scan.nextInt();
 					}
 					System.out.println("Please enter Y-coordinate for plant: ");
-					int yCord = scan.nextInt();
+					int yCord = scan.nextInt() - 1;
 					while (yCord >= gardenHeight) {
-						yCord = scan.nextInt();
+						System.out.println("Number Exceeds the Garden Height of: "+ garden.getGardenHeight());
+						view.printLine();
 						System.out.println("Please enter Y-coordinate for plant: ");
+						yCord = scan.nextInt();
 					}
 					garden.addPlant(plant, xCord, yCord);
 					break;
-				case 3:
+				case 3: //Move Plant
 					view.movePlant();
 					break;
 				case 4: //Remove Plant
@@ -88,8 +96,7 @@ public class Controller {
 						userInput = scan.next();
 					}
 					break;
-				case 6: 
-					//exit
+				case 6: //Exit
 					menuLoop = false;
 					System.out.println("Exiting garden planner.");
 					break;
