@@ -28,7 +28,9 @@ public class Model {
 
 class Plant {
 	
-	String plantName;
+	private String plantName;
+	private int xCor;
+	private int yCor; 
 	
 	//Here we would search the CSV using the plantName to get the rest of the information about the plant
 	public Plant(String plantName) {
