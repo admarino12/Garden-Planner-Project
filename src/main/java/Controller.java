@@ -8,59 +8,52 @@ public class Controller {
 			
 			String line = "******************************";
 			Scanner scan = new Scanner(System.in);
+			View view = new View();
+			Model model = new Model();
 			
-			//garden dimensions
-			int gardenLength, gardenHeight;
 			
-			System.out.println("ASCII Garden View");
-			System.out.println(line);
-			System.out.print("Enter garden length: ");
-			gardenLength = scan.nextInt();
-			System.out.print("Enter garden height: ");
-			gardenHeight = scan.nextInt();
+			view.initializeGarden(scan);
 			
-			//display garden dimensions
-			System.out.println("Garden dimensions are: " 
-			+ gardenLength +  " x " + gardenHeight);
 			
 			//menu
 			boolean menuLoop = true;
 			while(menuLoop) {
-				System.out.println(line + "\nMenu: ");
-				System.out.println("1. Load Plants\n2. Add Plant"
-						+ "\n3. Move Plant\n4. Remove Plant\n5. Print Garden"
-						+ "\n6. Exit\nChoose a number: ");
 				
-				int menuChoice = scan.nextInt();
+				
+				int menuChoice = view.mainMenu(scan);
 				
 				switch(menuChoice) {
 				case 1:
+					
+					System.out.println("Name of Plant:");
+					String plantName = scan.next();
 					//load plant data
-					System.out.println("Load Plant from file? (Y/N): ");
+					System.out.println("Load "+plantName+" from file? (Y/N): ");
 					String userInput = scan.next();
 						if (userInput.equals("Y")) {
-							//read in from file
-							//loadPlants();
+							
+							model.loadPlant(plantName);
 						}
 						else {
 							break;
 						}
 					break;
+					
 				case 2:
-					//add plant to garden view
-					//addPlant();
+					
+					System.out.println("Name of Plant to add: ");
+					String userInputString = scan.next();
+					model.getPlant("fake name");
+					view.addPlant();
 					break;
 				case 3:
-					//move plant
-					//movePlant();
+					view.movePlant();
 					break;
 				case 4:
-					//remove plant
-					//removePlant();
+					view.removePlant();
 					break;
 				case 5: 
-					//print garden
-					//printGarden();
+					view.printGarden(scan);
 					break;
 				case 6: 
 					//exit
