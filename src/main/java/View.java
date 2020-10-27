@@ -23,6 +23,11 @@ public class View {
 		
 		//Initialize garden based on input length and height
 		garden = new char [gardenHeight][gardenWidth];
+		for(int i=0;i<gardenHeight;i++) {
+			for(int j=0;j<gardenWidth;j++) {
+				garden[i][j] = 'Z';
+			}
+		}
 		
 		//display garden dimensions
 		System.out.println("Garden dimensions are: " 
@@ -48,8 +53,13 @@ public class View {
 		
 	}
 	
-	public void removePlant() {
-		
+	public void removePlant(Scanner scan) {
+		System.out.println("X-Coordinate of plant you wish to remove: ");
+		int xCord = scan.nextInt();
+		System.out.println("Y-Coordinate of plant you  wish to remove: ");
+		int yCord = scan.nextInt();
+		garden[yCord][xCord] = 'Z';
+	
 	}
 	
 	public void printGarden(Scanner scan) {
@@ -64,7 +74,10 @@ public class View {
 				//
 				//Display contents of the 2D garden character array here
 				//
-				System.out.print("  ");
+				if(garden[i][j]=='Z') {
+					System.out.print("  ");
+				}
+				else System.out.print(garden[i][j]+" ");
 			}
 			System.out.println("|");
 		}

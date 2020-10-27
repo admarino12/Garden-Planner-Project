@@ -50,7 +50,7 @@ public class Controller {
 					view.movePlant();
 					break;
 				case 4:
-					view.removePlant();
+					view.removePlant(scan);
 					break;
 				case 5: 
 					view.printGarden(scan);
