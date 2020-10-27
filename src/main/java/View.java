@@ -18,10 +18,6 @@ public class View {
 
 	}
 
-	public void movePlant() {
-
-	}
-
 	public void printGarden( char[][] garden, int gardenWidth, int gardenHeight) {
 		System.out.print(" ");
 		for (int j = 0; j < gardenWidth; j++) {
