@@ -29,16 +29,24 @@ public class Model {
 class Plant {
 	
 	private String plantName;
+	private char plantChar;
 	private int xCor;
 	private int yCor; 
 	
-	//Here we would search the CSV using the plantName to get the rest of the information about the plant
+	//Here we would search the CSV using the plantName to get the rest of the information about the plant such as plantChar
 	public Plant(String plantName) {
 		this.plantName = plantName;
+		
+		//Default for now
+		plantChar = 'F';
 	}
 	
 	public String getName() {
 		return plantName;
+	}
+	
+	public char getChar() {
+		return plantChar;
 	}
 	
 }
@@ -64,7 +72,7 @@ class Garden {
 	}
 	
 	public void addPlant(Plant plant, int xCord, int yCord) {
-		
+		garden[yCord][xCord] = plant.getChar();
 	}
 	
 	public void removePlant(int xCord, int yCord) {

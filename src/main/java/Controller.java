@@ -6,14 +6,14 @@ public class Controller {
 	
 	public static void main(String[] args) {
 			
-			String line = "******************************";
+			
 			Scanner scan = new Scanner(System.in);
 			View view = new View();
 			Model model = new Model();
 			
 
 			System.out.println("ASCII Garden View");
-			System.out.println(line);
+			view.printLine();
 			System.out.print("Enter garden length: ");
 			int gardenWidth = scan.nextInt();
 			System.out.print("Enter garden height: ");
@@ -79,7 +79,14 @@ public class Controller {
 					garden.removePlant(xCord, yCord);
 					break;
 				case 5: 
-					view.printGarden(scan, garden.getGarden(), garden.getGardenWidth(), garden.getGardenHeight());
+					view.printGarden(garden.getGarden(), garden.getGardenWidth(), garden.getGardenHeight());
+					
+					System.out.println("Return to Menu? (Y)");
+
+					userInput = scan.next();
+					while (!userInput.contains("Y")) {
+						userInput = scan.next();
+					}
 					break;
 				case 6: 
 					//exit

@@ -4,14 +4,13 @@ import java.util.Scanner;
 
 public class View {
 
-	String line = "******************************";
 
 	// garden dimensions
 	int gardenWidth, gardenHeight;
 
 	public int mainMenu(Scanner scan) {
-
-		System.out.println(line + "\nMenu: ");
+		printLine();
+		System.out.println("\nMenu: ");
 		System.out.println("1. Load Plants\n2. Add Plant" + "\n3. Move Plant\n4. Remove Plant\n5. Print Garden"
 				+ "\n6. Exit\nChoose a number: ");
 
@@ -19,15 +18,11 @@ public class View {
 
 	}
 
-	public void addPlant(Scanner scan) {
-		
-	}
-
 	public void movePlant() {
 
 	}
 
-	public void printGarden(Scanner scan, char[][] garden, int gardenWidth, int gardenHeight) {
+	public void printGarden( char[][] garden, int gardenWidth, int gardenHeight) {
 		System.out.print(" ");
 		for (int j = 0; j < gardenWidth; j++) {
 			System.out.print("__");
@@ -52,13 +47,10 @@ public class View {
 		}
 		System.out.println("|");
 		System.out.println();
+	}
 
-		System.out.println("Return to Menu? (Y)");
-
-		String userInput = scan.next();
-		while (!userInput.contains("Y")) {
-			userInput = scan.next();
-		}
-
+	
+	public void printLine() {
+		System.out.println("******************************");
 	}
 }
