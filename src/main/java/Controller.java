@@ -9,6 +9,7 @@ public class Controller {
 		Scanner scan = new Scanner(System.in);
 		View view = new View();
 		Model model = new Model();
+		String userInput;
 		
 
 		System.out.println("ASCII Garden View");
@@ -20,6 +21,7 @@ public class Controller {
 
 		// Create the garden
 		Garden garden = new Garden(gardenWidth, gardenHeight);
+		model.garden = garden;
 
 		// display garden dimensions
 		System.out.println("Garden dimensions are: " + gardenWidth + " x " + gardenHeight);
@@ -31,77 +33,16 @@ public class Controller {
 			int menuChoice = view.mainMenu(scan);
 
 			switch (menuChoice) {
-			case 1: // Load Plant
-
-				System.out.println("Name of Plant: ");
-				String plantName = scan.next();
-				// load plant data
-				System.out.println("Load " + plantName + " from file? (Y/N): ");
-				String userInput = scan.next();
-				if (userInput.equals("Y")) {
-
-					model.loadPlant(plantName);
-				} else {
-					break;
-				}
+			case 1: // Add Plant
+				model.addPlant();
 				break;
-
-			case 2: // Add Plant
-
-				// TODO: Ask user for plant which plant they want to use.
-				// System.out.println("Name of Plant to add: ");
-				// String userInputString = scan.next();
-				// model.getPlant("fake name");
-				for (Plant plant1 : model.getPlantList()) {
-					System.out.println(plant1.getName());
-				}
-				
-				System.out.println("Name of Plant to add: ");
-				String name = scan.next();
-				
-				System.out.println("Please enter X-coordinate for plant: ");
-				int xCord = scan.nextInt() - 1;
-				while (xCord >= gardenWidth) {
-					System.out.println("Number Cannot Exceed the Garden Width of: " + garden.getGardenWidth());
-					view.printLine();
-					System.out.println("Please enter X-coordinate for plant: ");
-					xCord = scan.nextInt() - 1;
-				}
-				System.out.println("Please enter Y-coordinate for plant: ");
-				int yCord = scan.nextInt() - 1;
-				while (yCord >= gardenHeight) {
-					System.out.println("Number Exceeds the Garden Height of: " + garden.getGardenHeight());
-					view.printLine();
-					System.out.println("Please enter Y-coordinate for plant: ");
-					yCord = scan.nextInt() - 1;
-				}
-				garden.addPlant(xCord, yCord, name);
+			case 2: // Move Plant
+				model.movePlant();
 				break;
-			case 3: // Move Plant
-				System.out.println("X-Coordinate of plant you wish to move: ");
-				xCord = scan.nextInt() - 1;
-				System.out.println("Y-Coordinate of plant you wish to move: ");
-				yCord = scan.nextInt() -1;
-				if (garden.getGarden()[xCord][yCord] != 'Z') {
-					garden.removePlant(xCord, yCord);
-					System.out.println("X-Coordinate of where you wish to move plant: ");
-					int movexCord = scan.nextInt() -1;
-					System.out.println("Y-Coordinate of where you wish to move plant: ");
-					int moveyCord = scan.nextInt() - 1;
-					garden.movePlant(movexCord, moveyCord, movexCord, moveyCord);
-				} 
-				else {
-					System.out.println("There is no plant here!");
-				}
+			case 3: // Remove Plant
+				model.removePlant();
 				break;
-			case 4: // Remove Plant
-				System.out.println("X-Coordinate of plant you wish to remove: ");
-				xCord = scan.nextInt() - 1;
-				System.out.println("Y-Coordinate of plant you  wish to remove: ");
-				yCord = scan.nextInt() - 1;
-				garden.removePlant(xCord, yCord);
-				break;
-			case 5:
+			case 4:
 				view.printGarden(garden.getGarden(), garden.getGardenWidth(), garden.getGardenHeight());
 
 				System.out.println("Return to Menu? (Y)");
@@ -110,6 +51,9 @@ public class Controller {
 				while (!userInput.contains("Y")) {
 					userInput = scan.next();
 				}
+				break;
+			case 5: //Print Plants in Garden
+				model.printPlantsinGarden();
 				break;
 			case 6: // Exit
 				menuLoop = false;

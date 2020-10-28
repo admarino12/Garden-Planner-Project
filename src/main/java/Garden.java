@@ -26,17 +26,29 @@ class Garden {
 	public void addPlant(int xCord, int yCord, String name) {
 		Plant plant = new Plant(name);
 		garden[yCord][xCord] = plant.getChar();
+		plant.setxCor(xCord);
+		plant.setyCor(yCord);
 		plantsInGarden.add(plant);
 	}
 
 	public void movePlant(int movexCord, int moveyCord, int xCord, int yCord) {
-		char placeHolder = garden[yCord][xCord];
-		garden[yCord][xCord] = 'Z';
-		garden[moveyCord][movexCord] = placeHolder;
+		for (Plant plant1 : this.getPlants()) {
+			if (plant1.getxCor() == xCord && plant1.getyCor() == yCord) {
+				garden[moveyCord][movexCord] = plant1.getChar();
+				plant1.setxCor(movexCord);
+				plant1.setxCor(moveyCord);
+				garden[yCord][xCord] = 'Z';
+			}
+		}
 	}
 
 	public void removePlant(int xCord, int yCord) {
-		garden[yCord][xCord] = 'Z';
+		for (Plant plant1 : this.getPlants()) {
+			if (plant1.getxCor() == xCord && plant1.getyCor() == yCord) {
+				garden[yCord][xCord] = 'Z';
+				plantsInGarden.remove(plant1);
+			}
+		}
 	}
 
 	public char[][] getGarden() {
@@ -50,8 +62,8 @@ class Garden {
 	public int getGardenHeight() {
 		return height;
 	}
-	
+
 	public ArrayList<Plant> getPlants() {
-		return plantsInGarden; 
+		return plantsInGarden;
 	}
 }

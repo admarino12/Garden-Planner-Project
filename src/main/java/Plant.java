@@ -12,10 +12,8 @@ public class Plant {
 	// information about the plant such as plantChar
 	public Plant(String plantName) {
 		this.plantName = plantName;
-
 		// Both of these use the static getData method from Model
 		plantChar = plantName.charAt(0);
-		System.out.println(plantChar);
 		plantDescription = Model.getData(3,plantName);
 	}
 

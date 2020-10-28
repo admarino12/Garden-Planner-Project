@@ -12,8 +12,8 @@ public class View {
 		
 		printLine();
 		System.out.println("\nMenu: ");
-		System.out.println("1. Load Plants\n2. Add Plant" + "\n3. Move Plant\n4. Remove Plant\n5. Print Garden"
-				+ "\n6. Exit\nChoose a number: ");
+		System.out.println("1. Add Plant" + "\n2. Move Plant\n3. Remove Plant\n4. Print Garden"
+				+ "\n5. Print List of Plants\n" + "6. Exit\nChoose a number: ");
 
 		return scan.nextInt();
 
