@@ -10,8 +10,6 @@ public class Controller {
 		View view = new View();
 		Model model = new Model();
 		
-		
-		Plant plant = new Plant("fake");
 
 		System.out.println("ASCII Garden View");
 		view.printLine();
@@ -35,7 +33,7 @@ public class Controller {
 			switch (menuChoice) {
 			case 1: // Load Plant
 
-				System.out.println("Name of Plant:");
+				System.out.println("Name of Plant: ");
 				String plantName = scan.next();
 				// load plant data
 				System.out.println("Load " + plantName + " from file? (Y/N): ");
@@ -54,7 +52,13 @@ public class Controller {
 				// System.out.println("Name of Plant to add: ");
 				// String userInputString = scan.next();
 				// model.getPlant("fake name");
-
+				for (Plant plant1 : model.getPlantList()) {
+					System.out.println(plant1.getName());
+				}
+				
+				System.out.println("Name of Plant to add: ");
+				String name = scan.next();
+				
 				System.out.println("Please enter X-coordinate for plant: ");
 				int xCord = scan.nextInt() - 1;
 				while (xCord >= gardenWidth) {
@@ -71,20 +75,20 @@ public class Controller {
 					System.out.println("Please enter Y-coordinate for plant: ");
 					yCord = scan.nextInt() - 1;
 				}
-				garden.addPlant(plant, xCord, yCord);
+				garden.addPlant(xCord, yCord, name);
 				break;
 			case 3: // Move Plant
 				System.out.println("X-Coordinate of plant you wish to move: ");
 				xCord = scan.nextInt() - 1;
 				System.out.println("Y-Coordinate of plant you wish to move: ");
-				yCord = scan.nextInt() - 1;
+				yCord = scan.nextInt() -1;
 				if (garden.getGarden()[xCord][yCord] != 'Z') {
 					garden.removePlant(xCord, yCord);
 					System.out.println("X-Coordinate of where you wish to move plant: ");
-					int movexCord = scan.nextInt() - 1;
+					int movexCord = scan.nextInt() -1;
 					System.out.println("Y-Coordinate of where you wish to move plant: ");
 					int moveyCord = scan.nextInt() - 1;
-					garden.movePlant(plant, movexCord, moveyCord, movexCord, moveyCord);
+					garden.movePlant(movexCord, moveyCord, movexCord, moveyCord);
 				} 
 				else {
 					System.out.println("There is no plant here!");
