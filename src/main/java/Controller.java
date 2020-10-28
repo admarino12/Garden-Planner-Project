@@ -81,7 +81,7 @@ public class Controller {
 					garden.removePlant(xCord, yCord);
 					System.out.println("X-Coordinate of where you wish to move plant: ");
 					int movexCord = scan.nextInt();
-					System.out.println("Y-Coordinate if where you wish to move plant: ");
+					System.out.println("Y-Coordinate of where you wish to move plant: ");
 					int moveyCord = scan.nextInt();
 					garden.movePlant(plant, movexCord, moveyCord, movexCord, moveyCord);
 				} 
