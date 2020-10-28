@@ -124,7 +124,11 @@ public class Model {
 	}
 	
 	public void movePlant() {
-		
+		System.out.println("Available plants to move: ");
+		for (Plant plant1 : garden.getPlants()) {
+			System.out.println(plant1.getName() + " (" + (plant1.getxCor() + 1) + "," + (plant1.getyCor() + 1) + ")");
+		}
+		printLine();
 		System.out.println("X-Coordinate of plant you wish to move: ");
 		xCord = scan.nextInt() - 1;
 		System.out.println("Y-Coordinate of plant you wish to move: ");
