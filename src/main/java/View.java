@@ -9,6 +9,7 @@ public class View {
 	int gardenWidth, gardenHeight;
 
 	public int mainMenu(Scanner scan) {
+		
 		printLine();
 		System.out.println("\nMenu: ");
 		System.out.println("1. Load Plants\n2. Add Plant" + "\n3. Move Plant\n4. Remove Plant\n5. Print Garden"

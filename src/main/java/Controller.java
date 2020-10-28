@@ -10,6 +10,7 @@ public class Controller {
 		View view = new View();
 		Model model = new Model();
 		
+		
 		Plant plant = new Plant("fake");
 
 		System.out.println("ASCII Garden View");
