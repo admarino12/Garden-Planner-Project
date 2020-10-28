@@ -101,7 +101,7 @@ public class Model {
 		
 		System.out.println("Please enter X-coordinate for plant: ");
 		int xCord = scan.nextInt() - 1;
-		while (xCord >= garden.getGardenWidth()) {
+		while (xCord > garden.getGardenWidth()) {
 			System.out.println("Number Cannot Exceed the Garden Width of: " + garden.getGardenWidth());
 			printLine();
 			System.out.println("Please enter X-coordinate for plant: ");
@@ -115,7 +115,7 @@ public class Model {
 			System.out.println("Please enter Y-coordinate for plant: ");
 			yCord = scan.nextInt() - 1;
 		}
-		if	(garden.getGarden()[xCord][yCord] != 'Z') {
+		if	(garden.getGarden()[yCord][xCord] != 'Z') {
 			System.out.println("There is already a plant here!");
 		}
 		else {
@@ -129,12 +129,12 @@ public class Model {
 		xCord = scan.nextInt() - 1;
 		System.out.println("Y-Coordinate of plant you wish to move: ");
 		yCord = scan.nextInt() - 1;
-		if (garden.getGarden()[xCord][yCord] != 'Z') {
+		if (garden.getGarden()[yCord][xCord] != 'Z') {
 			System.out.println("X-Coordinate of where you wish to move plant: ");
 			int movexCord = scan.nextInt() - 1;
 			System.out.println("Y-Coordinate of where you wish to move plant: ");
 			int moveyCord = scan.nextInt() - 1;	
-			if	(garden.getGarden()[movexCord][moveyCord] != 'Z') {
+			if	(garden.getGarden()[moveyCord][movexCord] == 'Z') {
 				garden.movePlant(movexCord, moveyCord, xCord, yCord);
 			}
 			else {
