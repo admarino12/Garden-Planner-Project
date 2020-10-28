@@ -60,7 +60,7 @@ public class Controller {
 					System.out.println("Number Cannot Exceed the Garden Width of: " + garden.getGardenWidth());
 					view.printLine();
 					System.out.println("Please enter X-coordinate for plant: ");
-					xCord = scan.nextInt();
+					xCord = scan.nextInt() - 1;
 				}
 				System.out.println("Please enter Y-coordinate for plant: ");
 				int yCord = scan.nextInt() - 1;
@@ -68,32 +68,32 @@ public class Controller {
 					System.out.println("Number Exceeds the Garden Height of: " + garden.getGardenHeight());
 					view.printLine();
 					System.out.println("Please enter Y-coordinate for plant: ");
-					yCord = scan.nextInt();
+					yCord = scan.nextInt() - 1;
 				}
 				garden.addPlant(plant, xCord, yCord);
 				break;
 			case 3: // Move Plant
 				System.out.println("X-Coordinate of plant you wish to move: ");
-				xCord = scan.nextInt();
+				xCord = scan.nextInt() - 1;
 				System.out.println("Y-Coordinate of plant you wish to move: ");
-				yCord = scan.nextInt();
+				yCord = scan.nextInt() - 1;
 				if (garden.getGarden()[xCord][yCord] != 'Z') {
 					garden.removePlant(xCord, yCord);
 					System.out.println("X-Coordinate of where you wish to move plant: ");
-					int movexCord = scan.nextInt();
+					int movexCord = scan.nextInt() - 1;
 					System.out.println("Y-Coordinate of where you wish to move plant: ");
-					int moveyCord = scan.nextInt();
+					int moveyCord = scan.nextInt() - 1;
 					garden.movePlant(plant, movexCord, moveyCord, movexCord, moveyCord);
 				} 
 				else {
-					System.out.println("There is not plant here!/n");
+					System.out.println("There is no plant here!");
 				}
 				break;
 			case 4: // Remove Plant
 				System.out.println("X-Coordinate of plant you wish to remove: ");
-				xCord = scan.nextInt();
+				xCord = scan.nextInt() - 1;
 				System.out.println("Y-Coordinate of plant you  wish to remove: ");
-				yCord = scan.nextInt();
+				yCord = scan.nextInt() - 1;
 				garden.removePlant(xCord, yCord);
 				break;
 			case 5:
