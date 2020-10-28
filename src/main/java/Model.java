@@ -126,6 +126,7 @@ class Garden {
 	private char[][] garden;
 	private int width;
 	private int height;
+	private ArrayList<Plant> plantsInGarden = new ArrayList<Plant>();
 
 	public Garden(int width, int height) {
 		this.width = width;
@@ -163,6 +164,10 @@ class Garden {
 
 	public int getGardenHeight() {
 		return height;
+	}
+	
+	public ArrayList<Plant> getPlants() {
+		return plantsInGarden; 
 	}
 }
 
