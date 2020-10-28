@@ -96,7 +96,7 @@ public class Model {
 			System.out.println(plant1.getName());
 		}
 		
-		System.out.println("\nName of Plant to add (Use first word): ");
+		System.out.println("\nName of Plant to add: ");
 		String name = scan.next();
 		
 		System.out.println("Please enter X-coordinate for plant: ");
