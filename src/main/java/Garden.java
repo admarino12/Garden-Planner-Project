@@ -50,8 +50,8 @@ class Garden {
 				placeholder = plant1;
 				break;
 			}
-			plantsInGarden.remove(placeholder);
 		}
+		plantsInGarden.remove(placeholder);
 	}
 
 	public char[][] getGarden() {
