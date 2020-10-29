@@ -43,11 +43,12 @@ class Garden {
 	}
 
 	public void removePlant(int xCord, int yCord) {
-		for (Plant plant1 : this.getPlants()) {
+		for (Plant plant1 : this.plantsInGarden) {
 			if (plant1.getxCor() == xCord && plant1.getyCor() == yCord) {
 				garden[yCord][xCord] = 'Z';
-				plantsInGarden.remove(plant1);
+				break;
 			}
+			plantsInGarden.remove(plant1);
 		}
 	}
 

@@ -12,7 +12,7 @@ public class Controller {
 		String userInput;
 		
 
-		System.out.println("ASCII Garden View");
+		System.out.println("ASCII Garden Planner");
 		view.printLine();
 		System.out.print("Enter garden length: ");
 		int gardenWidth = scan.nextInt();
