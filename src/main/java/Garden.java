@@ -36,7 +36,7 @@ class Garden {
 			if (plant1.getxCor() == xCord && plant1.getyCor() == yCord) {
 				garden[moveyCord][movexCord] = plant1.getChar();
 				plant1.setxCor(movexCord);
-				plant1.setxCor(moveyCord);
+				plant1.setyCor(moveyCord);
 				garden[yCord][xCord] = 'Z';
 			}
 		}
