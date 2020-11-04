@@ -1,13 +1,16 @@
 package src.main.java;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Controller {
 
-	
 	View view;
 	Model model;
 	Scanner scan;
@@ -69,7 +72,10 @@ public class Controller {
 			case 5: //Print List of Plants in Garden
 				view.printPlantsinGarden(garden);
 				break;
-			case 6: // Exit
+			case 6:
+				searchPlantByTraitLogic();
+				break;
+			case 7: // Exit
 				menuLoop = false;
 				System.out.println("Exiting garden planner.");
 				scan.close();
@@ -112,7 +118,7 @@ public class Controller {
 			//Updated so that we are just copying plants over from the available plant list. 
 			for (Plant plant1 : model.getPlantList()) {
 				if (name.equals(plant1.getName())) {
-					garden.addPlant(xCord, yCord, plant1.getName(),plant1.getDescription() );
+					garden.addPlant(xCord, yCord, plant1.getName(),plant1.getDescription(), plant1.getTraits() );
 				}
 			}
 		}
@@ -159,22 +165,43 @@ public class Controller {
 		garden.removePlant(xCord, yCord);
 	}
 	
+	public void searchPlantByTraitLogic() {
+		System.out.println("Possible Characteristics to Search By:");
+		String[] traits = model.getPlantTraits().split(", ");
+		for(String trait : traits) {
+			System.out.println(trait);
+		}
+		
+		System.out.println("Search plant by Characteristic: ");
+		String search = scan.next();
+		ArrayList<Plant> searchResults = model.searchPlantListByTrait(search);
+		for( Plant plant : searchResults) {
+			System.out.println(plant.getName());
+		}
+		
+	}
+	
 	public ArrayList<Plant> loadPlantList(){
 		ArrayList<Plant> plantList = new ArrayList<Plant>();
-		//Creates the plantList where all data is taken from, this is all the available plants
+		String line = "";
+		
+		//Read each line of the CSV file and pull the plant name, description, and String array of plant traits
 		try {
-			File file = new File("src/resources/plants.txt");
-		    Scanner reader = new Scanner(file); 
-		    //Loops through and creates Plants
-		    while (reader.hasNextLine()) {
-		    		 plantList.add(new Plant(reader.nextLine(),reader.nextLine()));
-		    		  
-		    }
-		      reader.close();
-			} catch (FileNotFoundException e) {
-			      System.out.println("Problem with reading file");
-			      e.printStackTrace();
+			FileReader file = new FileReader("src/resources/plants.csv");
+			BufferedReader csvFile = new BufferedReader(file);
+			
+			while((line = csvFile.readLine()) != null) {
+				
+				String[] plant = line.split(",");
+				String[] plantTraits = plant[2].split("-");
+				plantList.add(  new Plant(plant[0], plant[1], plantTraits) );
+				
+			}			
+			csvFile.close();
+		
 		}
+		catch (IOException e) { e.printStackTrace(); }
+		
 		return plantList;
 	}
 	

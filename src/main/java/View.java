@@ -13,7 +13,7 @@ public class View {
 		printLine();
 		System.out.println("\nMenu: ");
 		System.out.println("1. Add Plant" + "\n2. Move Plant\n3. Remove Plant\n4. Print Garden"
-				+ "\n5. Print List of Plants\n" + "6. Exit\nChoose a number: ");
+				+ "\n5. Print List of Plants\n" + "6. Search Plant by Characteristic\n" + "7. Exit\nChoose a number: ");
 
 		return scan.nextInt();
 

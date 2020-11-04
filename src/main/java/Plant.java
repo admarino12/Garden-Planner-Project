@@ -5,16 +5,18 @@ public class Plant {
 	private String plantName;
 	private char plantChar;
 	private String plantDescription;
+	private String[] plantTraits;
 	private int xCor;
 	private int yCor;
 
 	// Here we would search the CSV using the plantName to get the rest of the
 	// information about the plant such as plantChar
-	public Plant(String plantName, String plantDescription) {
+	public Plant(String plantName, String plantDescription, String[] plantTraits) {
 		this.plantName = plantName;
 		// Both of these use the static getData method from Model
 		plantChar = plantName.charAt(0);
 		this.plantDescription = plantDescription; 
+		this.plantTraits = plantTraits;
 	}
 
 	public String getName() {
@@ -27,6 +29,10 @@ public class Plant {
 	
 	public String getDescription() {
 		return plantDescription;
+	}
+	
+	public String[] getTraits() {
+		return plantTraits;
 	}
 
 	public int getxCor() {
