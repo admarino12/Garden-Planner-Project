@@ -23,8 +23,9 @@ class Garden {
 		}
 	}
 
-	public void addPlant(int xCord, int yCord, String name) {
-		Plant plant = new Plant(name);
+	public void addPlant(int xCord, int yCord, String name, String description) {
+		
+		Plant plant = new Plant(name,description);
 		garden[yCord][xCord] = plant.getChar();
 		plant.setxCor(xCord);
 		plant.setyCor(yCord);

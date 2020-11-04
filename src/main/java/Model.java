@@ -21,17 +21,10 @@ public class Model {
 		try {
 			File file = new File("src/resources/plants.txt");
 		    Scanner reader = new Scanner(file); 
-		    int tracker = 3;
 		    //Loops through and creates Plants
 		    while (reader.hasNextLine()) {
-		    	if (tracker % 3 == 0 ) {
-		    		 tracker++;
-		    		 plantList.add(new Plant(reader.nextLine()));
-		    	}else {
-		    		  tracker++;
-		    		  reader.nextLine();
+		    		 plantList.add(new Plant(reader.nextLine(),reader.nextLine()));
 		    		  
-		    	}
 		    }
 		      reader.close();
 			} catch (FileNotFoundException e) {
@@ -41,54 +34,11 @@ public class Model {
 
 	}
 
-	public void loadPlant(String plantName) {
-		plantList.add(new Plant(plantName));
-	}
-
 	public ArrayList<Plant> getPlantList() {
 		return plantList;
 	}
 	
-	/**
-	 * This method imports the dataWanted from the plants.txt file. 
-	 * 1 corresponds to Name
-	 * 2 corresponds to Icon/Char
-	 * 3 corresponds to Description
-	 * find is the name of the plant you would like to find.
-	 * @param dataWanted
-	 * @param find
-	 * @return
-	 */
-	public static String getData(int dataWanted, String find) {
-		try {
-		      File file = new File("src/resources/plants.txt");
-		      Scanner reader = new Scanner(file); 
-		      while (reader.hasNextLine()) {
-		    	  String current = reader.nextLine();
-		    	  if (find.equals(current)) {
-		    		  switch(dataWanted) {
-		    			  case 1: 
-		    				  return current;
-		    			  case 2: 
-		    				  current = reader.nextLine();
-		    				  return current;
-		    			  case 3:
-		    				  current = reader.nextLine();
-		    				  current = reader.nextLine();
-		    				  return current;
-		    		  }
-		    				  
-		    	  }else {
-		    		  reader.nextLine();
-		    	  }
-		      	}
-		      reader.close();
-		    } catch (FileNotFoundException e) {
-		      System.out.println("Problem with reading file");
-		      e.printStackTrace();
-		    }
-		return "Error";
-	}
+	
 	
 	public void addPlant() {
 		System.out.println("***List of Native Plants***");
@@ -98,6 +48,7 @@ public class Model {
 		
 		System.out.println("\nName of Plant to add: ");
 		String name = scan.next();
+		
 		
 		System.out.println("Please enter X-coordinate for plant: ");
 		int xCord = scan.nextInt() - 1;
@@ -119,7 +70,11 @@ public class Model {
 			System.out.println("There is already a plant here!");
 		}
 		else {
-		garden.addPlant(xCord, yCord, name);
+			for (Plant plant1 : getPlantList()) {
+				if (plant1.getName().equals(name)) {
+					garden.addPlant(xCord, yCord, plant1.getName(),plant1.getDescription() );
+				}
+			}
 		}
 	}
 	

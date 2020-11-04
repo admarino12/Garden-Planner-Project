@@ -5,13 +5,14 @@ import java.util.Scanner;
 public class Controller {
 
 	public static void main(String[] args) {
+		
 
 		Scanner scan = new Scanner(System.in);
 		View view = new View();
 		Model model = new Model();
 		String userInput;
 		
-
+		
 		System.out.println("ASCII Garden Planner");
 		view.printLine();
 		System.out.print("Enter garden length: ");
