@@ -19,7 +19,7 @@ public class View {
 
 	}
 
-	public void printGarden( char[][] garden, int gardenWidth, int gardenHeight) {
+	public void printGarden( Plant[][] garden, int gardenWidth, int gardenHeight) {
 		System.out.print(" ");
 		for (int j = 0; j < gardenWidth; j++) {
 			System.out.print("__");
@@ -31,10 +31,10 @@ public class View {
 				//
 				// Display contents of the 2D garden character array here
 				//
-				if (garden[i][j] == 'Z') {
+				if (garden[i][j] == null) {
 					System.out.print("  ");
 				} else
-					System.out.print(garden[i][j] + " ");
+					System.out.print(garden[i][j].getChar() + " ");
 			}
 			System.out.println("|");
 		}

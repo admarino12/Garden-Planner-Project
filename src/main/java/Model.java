@@ -17,7 +17,7 @@ public class Model {
 
 	public Model() {
 		plantList = new ArrayList<Plant>();
-		//Creates the plantList
+		//Creates the plantList where all data is taken from, this is all the available plants
 		try {
 			File file = new File("src/resources/plants.txt");
 		    Scanner reader = new Scanner(file); 
@@ -66,10 +66,11 @@ public class Model {
 			System.out.println("Please enter Y-coordinate for plant: ");
 			yCord = scan.nextInt() - 1;
 		}
-		if	(garden.getGarden()[yCord][xCord] != 'Z') {
+		if	(garden.getGarden()[yCord][xCord] != null) {
 			System.out.println("There is already a plant here!");
 		}
 		else {
+			//Updated so that we are just copying plants over from the available plant list. 
 			for (Plant plant1 : getPlantList()) {
 				if (plant1.getName().equals(name)) {
 					garden.addPlant(xCord, yCord, plant1.getName(),plant1.getDescription() );
@@ -88,12 +89,12 @@ public class Model {
 		xCord = scan.nextInt() - 1;
 		System.out.println("Y-Coordinate of plant you wish to move: ");
 		yCord = scan.nextInt() - 1;
-		if (garden.getGarden()[yCord][xCord] != 'Z') {
+		if (garden.getGarden()[yCord][xCord] != null) {
 			System.out.println("X-Coordinate of where you wish to move plant: ");
 			int movexCord = scan.nextInt() - 1;
 			System.out.println("Y-Coordinate of where you wish to move plant: ");
 			int moveyCord = scan.nextInt() - 1;	
-			if	(garden.getGarden()[moveyCord][movexCord] == 'Z') {
+			if	(garden.getGarden()[moveyCord][movexCord] == null) {
 				garden.movePlant(movexCord, moveyCord, xCord, yCord);
 			}
 			else {

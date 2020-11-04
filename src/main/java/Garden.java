@@ -5,7 +5,7 @@ import java.util.ArrayList;
 class Garden {
 
 	// The garden is a 2D array of Characters (each plant has its own character)
-	private char[][] garden;
+	private Plant[][] garden;
 	private int width;
 	private int height;
 	private ArrayList<Plant> plantsInGarden = new ArrayList<Plant>();
@@ -15,18 +15,19 @@ class Garden {
 		this.height = height;
 
 		// Initialize garden based on input length and height
-		garden = new char[height][width];
+		garden = new Plant[height][width];
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				garden[i][j] = 'Z';
+				garden[i][j] = null;
 			}
 		}
 	}
 
+	//Updated so that it needs a description variable. 
 	public void addPlant(int xCord, int yCord, String name, String description) {
 		
 		Plant plant = new Plant(name,description);
-		garden[yCord][xCord] = plant.getChar();
+		garden[yCord][xCord] = plant;
 		plant.setxCor(xCord);
 		plant.setyCor(yCord);
 		plantsInGarden.add(plant);
@@ -35,10 +36,10 @@ class Garden {
 	public void movePlant(int movexCord, int moveyCord, int xCord, int yCord) {
 		for (Plant plant1 : this.getPlants()) {
 			if (plant1.getxCor() == xCord && plant1.getyCor() == yCord) {
-				garden[moveyCord][movexCord] = plant1.getChar();
+				garden[moveyCord][movexCord] = plant1;
 				plant1.setxCor(movexCord);
 				plant1.setyCor(moveyCord);
-				garden[yCord][xCord] = 'Z';
+				garden[yCord][xCord] = null;
 			}
 		}
 	}
@@ -47,7 +48,7 @@ class Garden {
 		Plant placeholder = null;
 		for (Plant plant1 : this.plantsInGarden) {
 			if (plant1.getxCor() == xCord && plant1.getyCor() == yCord) {
-				garden[yCord][xCord] = 'Z';
+				garden[yCord][xCord] = null;
 				placeholder = plant1;
 				break;
 			}
@@ -55,7 +56,7 @@ class Garden {
 		plantsInGarden.remove(placeholder);
 	}
 
-	public char[][] getGarden() {
+	public Plant[][] getGarden() {
 		return garden;
 	}
 
