@@ -45,6 +45,12 @@ public class View {
 		System.out.println("|");
 		System.out.println();
 	}
+	
+	public void printPlantsinGarden(Garden garden) {
+		for (Plant plant1 : garden.getPlants()) {
+			System.out.println(plant1.getName() + " (" + (plant1.getxCor() + 1) + "," + (plant1.getyCor() + 1) + ")");
+		}
+	}
 
 	
 	public void printLine() {

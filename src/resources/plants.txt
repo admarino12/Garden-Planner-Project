@@ -1,6 +1,6 @@
 American_Elm
 Tree: Yellow fall color, high spreading canopy;
-Blueflag_Iris 
+Blueflag_Iris
 Flower: Blue flowers with yellow & white markings;
 Canada_Wild_Ginger
 Flower: Evergreen groundcover, glossy heart shaped leaves;
@@ -8,13 +8,13 @@ Evening_Primrose
 Flower: Lemon scented flowers open at dusk, close by noon;
 Pink_Azalea
 Shrub: Variable color, but often pink;
-Red_Maple 
+Red_Maple
 Tree: Buds & young twigs are red;
-Swamp_Rose 
+Swamp_Rose
 Shrub: Fragrant flowers in summer;
-Virginia_Bluebells 
+Virginia_Bluebells
 Flower: Pink flowers buds open to sky blue flowers Mar-Apr;
-White_Ash 
+White_Ash
 Tree: Yellow, maroon to purple fall color, butterfly larval plant;
-Yellow_Thistle 
+Yellow_Thistle
 Flower: Bright yellow clusters of loose, single 1" daisy-like flower;
