@@ -5,7 +5,14 @@ import java.util.Scanner;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class View {
 
@@ -27,6 +34,28 @@ public class View {
 		
 		BorderPane borderPane = new BorderPane();
 		root.getChildren().add(borderPane);
+		
+		//buttons
+		Button saveBtn = new Button("Save");
+		Button addBtn = new Button("Add");
+		Button moveBtn = new Button("Move");
+		Button transformBtn = new Button("Transform");
+		
+		//taskbar layout (horizontal container)
+		HBox taskbar = new HBox();
+		//taskbar.setStyle("-fx-background-color: #AAAAAA;");
+		//taskbar.setSpacing(15);
+		taskbar.getChildren().add(saveBtn);
+		taskbar.getChildren().add(addBtn);
+		taskbar.getChildren().add(moveBtn);
+		taskbar.getChildren().add(transformBtn);
+		
+		//set taskbar to top of borderpane
+		borderPane.setTop(taskbar);
+		
+		root.getChildren().add(taskbar);
+		theStage.setScene(theScene);
+		theStage.show();
 	}
 	
 	
