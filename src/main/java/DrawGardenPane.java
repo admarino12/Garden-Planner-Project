@@ -1,56 +1,56 @@
 package src.main.java;
 
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ToolBar;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.TilePane;
-import javafx.stage.Stage;
-
-public class DrawGardenPane {
-	
-	BorderPane gardenborder = new BorderPane();
-	ToolBar gardentoolbar = new ToolBar();
-	
-	//Buttons
-	Button delete = new Button("Delete");
-	Button draw = new Button("Draw");
-	Button done = new Button("Done");
-	
-	
-	public BorderPane getGardenborder() {
-		return gardenborder;
-	}
-	public ToolBar getGardentoolbar() {
-		return gardentoolbar;
-	}
-	public Button getDelete() {
-		return delete;
-	}
-	public Button getDraw() {
-		return draw;
-	}
-	public Button getDone() {
-		return done;
-	}
-	public void setGardenborder(BorderPane gardenborder) {
-		this.gardenborder = gardenborder;
-	}
-	public void setGardentoolbar(ToolBar gardentoolbar) {
-		this.gardentoolbar = gardentoolbar;
-	}
-	public void setDelete(Button delete) {
-		this.delete = delete;
-	}
-	public void setDraw(Button draw) {
-		this.draw = draw;
-	}
-	public void setDone(Button done) {
-		this.done = done;
-	}
-}
+//import javafx.scene.Group;
+//import javafx.scene.Scene;
+//import javafx.scene.control.Button;
+//import javafx.scene.control.ToolBar;
+//import javafx.scene.layout.BorderPane;
+//import javafx.scene.layout.GridPane;
+//import javafx.scene.layout.TilePane;
+//import javafx.stage.Stage;
+//
+//public class DrawGardenPane {
+//	
+//	BorderPane gardenborder = new BorderPane();
+//	ToolBar gardentoolbar = new ToolBar();
+//	
+//	//Buttons
+//	Button delete = new Button("Delete");
+//	Button draw = new Button("Draw");
+//	Button done = new Button("Done");
+//	
+//	
+//	public BorderPane getGardenborder() {
+//		return gardenborder;
+//	}
+//	public ToolBar getGardentoolbar() {
+//		return gardentoolbar;
+//	}
+//	public Button getDelete() {
+//		return delete;
+//	}
+//	public Button getDraw() {
+//		return draw;
+//	}
+//	public Button getDone() {
+//		return done;
+//	}
+//	public void setGardenborder(BorderPane gardenborder) {
+//		this.gardenborder = gardenborder;
+//	}
+//	public void setGardentoolbar(ToolBar gardentoolbar) {
+//		this.gardentoolbar = gardentoolbar;
+//	}
+//	public void setDelete(Button delete) {
+//		this.delete = delete;
+//	}
+//	public void setDraw(Button draw) {
+//		this.draw = draw;
+//	}
+//	public void setDone(Button done) {
+//		this.done = done;
+//	}
+//}
 //
 //	int canvasWidth = 1200;
 //	int canvasHeight = 700;

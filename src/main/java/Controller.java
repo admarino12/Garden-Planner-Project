@@ -11,11 +11,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
@@ -26,7 +29,9 @@ public class Controller extends Application {
 	Scanner scan;
 	Garden garden;
 	
+	
 	boolean toggleASCII = false;
+	
 	
 	public static void main(String[] args) {
 		//This initializes the JavaFX view
@@ -41,6 +46,37 @@ public class Controller extends Application {
 		view = new View(theStage, this);
 		scan = new Scanner(System.in);
         
+		//Draw start
+		view.getGardenCanvas().setOnMousePressed(e->{
+			if(view.getDraw().isSelected() && !view.getErase().isSelected()) {
+			view.getgc().beginPath();
+			view.getgc().lineTo(e.getSceneX()-272, e.getSceneY()-84);
+			view.getgc().stroke();
+			}
+			
+			else if(!view.getDraw().isSelected() && view.getErase().isSelected()) {
+				double lineWidth = view.getgc().getLineWidth()*4;
+				view.getgc().clearRect(e.getSceneX()-272 - lineWidth , e.getSceneY()-84 - lineWidth,
+						lineWidth, lineWidth);
+			}
+			
+			});	
+		
+		//Draw line
+		view.getGardenCanvas().setOnMouseDragged(e->{
+			if(view.getDraw().isSelected() && !view.getErase().isSelected()) {
+			view.getgc().lineTo(e.getSceneX()-272, e.getSceneY()-84);
+			view.getgc().stroke();
+			}
+			else if(!view.getDraw().isSelected() && view.getErase().isSelected()) {
+				double lineWidth = view.getgc().getLineWidth()*4;
+				view.getgc().clearRect(e.getSceneX()-272 - lineWidth , e.getSceneY()-84 - lineWidth,
+						lineWidth, lineWidth);
+			}
+			});
+		
+		
+		
 		
 		if(!toggleASCII) {
 			theStage.show();
@@ -133,6 +169,7 @@ public class Controller extends Application {
 	}
 	
 	public void drag(MouseEvent event) {}
+	
 	
 	
 	

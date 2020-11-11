@@ -2,6 +2,8 @@ package src.main.java;
 
 import java.util.Scanner;
 
+
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,36 +12,47 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class View {
-
+	
 	public Controller control;
 	private ToolBar toolbarpane;
 	private ToolBar drawgardentoolbar;
-	private FlowPane drawgardenpane;
+	private Canvas drawgardencanvas;
+	private GraphicsContext gc;
 	private BorderPane drawgardenborderpane;
 	private PlantSearchPane plantSearchPane;
 	private BorderPane border;
+	private ToggleButton erase = new ToggleButton("Erase");
+	private ToggleButton draw = new ToggleButton("Draw");
+	private Button done = new Button("Finished");
+
+	
 			
 
-	final private int CANVASWIDTH = 1000;
-	final private int CANVASHEIGHT = 600;
+	final private int CANVASWIDTH = 1200;
+	final private int CANVASHEIGHT = 795;
 	
-	final private int DRAWGARDENPANEWIDTH = 400;
+	final private int DRAWGARDENPANEWIDTH = 1000;
 	final private int DRAWGARDENPANEHEIGHT = 700;
 
 	// garden dimensions
@@ -71,22 +84,23 @@ public class View {
 		
 		
 		//DrawGardenPane
-		drawgardenpane = new FlowPane();
-		drawgardenpane.setStyle("-fx-background-color: #81EEA4;");
-		drawgardenpane.setMinWidth(DRAWGARDENPANEWIDTH);
-		drawgardenpane.setMinHeight(DRAWGARDENPANEHEIGHT);
+		drawgardencanvas = new Canvas(DRAWGARDENPANEWIDTH, DRAWGARDENPANEHEIGHT);
+		drawgardencanvas.setStyle("-fx-background-color: #81EEA4;");
+		drawgardencanvas.minWidth(DRAWGARDENPANEWIDTH);
+		drawgardencanvas.minHeight(DRAWGARDENPANEHEIGHT);
+		StackPane holder = new StackPane();
+		holder.getChildren().add(drawgardencanvas);
+		holder.setStyle("-fx-background-color: #81EEA4;");
 		
 		drawgardentoolbar = new ToolBar();
 		
 		//DrawGardenPane Buttons
-		Button delete = new Button("Delete");
-		Button draw = new Button("Draw");
 		Button done = new Button("Finished");
 		
 		//Add buttons to DrawGardenPane
 		HBox hb2 = new HBox();
-		hb2.setPadding(new Insets(5, 10, 5, 555));
-		hb2.getChildren().addAll(delete, new Separator(), draw , new Separator(), done);
+		hb2.setPadding(new Insets(5, 10, 5, 730));
+		hb2.getChildren().addAll(erase, new Separator(), draw , new Separator(), done);
 		drawgardentoolbar.getItems().add(hb2);
 		drawgardentoolbar.setOrientation(Orientation.HORIZONTAL);
 		//Put toolbar on Right
@@ -94,7 +108,7 @@ public class View {
 		drawgardenborderpane = new BorderPane();
 		drawgardenborderpane.setMinWidth(DRAWGARDENPANEWIDTH);
 		drawgardenborderpane.setMinHeight(DRAWGARDENPANEHEIGHT);
-		drawgardenborderpane.setCenter(drawgardenpane);
+		drawgardenborderpane.setCenter(holder);
 		drawgardenborderpane.setTop(drawgardentoolbar);
 		
 		
@@ -105,9 +119,12 @@ public class View {
 		border.setLeft(plantSearchPane.getMainPane());
 		border.setCenter(drawgardenborderpane);
 		border.setTop(toolbarpane);
+		
+		gc = drawgardencanvas.getGraphicsContext2D();
+		gc.setStroke(Color.BLACK);
+		gc.setLineWidth(5);
 
-
-	
+		
 		theStage.show();
 	}
 	
@@ -164,6 +181,45 @@ public class View {
 	public void printLine() {
 		System.out.println("******************************");
 	}
+
+	public Canvas getGardenCanvas() {
+		return drawgardencanvas;
+	}
+	
+	public GraphicsContext getgc() {
+		return gc;
+	}
+	
+
+	public ToggleButton getErase() {
+		return erase;
+	}
+
+
+	public ToggleButton getDraw() {
+		return draw;
+	}
+
+
+	public Button getDone() {
+		return done;
+	}
+
+
+	public void setErase(ToggleButton erase) {
+		this.erase = erase;
+	}
+
+
+	public void setDraw(ToggleButton draw) {
+		this.draw = draw;
+	}
+
+
+	public void setDone(Button done) {
+		this.done = done;
+	}
+
 
 }
 
