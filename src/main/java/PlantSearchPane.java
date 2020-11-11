@@ -74,6 +74,7 @@ public class PlantSearchPane {
 		imageContainerPane = new TilePane();
 		imageContainerPane.setPrefColumns(2);
 		imageContainerPane.setVgap(20);
+		imageContainerPane.setAlignment(Pos.CENTER);
 		
 		createHashMap();
 		update(allPlantNames);
@@ -91,7 +92,7 @@ public class PlantSearchPane {
 				ImageView plantImageView = new ImageView();
 				plantImageView.setImage(plantImage);
 				plantImageView.setPreserveRatio(true);
-		    	plantImageView.setFitHeight(100);
+		    	plantImageView.setFitHeight(60);
 				mainView.control.setHandlerForDrag(plantImageView);
 				plantList.put(name, plantImageView);
 			} catch (FileNotFoundException e) {

@@ -50,13 +50,13 @@ public class Controller extends Application {
 		view.getGardenCanvas().setOnMousePressed(e->{
 			if(view.getDraw().isSelected() && !view.getErase().isSelected()) {
 			view.getgc().beginPath();
-			view.getgc().lineTo(e.getSceneX()-272, e.getSceneY()-84);
+			view.getgc().lineTo(e.getSceneX()-258, e.getSceneY()-84);
 			view.getgc().stroke();
 			}
-			
+		//Erase start
 			else if(!view.getDraw().isSelected() && view.getErase().isSelected()) {
 				double lineWidth = view.getgc().getLineWidth()*4;
-				view.getgc().clearRect(e.getSceneX()-272 - lineWidth , e.getSceneY()-84 - lineWidth,
+				view.getgc().clearRect(e.getSceneX()-258 - lineWidth , e.getSceneY()-84 - lineWidth,
 						lineWidth, lineWidth);
 			}
 			
@@ -65,12 +65,13 @@ public class Controller extends Application {
 		//Draw line
 		view.getGardenCanvas().setOnMouseDragged(e->{
 			if(view.getDraw().isSelected() && !view.getErase().isSelected()) {
-			view.getgc().lineTo(e.getSceneX()-272, e.getSceneY()-84);
+			view.getgc().lineTo(e.getSceneX()-258, e.getSceneY()-84);
 			view.getgc().stroke();
 			}
+		//Erase line
 			else if(!view.getDraw().isSelected() && view.getErase().isSelected()) {
 				double lineWidth = view.getgc().getLineWidth()*4;
-				view.getgc().clearRect(e.getSceneX()-272 - lineWidth , e.getSceneY()-84 - lineWidth,
+				view.getgc().clearRect(e.getSceneX()-258 - lineWidth , e.getSceneY()-84 - lineWidth,
 						lineWidth, lineWidth);
 			}
 			});

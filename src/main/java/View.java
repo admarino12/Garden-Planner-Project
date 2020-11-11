@@ -50,7 +50,7 @@ public class View {
 			
 
 	final private int CANVASWIDTH = 1200;
-	final private int CANVASHEIGHT = 795;
+	final private int CANVASHEIGHT = 780;
 	
 	final private int DRAWGARDENPANEWIDTH = 1000;
 	final private int DRAWGARDENPANEHEIGHT = 700;
@@ -100,7 +100,7 @@ public class View {
 		//Add buttons to DrawGardenPane
 		HBox hb2 = new HBox();
 		hb2.setPadding(new Insets(5, 10, 5, 730));
-		hb2.getChildren().addAll(erase, new Separator(), draw , new Separator(), done);
+		hb2.getChildren().addAll(draw, new Separator(), erase , new Separator(), done);
 		drawgardentoolbar.getItems().add(hb2);
 		drawgardentoolbar.setOrientation(Orientation.HORIZONTAL);
 		//Put toolbar on Right
