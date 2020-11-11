@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javafx.application.Application;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
@@ -32,8 +36,8 @@ public class Controller extends Application {
 	
 	@Override
 	public void start(Stage theStage) {
-		view = new View(theStage, this);
 		model = new Model(loadPlantList());
+		view = new View(theStage, this);
 		scan = new Scanner(System.in);
         
 		
@@ -101,8 +105,34 @@ public class Controller extends Application {
 		return plantList;
 	}
 	
+	public ArrayList<String> getPlantNames() {
+		ArrayList<String> plantNames = new ArrayList<String>();
+		
+		for(Plant plant : model.getPlantList()) {
+			plantNames.add(plant.getName());
+		}
+		return plantNames;
+	}
+	
+	public void setHandlerForSearchBar(Button searchButton) {
+		searchButton.setOnAction(event -> {
+			PlantSearchPane pane = view.getPlantSearchPane();
+			System.out.println(pane.getTextField());
+			ArrayList<String> names = new ArrayList<String>();
+			names.add(pane.getTextField());
+			pane.updateImagePane(names);
+		});
+	}
 	
 	
+	public void setHandlerForDrag(ImageView imgView) {
+		imgView.setOnMouseDragged(event -> drag(event));	
+		imgView.setOnMouseReleased(event -> { 
+			
+		});	
+	}
+	
+	public void drag(MouseEvent event) {}
 	
 	
 	
