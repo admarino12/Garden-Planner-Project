@@ -1,5 +1,5 @@
 package src.main.java;
 
-public class ToolBarView {
+public class ToolBarPane {
 
 }
