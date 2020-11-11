@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -65,22 +66,6 @@ public class Controller extends Application {
 		}
     }
 	
-	public void searchPlantByTraitLogic() {
-		System.out.println("Possible Characteristics to Search By:");
-		String[] traits = model.getPlantTraits().split(", ");
-		for(String trait : traits) {
-			System.out.println(trait);
-		}
-		
-		System.out.println("Search plant by Characteristic: ");
-		String search = scan.next();
-		ArrayList<Plant> searchResults = model.searchPlantListByTrait(search);
-		for( Plant plant : searchResults) {
-			System.out.println(plant.getName());
-		}
-		
-	}
-	
 	public ArrayList<Plant> loadPlantList(){
 		ArrayList<Plant> plantList = new ArrayList<Plant>();
 		String line = "";
@@ -120,7 +105,21 @@ public class Controller extends Application {
 			System.out.println(pane.getTextField());
 			ArrayList<String> names = new ArrayList<String>();
 			names.add(pane.getTextField());
-			pane.updateImagePane(names);
+			pane.update(names);
+		});
+	}
+	
+	public void setHandlerForSearchTab(ComboBox<String> options) {
+		options.setOnAction(event -> {
+			String trait = options.getSelectionModel().getSelectedItem();
+			ArrayList<String> names = new ArrayList<String>();
+			if(trait!="All") {
+				names = model.searchPlantListByTrait(trait);
+			}
+			else {
+				names.add("");
+			}
+			view.getPlantSearchPane().update(names);
 		});
 	}
 	
@@ -285,6 +284,24 @@ public class Controller extends Application {
 		garden.removePlant(xCord, yCord);
 	}
 	
+	/*
+	 * THIS IS LEFT OVERFROM ASCII
+	 */
+	public void searchPlantByTraitLogic() {
+		System.out.println("Possible Characteristics to Search By:");
+		String[] traits = model.getPlantTraits().split(", ");
+		for(String trait : traits) {
+			System.out.println(trait);
+		}
+		
+		System.out.println("Search plant by Characteristic: ");
+		String search = scan.next();
+		ArrayList<String> searchResults = model.searchPlantListByTrait(search);
+		for( String plant : searchResults) {
+			System.out.println(plant);
+		}
+		
+	}
 	
 	/*
 	 * THIS IS LEFT OVERFROM ASCII

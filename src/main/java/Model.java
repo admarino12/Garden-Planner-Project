@@ -9,7 +9,7 @@ public class Model {
 	int gardenHeight;
 	int xCord;
 	int yCord;
-	String plantTraits = "Tree, FLower, Shrub, Yellow, Blue, Pink";
+	String plantTraits = "Trees, FLowers, Bushes, Yellow, Blue, Pink";
 	Garden garden;
 
 	public Model(ArrayList<Plant> plantList) {
@@ -25,12 +25,12 @@ public class Model {
 		return plantTraits;
 	}
 	
-	public ArrayList<Plant> searchPlantListByTrait(String search){
-		ArrayList<Plant> results = new ArrayList<Plant>();
+	public ArrayList<String> searchPlantListByTrait(String search){
+		ArrayList<String> results = new ArrayList<String>();
 		for(Plant plant : plantList) {
 			for(String trait : plant.getTraits()) {
 				if(trait.equals(search)) {
-					results.add(plant);
+					results.add(plant.getName());
 				}
 			}
 		}
