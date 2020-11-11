@@ -27,22 +27,13 @@ import javafx.scene.image.ImageView;
 
 public class View {
 
-	Controller control;
+	public Controller control;
 	private ToolBar toolbarpane;
 	private ToolBar drawgardentoolbar;
 	private FlowPane drawgardenpane;
 	private BorderPane drawgardenborderpane;
-	private TilePane dragndroppane;
+	private PlantSearchPane plantSearchPane;
 	private BorderPane border;
-	
-	ObservableList<String> options = 
-			FXCollections.observableArrayList(
-					"Flowers",
-					"Trees",
-					"Bushes",
-					"Misc"
-					);
-	final ComboBox<String> typesofplants = new ComboBox<String>(options);
 			
 
 	final private int CANVASWIDTH = 1000;
@@ -50,9 +41,6 @@ public class View {
 	
 	final private int DRAWGARDENPANEWIDTH = 400;
 	final private int DRAWGARDENPANEHEIGHT = 700;
-	
-	final private int DRAGNDROPPANEWIDTH=200;
-	final private int DRAGNDROPPANEHEIGHT= 800;
 
 	// garden dimensions
 	int gardenWidth, gardenHeight;
@@ -79,22 +67,7 @@ public class View {
 		toolbarpane.getItems().addAll(save, new Separator(), add, new Separator(), move, new Separator(), transform);
 
 		// DragnDropPane
-		dragndroppane = new TilePane();
-		dragndroppane.setStyle("-fx-background-color: #E7DEBC;");
-		
-		Label searchlabel = new Label("Search:");
-		TextField searcher = new TextField();
-		Button searchbutton = new Button("Go");
-		HBox hb = new HBox();
-		hb.getChildren().addAll(searchlabel, searcher,searchbutton);
-		hb.setSpacing(8);
-		hb.setPadding(new Insets(5, 10, 5, 10));
-		HBox hb1 = new HBox();
-		hb1.getChildren().add(typesofplants);
-		hb1.setPadding(new Insets(5, 10, 5, 10));
-		hb1.setAlignment(Pos.BOTTOM_CENTER);
-		dragndroppane.getChildren().add(hb);
-		dragndroppane.getChildren().add(hb1);
+		plantSearchPane = new PlantSearchPane(this);
 		
 		
 		//DrawGardenPane
@@ -129,7 +102,7 @@ public class View {
 
 		border = new BorderPane();
 		root.getChildren().add(border);
-		border.setLeft(dragndroppane);
+		border.setLeft(plantSearchPane.getMainPane());
 		border.setCenter(drawgardenborderpane);
 		border.setTop(toolbarpane);
 
@@ -137,6 +110,14 @@ public class View {
 	
 		theStage.show();
 	}
+	
+	
+	public PlantSearchPane getPlantSearchPane() {
+		return plantSearchPane;
+	}
+	
+	
+	
 
 	/*
 	 * THIS IS LEFT OVERFROM ASCII
