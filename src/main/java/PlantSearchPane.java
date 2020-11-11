@@ -62,6 +62,7 @@ public class PlantSearchPane {
 		
 		//HBox contains the drop down selection box
 		HBox hb1 = new HBox();
+		mainView.control.setHandlerForSearchTab(typesofplants);
 		hb1.getChildren().add(typesofplants);
 		hb1.setPadding(new Insets(5, 10, 30, 10));
 		hb1.setMaxHeight(50);
@@ -75,7 +76,7 @@ public class PlantSearchPane {
 		imageContainerPane.setVgap(20);
 		
 		createHashMap();
-		updateImagePane(allPlantNames);
+		update(allPlantNames);
 		
 		mainPane.getChildren().add(imageContainerPane);
 		
@@ -99,7 +100,7 @@ public class PlantSearchPane {
 		}
 	}
 	
-	public void updateImagePane(ArrayList<String> names) {
+	public void update(ArrayList<String> names) {
 		
 		imageContainerPane.getChildren().clear();
 		for(String inputName : names) {
