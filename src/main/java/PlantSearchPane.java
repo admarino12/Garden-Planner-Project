@@ -122,7 +122,7 @@ public class PlantSearchPane {
 		return mainPane;
 	}
 	
-	public String getTextField() {
-		return searcher.getText();
+	public TextField getTextField() {
+		return searcher;
 	}
 }

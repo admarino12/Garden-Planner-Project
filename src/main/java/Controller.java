@@ -102,15 +102,16 @@ public class Controller extends Application {
 	public void setHandlerForSearchBar(Button searchButton) {
 		searchButton.setOnAction(event -> {
 			PlantSearchPane pane = view.getPlantSearchPane();
-			System.out.println(pane.getTextField());
+			System.out.println(pane.getTextField().getText());
 			ArrayList<String> names = new ArrayList<String>();
-			names.add(pane.getTextField());
+			names.add(pane.getTextField().getText());
 			pane.update(names);
 		});
 	}
 	
 	public void setHandlerForSearchTab(ComboBox<String> options) {
 		options.setOnAction(event -> {
+			view.getPlantSearchPane().getTextField().setText("");
 			String trait = options.getSelectionModel().getSelectedItem();
 			ArrayList<String> names = new ArrayList<String>();
 			if(trait!="All") {
