@@ -1,4 +1,5 @@
-package src.main.java;
+package pkgMain;
+
 
 public class Plant {
 
@@ -15,7 +16,7 @@ public class Plant {
 		this.plantName = plantName;
 		// Both of these use the static getData method from Model
 		plantChar = plantName.charAt(0);
-		this.plantDescription = plantDescription; 
+		this.plantDescription = plantDescription;
 		this.plantTraits = plantTraits;
 	}
 
@@ -26,11 +27,11 @@ public class Plant {
 	public char getChar() {
 		return plantChar;
 	}
-	
+
 	public String getDescription() {
 		return plantDescription;
 	}
-	
+
 	public String[] getTraits() {
 		return plantTraits;
 	}
@@ -50,6 +51,5 @@ public class Plant {
 	public void setyCor(int yCor) {
 		this.yCor = yCor;
 	}
-	
-	
+
 }

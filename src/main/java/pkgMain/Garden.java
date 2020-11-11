@@ -1,4 +1,4 @@
-package src.main.java;
+package pkgMain;
 
 import java.util.ArrayList;
 
@@ -23,10 +23,10 @@ class Garden {
 		}
 	}
 
-	//Updated so that it needs a description variable. 
+	// Updated so that it needs a description variable.
 	public void addPlant(int xCord, int yCord, String name, String description, String[] traits) {
-		
-		Plant plant = new Plant(name,description, traits);
+
+		Plant plant = new Plant(name, description, traits);
 		garden[yCord][xCord] = plant;
 		plant.setxCor(xCord);
 		plant.setyCor(yCord);

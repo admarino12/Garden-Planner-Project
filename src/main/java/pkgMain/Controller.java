@@ -1,4 +1,4 @@
-package src.main.java;
+package pkgMain;
 
 
 import java.io.BufferedReader;
@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 
 public class Controller extends Application {
 
@@ -60,52 +59,49 @@ public class Controller extends Application {
 			this.menuChoiceLoop();
 		}
     }
-	
+
 	public void searchPlantByTraitLogic() {
 		System.out.println("Possible Characteristics to Search By:");
 		String[] traits = model.getPlantTraits().split(", ");
-		for(String trait : traits) {
+		for (String trait : traits) {
 			System.out.println(trait);
 		}
-		
+
 		System.out.println("Search plant by Characteristic: ");
 		String search = scan.next();
 		ArrayList<Plant> searchResults = model.searchPlantListByTrait(search);
-		for( Plant plant : searchResults) {
+		for (Plant plant : searchResults) {
 			System.out.println(plant.getName());
 		}
-		
+
 	}
-	
-	public ArrayList<Plant> loadPlantList(){
+
+	public ArrayList<Plant> loadPlantList() {
 		ArrayList<Plant> plantList = new ArrayList<Plant>();
 		String line = "";
-		
-		//Read each line of the CSV file and pull the plant name, description, and String array of plant traits
+
+		// Read each line of the CSV file and pull the plant name, description, and
+		// String array of plant traits
 		try {
-			FileReader file = new FileReader("src/resources/plants.csv");
+			FileReader file = new FileReader("/plants.csv");
 			BufferedReader csvFile = new BufferedReader(file);
-			
-			while((line = csvFile.readLine()) != null) {
-				
+
+			while ((line = csvFile.readLine()) != null) {
+
 				String[] plant = line.split(",");
 				String[] plantTraits = plant[2].split("-");
-				plantList.add(  new Plant(plant[0], plant[1], plantTraits) );
-				
-			}			
+				plantList.add(new Plant(plant[0], plant[1], plantTraits));
+
+			}
 			csvFile.close();
-		
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		catch (IOException e) { e.printStackTrace(); }
-		
+
 		return plantList;
 	}
-	
-	
-	
-	
-	
-	
+
 	/*
 	 * THIS IS LEFT OVERFROM ASCII
 	 */
@@ -113,7 +109,7 @@ public class Controller extends Application {
 		// menu
 		String userInput;
 		boolean menuLoop = true;
-		
+
 		while (menuLoop) {
 			int menuChoice = mainMenu(scan);
 
@@ -127,7 +123,7 @@ public class Controller extends Application {
 			case 3: // Remove Plant
 				removePlantLogic();
 				break;
-			case 4: //Print UI of Garden
+			case 4: // Print UI of Garden
 				view.printGarden(garden.getGarden(), garden.getGardenWidth(), garden.getGardenHeight());
 
 				System.out.println("Return to Menu? (Y)");
@@ -137,7 +133,7 @@ public class Controller extends Application {
 					userInput = scan.next();
 				}
 				break;
-			case 5: //Print List of Plants in Garden
+			case 5: // Print List of Plants in Garden
 				view.printPlantsinGarden(garden);
 				break;
 			case 6:
@@ -153,12 +149,12 @@ public class Controller extends Application {
 			}
 		}
 	}
-	
+
 	/*
 	 * THIS IS LEFT OVERFROM ASCII
 	 */
 	public int mainMenu(Scanner scan) {
-		
+
 		printLine();
 		System.out.println("\nMenu: ");
 		System.out.println("1. Add Plant" + "\n2. Move Plant\n3. Remove Plant\n4. Print Garden"
@@ -166,7 +162,7 @@ public class Controller extends Application {
 
 		return scan.nextInt();
 	}
-	
+
 	/*
 	 * THIS IS LEFT OVERFROM ASCII
 	 */
@@ -175,10 +171,10 @@ public class Controller extends Application {
 		for (Plant plant1 : model.getPlantList()) {
 			System.out.println(plant1.getName());
 		}
-		
+
 		System.out.println("\nName of Plant to add: ");
 		String name = scan.next();
-		
+
 		System.out.println("Please enter X-coordinate for plant: ");
 		int xCord = scan.nextInt() - 1;
 		while (xCord > garden.getGardenWidth()) {
@@ -195,19 +191,19 @@ public class Controller extends Application {
 			System.out.println("Please enter Y-coordinate for plant: ");
 			yCord = scan.nextInt() - 1;
 		}
-		if	(garden.getGarden()[yCord][xCord] != null) {
+		if (garden.getGarden()[yCord][xCord] != null) {
 			System.out.println("There is already a plant here!");
-		}
-		else {
-			//Updated so that we are just copying plants over from the available plant list. 
+		} else {
+			// Updated so that we are just copying plants over from the available plant
+			// list.
 			for (Plant plant1 : model.getPlantList()) {
 				if (name.equals(plant1.getName())) {
-					garden.addPlant(xCord, yCord, plant1.getName(),plant1.getDescription(), plant1.getTraits() );
+					garden.addPlant(xCord, yCord, plant1.getName(), plant1.getDescription(), plant1.getTraits());
 				}
 			}
 		}
 	}
-	
+
 	/*
 	 * THIS IS LEFT OVERFROM ASCII
 	 */
@@ -225,20 +221,18 @@ public class Controller extends Application {
 			System.out.println("X-Coordinate of where you wish to move plant: ");
 			int movexCord = scan.nextInt() - 1;
 			System.out.println("Y-Coordinate of where you wish to move plant: ");
-			int moveyCord = scan.nextInt() - 1;	
-			if	(garden.getGarden()[moveyCord][movexCord] == null) {
+			int moveyCord = scan.nextInt() - 1;
+			if (garden.getGarden()[moveyCord][movexCord] == null) {
 				garden.movePlant(movexCord, moveyCord, xCord, yCord);
-			}
-			else {
+			} else {
 				System.out.println("There is already a plant here!");
 			}
-		}
-		else {
+		} else {
 			System.out.println("There is no plant here!");
 		}
-	
+
 	}
-	
+
 	/*
 	 * THIS IS LEFT OVERFROM ASCII
 	 */
@@ -254,8 +248,7 @@ public class Controller extends Application {
 		int yCord = scan.nextInt() - 1;
 		garden.removePlant(xCord, yCord);
 	}
-	
-	
+
 	/*
 	 * THIS IS LEFT OVERFROM ASCII
 	 */
@@ -263,4 +256,3 @@ public class Controller extends Application {
 		System.out.println("******************************");
 	}
 }
-

@@ -1,9 +1,10 @@
-package src.main.java;
+package pkgMain;
+
 
 import java.util.ArrayList;
 
 public class Model {
-	
+
 	ArrayList<Plant> plantList;
 	int gardenWidth;
 	int gardenHeight;
@@ -20,28 +21,21 @@ public class Model {
 	public ArrayList<Plant> getPlantList() {
 		return plantList;
 	}
-	
+
 	public String getPlantTraits() {
 		return plantTraits;
 	}
-	
-	public ArrayList<Plant> searchPlantListByTrait(String search){
+
+	public ArrayList<Plant> searchPlantListByTrait(String search) {
 		ArrayList<Plant> results = new ArrayList<Plant>();
-		for(Plant plant : plantList) {
-			for(String trait : plant.getTraits()) {
-				if(trait.equals(search)) {
+		for (Plant plant : plantList) {
+			for (String trait : plant.getTraits()) {
+				if (trait.equals(search)) {
 					results.add(plant);
 				}
 			}
 		}
 		return results;
 	}
-	
 
 }
-
-
-
-
-
-
