@@ -6,8 +6,8 @@ public class Plant {
 	private char plantChar;
 	private String plantDescription;
 	private String[] plantTraits;
-	private int xCor;
-	private int yCor;
+	private double xCor;
+	private double yCor;
 
 	// Here we would search the CSV using the plantName to get the rest of the
 	// information about the plant such as plantChar
@@ -35,19 +35,19 @@ public class Plant {
 		return plantTraits;
 	}
 
-	public int getxCor() {
+	public double getxCor() {
 		return xCor;
 	}
 
-	public void setxCor(int xCor) {
+	public void setxCor(double xCor) {
 		this.xCor = xCor;
 	}
 
-	public int getyCor() {
+	public double getyCor() {
 		return yCor;
 	}
 
-	public void setyCor(int yCor) {
+	public void setyCor(double yCor) {
 		this.yCor = yCor;
 	}
 	

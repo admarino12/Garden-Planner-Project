@@ -13,6 +13,7 @@ import java.util.Scanner;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -162,14 +163,24 @@ public class Controller extends Application {
 	}
 	
 	
-	public void setHandlerForDrag(ImageView imgView) {
-		imgView.setOnMouseDragged(event -> drag(event));	
-		imgView.setOnMouseReleased(event -> { 
-			
-		});	
+	//	public void setHandlerForDrag(ImageView imgView) {
+	//	imgView.setOnMouseDragged(event -> drag(event));	
+	//	imgView.setOnMouseReleased(event -> { 
+	//		
+	//	});	
+	//}
+	
+	public void drag(MouseEvent event) {
+	    Node n = (Node)event.getSource();
+	    n.getId();
+	    //System.out.println(n);
+	   model.Add(event.getX(),event.getY(), n.getId());
+	   //view.updatePlants(model.getCurrentPlant());
 	}
 	
-	public void drag(MouseEvent event) {}
+	public EventHandler getHandlerForDrag() {
+	    return event -> drag((MouseEvent) event);
+	}
 	
 	
 	
@@ -196,7 +207,7 @@ public class Controller extends Application {
 				removePlantLogic();
 				break;
 			case 4: //Print UI of Garden
-				view.printGarden(garden.getGarden(), garden.getGardenWidth(), garden.getGardenHeight());
+				//view.printGarden(garden.getGarden(), garden.getGardenWidth(), garden.getGardenHeight());
 
 				System.out.println("Return to Menu? (Y)");
 

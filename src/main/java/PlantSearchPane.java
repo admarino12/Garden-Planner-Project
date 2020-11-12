@@ -90,10 +90,12 @@ public class PlantSearchPane {
 			try {
 				plantImage = new Image(new FileInputStream("src/resources/images/"+name+".png"));
 				ImageView plantImageView = new ImageView();
+				plantImageView.setId(name);
 				plantImageView.setImage(plantImage);
 				plantImageView.setPreserveRatio(true);
-		    	plantImageView.setFitHeight(60);
-				mainView.control.setHandlerForDrag(plantImageView);
+		    	plantImageView.setFitHeight(100);
+				//mainView.control.setHandlerForDrag(plantImageView);
+		    	plantImageView.setOnDragDetected(mainView.control.getHandlerForDrag());
 				plantList.put(name, plantImageView);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();

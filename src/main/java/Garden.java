@@ -6,8 +6,8 @@ class Garden {
 
 	// The garden is a 2D array of Characters (each plant has its own character)
 	private Plant[][] garden;
-	private int width;
-	private int height;
+	private double width;
+	private double height;
 	private ArrayList<Plant> plantsInGarden = new ArrayList<Plant>();
 
 	public Garden(int width, int height) {
@@ -15,22 +15,21 @@ class Garden {
 		this.height = height;
 
 		// Initialize garden based on input length and height
-		garden = new Plant[height][width];
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
-				garden[i][j] = null;
-			}
-		}
+//		garden = new Plant[height][width];
+//		for (int i = 0; i < height; i++) {
+//			for (int j = 0; j < width; j++) {
+//				garden[i][j] = null;
+//			}
+//		}
 	}
 
 	//Updated so that it needs a description variable. 
-	public void addPlant(int xCord, int yCord, String name, String description, String[] traits) {
-		
+	public void addPlant(double xCord, double yCord, String name, String description, String[] traits) {
 		Plant plant = new Plant(name,description, traits);
-		garden[yCord][xCord] = plant;
+		//garden[yCord][xCord] = plant;
 		plant.setxCor(xCord);
 		plant.setyCor(yCord);
-		plantsInGarden.add(plant);
+		getPlantsInGarden().add(plant);
 	}
 
 	public void movePlant(int movexCord, int moveyCord, int xCord, int yCord) {
@@ -60,15 +59,19 @@ class Garden {
 		return garden;
 	}
 
-	public int getGardenWidth() {
+	public double getGardenWidth() {
 		return width;
 	}
 
-	public int getGardenHeight() {
+	public double getGardenHeight() {
 		return height;
 	}
 
 	public ArrayList<Plant> getPlants() {
 		return plantsInGarden;
+	}
+	
+	public ArrayList<Plant> getPlantsInGarden() {
+		return this.plantsInGarden;
 	}
 }
