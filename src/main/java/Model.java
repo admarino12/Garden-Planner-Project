@@ -7,8 +7,6 @@ public class Model {
 	ArrayList<Plant> plantList;
 	int gardenWidth;
 	int gardenHeight;
-	double xCord;
-	double yCord;
 	String plantTraits = "Trees, FLowers, Bushes, Yellow, Blue, Pink";
 	Garden garden;
 

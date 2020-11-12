@@ -69,8 +69,6 @@ public class View {
 		//theScene.getStylesheets().add(styleSheet);
 		theStage.setScene(theScene);
 
-//		// Buttons
-//		Button b = new Button("Test");
 		
 		//Toolbar
 		toolbarpane = new ToolBar();
@@ -172,52 +170,7 @@ public class View {
 	}
 	
 
-	/*
-	 * THIS IS LEFT OVERFROM ASCII
-	 */
-	public void printGarden(Plant[][] garden, int gardenWidth, int gardenHeight) {
-		System.out.print(" ");
-		for (int j = 0; j < gardenWidth; j++) {
-			System.out.print("__");
-		}
-		System.out.println();
-		for (int i = 0; i < gardenHeight; i++) {
-			System.out.print("|");
-			for (int j = 0; j < gardenWidth; j++) {
-				//
-				// Display contents of the 2D garden character array here
-				//
-				if (garden[i][j] == null) {
-					System.out.print("  ");
-				} else
-					System.out.print(garden[i][j].getChar() + " ");
-			}
-			System.out.println("|");
-		}
-		System.out.print("|");
-		for (int j = 0; j < gardenWidth; j++) {
-			System.out.print("__");
-		}
-		System.out.println("|");
-		System.out.println();
-	}
-
-	/*
-	 * THIS IS LEFT OVERFROM ASCII
-	 */
-	public void printPlantsinGarden(Garden garden) {
-		for (Plant plant1 : garden.getPlants()) {
-			System.out.println(plant1.getName() + " (" + (plant1.getxCor() + 1) + "," + (plant1.getyCor() + 1) + ")");
-		}
-	}
-
-	/*
-	 * THIS IS LEFT OVERFROM ASCII
-	 */
-	public void printLine() {
-		System.out.println("******************************");
-	}
-
+	
 	public Canvas getGardenCanvas() {
 		return drawgardencanvas;
 	}
