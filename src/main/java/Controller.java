@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -30,9 +31,6 @@ public class Controller extends Application {
 	Scanner scan;
 	Garden garden;
 	
-	boolean isRemoving = false; 
-	boolean isMoving = false; 
-	boolean isAdding = true; 
 	
 	
 	
@@ -48,6 +46,8 @@ public class Controller extends Application {
 		model = new Model(loadPlantList());
 		view = new View(theStage, this);
 		scan = new Scanner(System.in);
+		
+		this.garden = model.garden;
         
 		//Draw start
 		view.getGardenCanvas().setOnMousePressed(e->{
@@ -149,11 +149,49 @@ public class Controller extends Application {
 	public void drag(MouseEvent event) {
 	    Node n = (Node)event.getSource();
 	    //System.out.println(n);
-	 
+	 if (view.getAdd().isSelected()) {
 	   Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId());
 	   view.addPlants(plant);
+	 }
 	}
 	
-
+	public void setHandlerForPlantClick(ImageView imgView) {
+		imgView.setOnMouseClicked(event -> click(event));
+	}
+	public void click(MouseEvent event) {
+		Node n = (Node)event.getSource();
+		
+		if (view.getRemove().isSelected()) {
+			Plant plantRemoved = null;
+			for (Plant p : garden.getPlantsInGarden()) {
+				if (n.getId().equals(p.getName() + p.getxCor())) {
+					plantRemoved = p; 
+				}
+			}
+			view.removePlant(plantRemoved);
+			model.remove(plantRemoved);
+		}
+	}
+	
+	public void setHandlerForPlantDragged(ImageView imgView) {
+		imgView.setOnMouseReleased(event -> move(event));
+	}
+	public void move(MouseEvent event) {
+		ImageView imgView = (ImageView) event.getSource();
+		Node n = (Node)event.getSource();
+		
+		if (view.getMove().isSelected()) {
+			Plant plantMoved = null;
+			for (Plant p : garden.getPlantsInGarden()) {
+				if (n.getId().equals(p.getName() + p.getxCor())) {
+					plantMoved = p; 
+				}
+			}
+			model.move(event.getSceneX(),event.getSceneY(),plantMoved);
+			view.movePlant(imgView, plantMoved);
+			
+	}
+	
+	}
 }
 

@@ -13,6 +13,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -47,7 +48,12 @@ public class View {
 	private ToggleButton erase = new ToggleButton("Erase");
 	private ToggleButton draw = new ToggleButton("Draw");
 	private Button done = new Button("Finished");
-	
+	//private ToggleButton save = new ToggleButton("Save");
+	private ToggleButton add = new ToggleButton("Add");
+	private ToggleButton move = new ToggleButton("Move");
+	//private ToggleButton transform = new ToggleButton("Transform");
+	private ToggleButton remove = new ToggleButton ("Remove");
+	private int numChildrenInBorder;
 			
 
 	final private int CANVASWIDTH = 1200;
@@ -73,12 +79,7 @@ public class View {
 		//Toolbar
 		toolbarpane = new ToolBar();
 
-		ToggleButton save = new ToggleButton("Save");
-		ToggleButton add = new ToggleButton("Add");
-		ToggleButton move = new ToggleButton("Move");
-		ToggleButton transform = new ToggleButton("Transform");
-		ToggleButton remove = new ToggleButton ("Remove");
-		toolbarpane.getItems().addAll(save, new Separator(), add, new Separator(), move, new Separator(), transform, new Separator(), remove);
+		toolbarpane.getItems().addAll( add, new Separator(), move,  new Separator(), remove);
 
 		// DragnDropPane
 		plantSearchPane = new PlantSearchPane(this);
@@ -125,7 +126,7 @@ public class View {
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(5);
 
-		
+		numChildrenInBorder = border.getChildren().size();
 		theStage.show();
 	}
 	
@@ -148,25 +149,26 @@ public class View {
     	imgView.setFitHeight(100);
     	imgView.setX(plant.getxCor() - 50);
     	imgView.setY(plant.getyCor() - 50);
-    	
-    	System.out.println(imgView.getX());
-    	System.out.println(imgView.getY());
+    	imgView.setId(plant.getName() + plant.getxCor());
+    	control.setHandlerForPlantClick(imgView);
+    	control.setHandlerForPlantDragged(imgView);
+ 
   
     	
     	
     	border.getChildren().add(imgView);
 	}
 	
-	public void movePlant() {
+	public void movePlant(ImageView imgView, Plant p) {
+		imgView.setId(p.getName() + p.getxCor());
+		imgView.setX(p.getxCor() - 50);
+		imgView.setY(p.getyCor() - 50);
 		
 	}
 	
 	public void removePlant(Plant plant) {
-		for (Plant p : control.garden.getPlantsInGarden()) {
-			if (p.getxCor() == plant.getxCor() && p.getyCor() == plant.getyCor()) {
-				border.getChildren().remove(control.garden.getPlantsInGarden().indexOf(p));
-			}
-		}
+				border.getChildren().remove(control.garden.getPlantsInGarden().indexOf(plant) + numChildrenInBorder);
+			
 	}
 	
 
@@ -209,7 +211,17 @@ public class View {
 		this.done = done;
 	}
 
+	public ToggleButton getAdd() {
+		return add;
+	}
 	
+	public ToggleButton getRemove() {
+		return remove;
+	}
+	
+	public ToggleButton getMove() {
+		return move; 
+	}
 	
 }
 

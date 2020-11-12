@@ -21,28 +21,6 @@ class Garden {
 		getPlantsInGarden().add(plant);
 	}
 
-//	public void movePlant(int movexCord, int moveyCord, int xCord, int yCord) {
-//		for (Plant plant1 : this.getPlants()) {
-//			if (plant1.getxCor() == xCord && plant1.getyCor() == yCord) {
-//				garden[moveyCord][movexCord] = plant1;
-//				plant1.setxCor(movexCord);
-//				plant1.setyCor(moveyCord);
-//				garden[yCord][xCord] = null;
-//			}
-//		}
-//	}
-
-//	public void removePlant(int xCord, int yCord) {
-//		Plant placeholder = null;
-//		for (Plant plant1 : this.plantsInGarden) {
-//			if (plant1.getxCor() == xCord && plant1.getyCor() == yCord) {
-//				garden[yCord][xCord] = null;
-//				placeholder = plant1;
-//				break;
-//			}
-//		}
-//		plantsInGarden.remove(placeholder);
-//	}
 
 
 	public double getGardenWidth() {
