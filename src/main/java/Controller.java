@@ -30,6 +30,10 @@ public class Controller extends Application {
 	Scanner scan;
 	Garden garden;
 	
+	boolean isRemoving = false; 
+	boolean isMoving = false; 
+	boolean isAdding = true; 
+	
 	
 	boolean toggleASCII = false;
 	
@@ -173,8 +177,9 @@ public class Controller extends Application {
 	    //System.out.println(n);
 	 
 	   Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId());
-	   view.updatePlants(plant);
+	   view.addPlants(plant);
 	}
+	
 	
 	//public EventHandler getHandlerForDrag() {
 	  //  return event -> drag((MouseEvent) event);

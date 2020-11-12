@@ -47,7 +47,6 @@ public class View {
 	private ToggleButton erase = new ToggleButton("Erase");
 	private ToggleButton draw = new ToggleButton("Draw");
 	private Button done = new Button("Finished");
-
 	
 			
 
@@ -75,11 +74,13 @@ public class View {
 		
 		//Toolbar
 		toolbarpane = new ToolBar();
-		Button save = new Button("Save");
-		Button add = new Button("Add");
-		Button move = new Button("Move");
-		Button transform = new Button("Transform");
-		toolbarpane.getItems().addAll(save, new Separator(), add, new Separator(), move, new Separator(), transform);
+
+		ToggleButton save = new ToggleButton("Save");
+		ToggleButton add = new ToggleButton("Add");
+		ToggleButton move = new ToggleButton("Move");
+		ToggleButton transform = new ToggleButton("Transform");
+		ToggleButton remove = new ToggleButton ("Remove");
+		toolbarpane.getItems().addAll(save, new Separator(), add, new Separator(), move, new Separator(), transform, new Separator(), remove);
 
 		// DragnDropPane
 		plantSearchPane = new PlantSearchPane(this);
@@ -135,7 +136,7 @@ public class View {
 		return plantSearchPane;
 	}
 	
-	public void updatePlants(Plant plant) {
+	public void addPlants(Plant plant) {
 		Image plantImage = null;
 		try {
 			plantImage = new Image(new FileInputStream("src/resources/images/"+plant.getName()+".png"));
@@ -156,6 +157,18 @@ public class View {
     	
     	
     	border.getChildren().add(imgView);
+	}
+	
+	public void movePlant() {
+		
+	}
+	
+	public void removePlant(Plant plant) {
+		for (Plant p : control.garden.getPlantsInGarden()) {
+			if (p.getxCor() == plant.getxCor() && p.getyCor() == plant.getyCor()) {
+				border.getChildren().remove(control.garden.getPlantsInGarden().indexOf(p));
+			}
+		}
 	}
 	
 
@@ -243,6 +256,7 @@ public class View {
 		this.done = done;
 	}
 
-
+	
+	
 }
 
