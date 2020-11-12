@@ -93,7 +93,7 @@ public class PlantSearchPane {
 				plantImageView.setId(name);
 				plantImageView.setImage(plantImage);
 				plantImageView.setPreserveRatio(true);
-		    	plantImageView.setFitHeight(100);
+		    	plantImageView.setFitHeight(65);
 				mainView.control.setHandlerForDrag(plantImageView);
 		    	//plantImageView.setOnDragDetected(mainView.control.getHandlerForDrag());
 				plantList.put(name, plantImageView);
