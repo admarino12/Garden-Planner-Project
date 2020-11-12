@@ -147,8 +147,8 @@ public class View {
 		imgView.setImage(plantImage);
     	imgView.setPreserveRatio(true);
     	imgView.setFitHeight(100);
-    	imgView.setX(plant.getxCor());
-    	imgView.setY(plant.getyCor());
+    	imgView.setX(plant.getxCor() - 50);
+    	imgView.setY(plant.getyCor() - 50);
     	
     	System.out.println(imgView.getX());
     	System.out.println(imgView.getY());
