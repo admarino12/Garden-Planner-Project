@@ -1,5 +1,7 @@
 package src.main.java;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
@@ -133,7 +135,28 @@ public class View {
 		return plantSearchPane;
 	}
 	
-	
+	public void updatePlants(Plant plant) {
+		Image plantImage = null;
+		try {
+			plantImage = new Image(new FileInputStream("src/resources/images/"+plant.getName()+".png"));
+		} catch (FileNotFoundException e) {
+			System.out.println("File not Found");
+			e.printStackTrace();
+		}
+		ImageView imgView = new ImageView();
+		imgView.setImage(plantImage);
+    	imgView.setPreserveRatio(true);
+    	imgView.setFitHeight(100);
+    	imgView.setX(plant.getxCor());
+    	imgView.setY(plant.getyCor());
+    	
+    	System.out.println(imgView.getX());
+    	System.out.println(imgView.getY());
+  
+    	
+    	
+    	border.getChildren().add(imgView);
+	}
 	
 
 	/*

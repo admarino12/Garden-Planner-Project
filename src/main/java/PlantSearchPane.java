@@ -94,8 +94,8 @@ public class PlantSearchPane {
 				plantImageView.setImage(plantImage);
 				plantImageView.setPreserveRatio(true);
 		    	plantImageView.setFitHeight(100);
-				//mainView.control.setHandlerForDrag(plantImageView);
-		    	plantImageView.setOnDragDetected(mainView.control.getHandlerForDrag());
+				mainView.control.setHandlerForDrag(plantImageView);
+		    	//plantImageView.setOnDragDetected(mainView.control.getHandlerForDrag());
 				plantList.put(name, plantImageView);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();

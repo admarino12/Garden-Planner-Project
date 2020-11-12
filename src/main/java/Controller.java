@@ -163,24 +163,22 @@ public class Controller extends Application {
 	}
 	
 	
-	//	public void setHandlerForDrag(ImageView imgView) {
-	//	imgView.setOnMouseDragged(event -> drag(event));	
-	//	imgView.setOnMouseReleased(event -> { 
-	//		
-	//	});	
-	//}
+		public void setHandlerForDrag(ImageView imgView) {
+		//imgView.setOnMouseDragged();	
+		imgView.setOnMouseReleased(event -> drag(event));	
+	}
 	
 	public void drag(MouseEvent event) {
 	    Node n = (Node)event.getSource();
-	    n.getId();
 	    //System.out.println(n);
-	   model.Add(event.getX(),event.getY(), n.getId());
-	   //view.updatePlants(model.getCurrentPlant());
+	 
+	   Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId());
+	   view.updatePlants(plant);
 	}
 	
-	public EventHandler getHandlerForDrag() {
-	    return event -> drag((MouseEvent) event);
-	}
+	//public EventHandler getHandlerForDrag() {
+	  //  return event -> drag((MouseEvent) event);
+	//}
 	
 	
 	

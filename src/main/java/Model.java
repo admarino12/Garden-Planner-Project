@@ -26,16 +26,21 @@ public class Model {
 		return plantTraits;
 	}
 	
-	public void Add(double getX, double getY, String name) {
+	public Plant Add(double getX, double getY, String name) {
+		Plant plantReturned = null; 
 		//System.out.println("Hello");
 		for(Plant plant : plantList) {
 			if (plant.getName().equals(name)){
+				plant.setxCor(getX);
+				plant.setyCor(getY);
 				garden.addPlant(getX, getY, name, plant.getDescription(), plant.getTraits());
+				
+				plantReturned = plant; 
 				
 			}
 		}
 		System.out.println(garden.getPlantsInGarden());
-		
+		return plantReturned; 
     }
 	
 	public ArrayList<String> searchPlantListByTrait(String search){
