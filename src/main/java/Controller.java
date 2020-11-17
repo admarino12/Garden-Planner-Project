@@ -34,8 +34,6 @@ public class Controller extends Application {
 	boolean isMoving = false; 
 	boolean isAdding = true; 
 	
-	
-	
 	public static void main(String[] args) {
 		//This initializes the JavaFX view
 		launch(args);
@@ -148,7 +146,6 @@ public class Controller extends Application {
 	
 	public void drag(MouseEvent event) {
 	    Node n = (Node)event.getSource();
-	    //System.out.println(n);
 	 
 	   Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId());
 	   view.addPlants(plant);

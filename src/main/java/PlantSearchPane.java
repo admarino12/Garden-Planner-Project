@@ -8,11 +8,15 @@ import java.util.Map;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,6 +24,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class PlantSearchPane {
 	
@@ -38,7 +43,7 @@ public class PlantSearchPane {
 	private TilePane imageContainerPane;
 
 	private ArrayList<String> allPlantNames;
-	private Map<String, ImageView> plantList = new HashMap<String, ImageView>();
+	public Map<String, ImageView> plantList = new HashMap<String, ImageView>();
 	
 	
 	public PlantSearchPane(View mainView)  {
@@ -53,7 +58,8 @@ public class PlantSearchPane {
 		searcher = new TextField();
 		Button searchButton = new Button("Go");
 		mainView.control.setHandlerForSearchBar(searchButton);
-
+		
+		
 		HBox hb = new HBox();
 		hb.getChildren().addAll(searchlabel, searcher,searchButton);
 		hb.setSpacing(8);
@@ -109,10 +115,25 @@ public class PlantSearchPane {
 		for(String inputName : names) {
 			for(String generalName : allPlantNames) {
 				if(generalName.toLowerCase().contains(inputName.toLowerCase())) {
+					
+
+					Label plantNameLabel = new Label(generalName.replace("_", " "));
+					
+					
+//					ContextMenu contextMenu = new ContextMenu();
+//					MenuItem menuItem1 = new MenuItem("menu item 1"); 
+//			        MenuItem menuItem2 = new MenuItem("menu item 2"); 
+//			        MenuItem menuItem3 = new MenuItem("menu item 3");
+//					contextMenu.getItems().addAll(menuItem1, menuItem2, menuItem3);
+					
 					VBox vb = new VBox();
 					vb.setAlignment(Pos.CENTER);
 					vb.getChildren().add(plantList.get(generalName));
-					vb.getChildren().add(new Label(generalName.replace("_", " ")));
+					vb.getChildren().add(plantNameLabel);
+					
+
+					//plantNameLabel.setContextMenu(contextMenu);
+					
 					
 					imageContainerPane.getChildren().add(vb);
 				}
@@ -128,4 +149,32 @@ public class PlantSearchPane {
 	public TextField getTextField() {
 		return searcher;
 	}
+	
+	public ImageView getPlantIV(String plantName) {
+		return plantList.get(plantName);
+	}
+	
+//	ContextMenu contextMenu = new ContextMenu();
+//	MenuItem menuItem1 = new MenuItem("menu item 1"); 
+//    MenuItem menuItem2 = new MenuItem("menu item 2"); 
+//    MenuItem menuItem3 = new MenuItem("menu item 3");
+//	contextMenu.getItems().addAll(menuItem1, menuItem2, menuItem3);
+//	
+//	searcher.setContextMenu(contextMenu);
+//	
+//
+//    // create window event 
+//    EventHandler<WindowEvent> event = new EventHandler<WindowEvent>() { 
+//        public void handle(WindowEvent e) 
+//        { 
+//            if (contextMenu.isShowing()) 
+//                searcher.setText("context menu showing"); 
+//            else
+//                searcher.setText("context menu hidden"); 
+//        } 
+//    }; 
+
+    // add event 
+//    contextMenu.setOnShowing(event); 
+//    contextMenu.setOnHiding(event); 
 }
