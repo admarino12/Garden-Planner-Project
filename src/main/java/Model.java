@@ -26,7 +26,6 @@ public class Model {
 	
 	public Plant Add(double getX, double getY, String name) {
 		Plant plantReturned = null; 
-		//System.out.println("Hello");
 		for(Plant plant : plantList) {
 			if (plant.getName().equals(name)){
 				plant.setxCor(getX);
@@ -40,6 +39,17 @@ public class Model {
 		System.out.println(garden.getPlantsInGarden());
 		return plantReturned; 
     }
+	
+	public void remove(Plant p) {
+		garden.getPlantsInGarden().remove(p);
+	}
+	
+	public void move(double x, double y, Plant p) {
+		System.out.println(p.getxCor() + "hi");
+		p.setxCor(x);
+		p.setyCor(y);
+		System.out.println(p.getxCor() + "Bye");
+	}
 	
 	public ArrayList<String> searchPlantListByTrait(String search){
 		ArrayList<String> results = new ArrayList<String>();
