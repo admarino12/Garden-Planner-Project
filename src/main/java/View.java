@@ -146,7 +146,7 @@ public class View {
     	imgView.setX(plant.getxCor() - 50);
     	imgView.setY(plant.getyCor() - 50);
     	imgView.setId(plant.getName() + plant.getxCor());
-    	control.setHandlerForPlantClick(imgView);
+    	control.setHandlerForRemoveClick(imgView);
     	control.setHandlerForPlantDragged(imgView);
  
   

@@ -139,15 +139,14 @@ public class Controller extends Application {
 	}
 	
 	
-		public void setHandlerForDrag(ImageView imgView) {
+		public void setHandlerForDragAndDrop(ImageView imgView) {
 		//imgView.setOnMouseDragged();	
-		imgView.setOnMouseReleased(event -> drag(event));	
+		imgView.setOnMouseReleased(event -> dragAndDrop(event));	
 	}
 	
-	public void drag(MouseEvent event) {
+	public void dragAndDrop(MouseEvent event) {
 	    Node n = (Node)event.getSource();
 
-	    //System.out.println(n);
 	 if (view.getAdd().isSelected()) {
 
 	   Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId());
@@ -155,10 +154,11 @@ public class Controller extends Application {
 	 }
 	}
 	
-	public void setHandlerForPlantClick(ImageView imgView) {
-		imgView.setOnMouseClicked(event -> click(event));
+	public void setHandlerForRemoveClick(ImageView imgView) {
+		imgView.setOnMouseClicked(event -> removeClick(event));
 	}
-	public void click(MouseEvent event) {
+	
+	public void removeClick(MouseEvent event) {
 		Node n = (Node)event.getSource();
 		
 		if (view.getRemove().isSelected()) {
@@ -174,9 +174,9 @@ public class Controller extends Application {
 	}
 	
 	public void setHandlerForPlantDragged(ImageView imgView) {
-		imgView.setOnMouseReleased(event -> move(event));
+		imgView.setOnMouseReleased(event -> movePlant(event));
 	}
-	public void move(MouseEvent event) {
+	public void movePlant(MouseEvent event) {
 		ImageView imgView = (ImageView) event.getSource();
 		Node n = (Node)event.getSource();
 		

@@ -45,10 +45,8 @@ public class Model {
 	}
 	
 	public void move(double x, double y, Plant p) {
-		System.out.println(p.getxCor() + "hi");
 		p.setxCor(x);
 		p.setyCor(y);
-		System.out.println(p.getxCor() + "Bye");
 	}
 	
 	public ArrayList<String> searchPlantListByTrait(String search){
