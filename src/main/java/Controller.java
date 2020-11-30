@@ -31,6 +31,8 @@ public class Controller extends Application implements java.io.Serializable {
 	Scanner scan;
 	Garden garden;
 	
+	private final int X_DRAW_OFFSET = 258;
+	private final int Y_DRAW_OFFSET = 58;
 	
 	public static void main(String[] args) {
 		//This initializes the JavaFX view
@@ -48,31 +50,31 @@ public class Controller extends Application implements java.io.Serializable {
 		this.garden = model.garden;
         
 		//Draw start
-		view.getGardenCanvas().setOnMousePressed(e->{
-			if(view.getDraw().isSelected() && !view.getErase().isSelected()) {
+		view.getDrawGardenPane().getDrawGardenCanvas().setOnMousePressed(e->{
+			if(view.getDrawGardenPane().getDrawButton().isSelected() && !view.getDrawGardenPane().getEraseButton().isSelected()) {
 			view.getgc().beginPath();
-			view.getgc().lineTo(e.getSceneX()-258, e.getSceneY()-84);
+			view.getgc().lineTo(e.getSceneX()-X_DRAW_OFFSET, e.getSceneY()-Y_DRAW_OFFSET);
 			view.getgc().stroke();
 			}
 		//Erase start
-			else if(!view.getDraw().isSelected() && view.getErase().isSelected()) {
+			else if(!view.getDrawGardenPane().getDrawButton().isSelected() && view.getDrawGardenPane().getEraseButton().isSelected()) {
 				double lineWidth = view.getgc().getLineWidth()*4;
-				view.getgc().clearRect(e.getSceneX()-258 - lineWidth , e.getSceneY()-84 - lineWidth,
+				view.getgc().clearRect(e.getSceneX()-X_DRAW_OFFSET - lineWidth , e.getSceneY()-Y_DRAW_OFFSET - lineWidth,
 						lineWidth, lineWidth);
 			}
 			
 			});	
 		
 		//Draw line
-		view.getGardenCanvas().setOnMouseDragged(e->{
-			if(view.getDraw().isSelected() && !view.getErase().isSelected()) {
-			view.getgc().lineTo(e.getSceneX()-258, e.getSceneY()-84);
+		view.getDrawGardenPane().getDrawGardenCanvas().setOnMouseDragged(e->{
+			if(view.getDrawGardenPane().getDrawButton().isSelected() && !view.getDrawGardenPane().getEraseButton().isSelected()) {
+			view.getgc().lineTo(e.getSceneX()-X_DRAW_OFFSET, e.getSceneY()-Y_DRAW_OFFSET);
 			view.getgc().stroke();
 			}
 		//Erase line
-			else if(!view.getDraw().isSelected() && view.getErase().isSelected()) {
+			else if(!view.getDrawGardenPane().getDrawButton().isSelected() && view.getDrawGardenPane().getEraseButton().isSelected()) {
 				double lineWidth = view.getgc().getLineWidth()*4;
-				view.getgc().clearRect(e.getSceneX()-258 - lineWidth , e.getSceneY()-84 - lineWidth,
+				view.getgc().clearRect(e.getSceneX()-X_DRAW_OFFSET - lineWidth , e.getSceneY()-Y_DRAW_OFFSET - lineWidth,
 						lineWidth, lineWidth);
 			}
 			});
@@ -112,6 +114,8 @@ public class Controller extends Application implements java.io.Serializable {
 		}
 		return plantNames;
 	}
+	
+	
 	
 	public void setHandlerForSearchBar(Button searchButton) {
 		searchButton.setOnAction(event -> {

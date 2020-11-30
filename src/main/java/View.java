@@ -40,24 +40,15 @@ public class View implements java.io.Serializable {
 	
 	public Controller control;
 	private ToolBar toolbarpane;
-	private ToolBar drawgardentoolbar;
-	private Canvas drawgardencanvas;
 	private GraphicsContext gc;
-	private BorderPane drawgardenborderpane;
+	private DrawGardenPane drawGardenPane;
 	private PlantSearchPane plantSearchPane;
 	private BorderPane border;
-	private ToggleButton erase = new ToggleButton("Erase");
-	private ToggleButton draw = new ToggleButton("Draw");
-	private Button done = new Button("Finished");
-	//private ToggleButton save = new ToggleButton("Save");
 	private int numChildrenInBorder;
 			
 
-	final private int CANVASWIDTH = 1200;
-	final private int CANVASHEIGHT = 780;
-	
-	final private int DRAWGARDENPANEWIDTH = 1000;
-	final private int DRAWGARDENPANEHEIGHT = 700;
+	final private int ROOT_WIDTH = 1200;
+	final private int ROOT_HEIGHT = 780;
 
 	// garden dimensions
 	int gardenWidth, gardenHeight;
@@ -67,9 +58,7 @@ public class View implements java.io.Serializable {
 		
 		theStage.setTitle("Garden Builder");
 		Group root = new Group();
-		Scene theScene = new Scene(root, CANVASWIDTH, CANVASHEIGHT);
-		//String styleSheet = getClass().getResource("style.css").toExternalForm();
-		//theScene.getStylesheets().add(styleSheet);
+		Scene theScene = new Scene(root, ROOT_WIDTH, ROOT_HEIGHT);
 		theStage.setScene(theScene);
 
 		
@@ -82,43 +71,16 @@ public class View implements java.io.Serializable {
 		
 		
 		//DrawGardenPane
-		drawgardencanvas = new Canvas(DRAWGARDENPANEWIDTH, DRAWGARDENPANEHEIGHT);
-		drawgardencanvas.setStyle("-fx-background-color: #81EEA4;");
-		drawgardencanvas.minWidth(DRAWGARDENPANEWIDTH);
-		drawgardencanvas.minHeight(DRAWGARDENPANEHEIGHT);
-		StackPane holder = new StackPane();
-		holder.getChildren().add(drawgardencanvas);
-		holder.setStyle("-fx-background-color: #81EEA4;");
-		
-		drawgardentoolbar = new ToolBar();
-		
-		//DrawGardenPane Buttons
-		Button done = new Button("Finished");
-		
-		//Add buttons to DrawGardenPane
-		HBox hb2 = new HBox();
-		hb2.setPadding(new Insets(5, 10, 5, 730));
-		hb2.getChildren().addAll(draw, new Separator(), erase , new Separator(), done);
-		drawgardentoolbar.getItems().add(hb2);
-		drawgardentoolbar.setOrientation(Orientation.HORIZONTAL);
-		//Put toolbar on Right
-		
-		drawgardenborderpane = new BorderPane();
-		drawgardenborderpane.setMinWidth(DRAWGARDENPANEWIDTH);
-		drawgardenborderpane.setMinHeight(DRAWGARDENPANEHEIGHT);
-		drawgardenborderpane.setCenter(holder);
-		drawgardenborderpane.setTop(drawgardentoolbar);
+		drawGardenPane = new DrawGardenPane(this);
 		
 		
-		
-
 		border = new BorderPane();
 		root.getChildren().add(border);
 		border.setLeft(plantSearchPane.getMainPane());
-		border.setCenter(drawgardenborderpane);
+		border.setCenter(drawGardenPane.getDrawGardenBorder());
 		border.setTop(toolbarpane);
 		
-		gc = drawgardencanvas.getGraphicsContext2D();
+		gc = drawGardenPane.getDrawGardenCanvas().getGraphicsContext2D();
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(5);
 
@@ -130,6 +92,11 @@ public class View implements java.io.Serializable {
 	public PlantSearchPane getPlantSearchPane() {
 		return plantSearchPane;
 	}
+	
+	public DrawGardenPane getDrawGardenPane() {
+		return drawGardenPane;
+	}
+	
 	
 	public void addPlants(Plant plant) {
 		ImageView plantIV = plantSearchPane.getPlantIV(plant.getName());
@@ -163,46 +130,11 @@ public class View implements java.io.Serializable {
 			
 	}
 	
-
-	
-	public Canvas getGardenCanvas() {
-		return drawgardencanvas;
-	}
 	
 	public GraphicsContext getgc() {
 		return gc;
 	}
-	
-
-	public ToggleButton getErase() {
-		return erase;
-	}
 
 
-	public ToggleButton getDraw() {
-		return draw;
-	}
-
-
-	public Button getDone() {
-		return done;
-	}
-
-
-	public void setErase(ToggleButton erase) {
-		this.erase = erase;
-	}
-
-
-	public void setDraw(ToggleButton draw) {
-		this.draw = draw;
-	}
-
-
-	public void setDone(Button done) {
-		this.done = done;
-	}
-
-	
 }
 
