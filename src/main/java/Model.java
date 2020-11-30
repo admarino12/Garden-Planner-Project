@@ -9,6 +9,7 @@ public class Model implements java.io.Serializable {
 	int gardenHeight;
 	String plantTraits = "Trees, FLowers, Bushes, Yellow, Blue, Pink";
 	Garden garden;
+	int rating;
 
 	public Model(ArrayList<Plant> plantList) {
 		this.plantList = plantList;
@@ -22,6 +23,44 @@ public class Model implements java.io.Serializable {
 	
 	public String getPlantTraits() {
 		return plantTraits;
+	}
+	
+	//updates the rating integer based off of the current plants in garden. Can be max of 4.
+	public void updateRating() {
+		rating = 0;
+		boolean spring = false;
+		boolean summer = false;
+		boolean fall = false;
+		boolean winter = false;
+		String name;
+		
+		for(Plant plant : garden.getPlantsInGarden()) {
+			name = plant.getName();
+			switch (name) {
+				case "Blueflag_Iris":
+					spring = true;
+				case "Canada_Wild_Ginger":
+					spring = true;
+				case "Evening_Primrose":
+					summer = true;
+				case "Pink_Azalea":
+					spring = true;
+				case "Swamp_Rose":
+					summer = true;
+				case "Virginia_Bluebells":
+					spring = true;
+				case "Yellow_Thistle":
+					spring = true;
+			}
+		}
+		if(spring = true)
+			rating++;
+		if(summer = true)
+			rating++;
+		if(fall = true)
+			rating++;
+		if(winter = true)
+			rating++;
 	}
 	
 	public Plant Add(double getX, double getY, String name) {
