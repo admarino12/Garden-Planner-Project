@@ -39,16 +39,16 @@ import javafx.scene.image.ImageView;
 public class View implements java.io.Serializable {
 	
 	public Controller control;
-	private ToolBar toolbarpane;
 	private GraphicsContext gc;
 	private DrawGardenPane drawGardenPane;
 	private PlantSearchPane plantSearchPane;
+	private ToolBarPane ratingToolBar;
 	private BorderPane border;
 	private int numChildrenInBorder;
 			
 
-	final private int ROOT_WIDTH = 1200;
-	final private int ROOT_HEIGHT = 780;
+	final private int ROOT_WIDTH = 1225;
+	final private int ROOT_HEIGHT = 760;
 
 	// garden dimensions
 	int gardenWidth, gardenHeight;
@@ -62,8 +62,9 @@ public class View implements java.io.Serializable {
 		theStage.setScene(theScene);
 
 		
-		//Toolbar
-		toolbarpane = new ToolBar();
+		//ToolBar
+		ratingToolBar = new ToolBarPane(this);
+		
 
 
 		// DragnDropPane
@@ -78,7 +79,7 @@ public class View implements java.io.Serializable {
 		root.getChildren().add(border);
 		border.setLeft(plantSearchPane.getMainPane());
 		border.setCenter(drawGardenPane.getDrawGardenBorder());
-		border.setTop(toolbarpane);
+		border.setTop(ratingToolBar.getRatingToolBar());
 		
 		gc = drawGardenPane.getDrawGardenCanvas().getGraphicsContext2D();
 		gc.setStroke(Color.BLACK);

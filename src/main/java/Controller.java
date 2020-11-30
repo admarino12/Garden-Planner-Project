@@ -82,13 +82,15 @@ public class Controller extends Application implements java.io.Serializable {
 		
     }
 	
+	private final String plantResources = "src/resources/plants.csv";
+	
 	public ArrayList<Plant> loadPlantList(){
 		ArrayList<Plant> plantList = new ArrayList<Plant>();
 		String line = "";
 		
 		//Read each line of the CSV file and pull the plant name, description, and String array of plant traits
 		try {
-			FileReader file = new FileReader("src/resources/plants.csv");
+			FileReader file = new FileReader(plantResources);
 			BufferedReader csvFile = new BufferedReader(file);
 			
 			while((line = csvFile.readLine()) != null) {
@@ -187,5 +189,13 @@ public class Controller extends Application implements java.io.Serializable {
 		view.movePlant(imgView, plantMoved);
 	
 	}
+	
+//	public void SetSeason() {
+//		view.getDrawGardenPane().getSpringButton()
+//		.setOnAction(e-> view.getDrawGardenPane().getHolder().setStyle(	"-fx-background-color: #81EEA4, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%),"
+//				+ "linear-gradient(from 0px 0.5px to 0px 20.5px, "
+//				+ "repeat, gray 1%, transparent 2%);"));
+//	}
+//	
 }
 
