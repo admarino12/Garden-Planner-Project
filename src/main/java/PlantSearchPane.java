@@ -26,7 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class PlantSearchPane {
+public class PlantSearchPane implements java.io.Serializable {
 	
 	ObservableList<String> options = 
 			FXCollections.observableArrayList(

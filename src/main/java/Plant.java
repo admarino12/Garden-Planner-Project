@@ -1,6 +1,6 @@
 package src.main.java;
 
-public class Plant {
+public class Plant implements java.io.Serializable{
 
 	private String plantName;
 	private char plantChar;

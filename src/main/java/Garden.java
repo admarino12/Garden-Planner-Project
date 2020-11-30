@@ -2,7 +2,7 @@ package src.main.java;
 
 import java.util.ArrayList;
 
-class Garden {
+class Garden implements java.io.Serializable {
 	private double width;
 	private double height;
 	private ArrayList<Plant> plantsInGarden = new ArrayList<Plant>();
@@ -15,7 +15,6 @@ class Garden {
 	//Updated so that it needs a description variable. 
 	public void addPlant(double xCord, double yCord, String name, String description, String[] traits) {
 		Plant plant = new Plant(name,description, traits);
-		//garden[yCord][xCord] = plant;
 		plant.setxCor(xCord);
 		plant.setyCor(yCord);
 		getPlantsInGarden().add(plant);

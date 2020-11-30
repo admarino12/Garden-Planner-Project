@@ -24,7 +24,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
-public class Controller extends Application {
+public class Controller extends Application implements java.io.Serializable {
 
 	View view;
 	Model model;
@@ -140,18 +140,14 @@ public class Controller extends Application {
 	
 	
 		public void setHandlerForDragAndDrop(ImageView imgView) {
-		//imgView.setOnMouseDragged();	
 		imgView.setOnMouseReleased(event -> dragAndDrop(event));	
 	}
 	
 	public void dragAndDrop(MouseEvent event) {
 	    Node n = (Node)event.getSource();
-
-	 if (view.getAdd().isSelected()) {
-
-	   Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId());
+	    Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId());
 	   view.addPlants(plant);
-	 }
+	 
 	}
 	
 	public void setHandlerForRemoveClick(ImageView imgView) {
@@ -160,17 +156,14 @@ public class Controller extends Application {
 	
 	public void removeClick(MouseEvent event) {
 		Node n = (Node)event.getSource();
-		
-		if (view.getRemove().isSelected()) {
-			Plant plantRemoved = null;
-			for (Plant p : garden.getPlantsInGarden()) {
-				if (n.getId().equals(p.getName() + p.getxCor())) {
+		Plant plantRemoved = null;
+		for (Plant p : garden.getPlantsInGarden()) {
+			if (n.getId().equals(p.getName() + p.getxCor() + p.getyCor())) {
 					plantRemoved = p; 
-				}
 			}
-			view.removePlant(plantRemoved);
-			model.remove(plantRemoved);
 		}
+		view.removePlant(plantRemoved);
+		model.remove(plantRemoved);
 	}
 	
 	public void setHandlerForPlantDragged(ImageView imgView) {
@@ -179,18 +172,15 @@ public class Controller extends Application {
 	public void movePlant(MouseEvent event) {
 		ImageView imgView = (ImageView) event.getSource();
 		Node n = (Node)event.getSource();
-		
-		if (view.getMove().isSelected()) {
-			Plant plantMoved = null;
-			for (Plant p : garden.getPlantsInGarden()) {
-				if (n.getId().equals(p.getName() + p.getxCor())) {
-					plantMoved = p; 
-				}
+		Plant plantMoved = null;
+		for (Plant p : garden.getPlantsInGarden()) {
+			if (n.getId().equals(p.getName() + p.getxCor() + p.getyCor())) {
+				plantMoved = p; 
 			}
-			model.move(event.getSceneX(),event.getSceneY(),plantMoved);
-			view.movePlant(imgView, plantMoved);
 			
-	}
+		}
+		model.move(event.getSceneX(),event.getSceneY(),plantMoved);
+		view.movePlant(imgView, plantMoved);
 	
 	}
 }

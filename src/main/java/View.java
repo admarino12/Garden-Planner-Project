@@ -36,7 +36,7 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class View {
+public class View implements java.io.Serializable {
 	
 	public Controller control;
 	private ToolBar toolbarpane;
@@ -50,10 +50,6 @@ public class View {
 	private ToggleButton draw = new ToggleButton("Draw");
 	private Button done = new Button("Finished");
 	//private ToggleButton save = new ToggleButton("Save");
-	private ToggleButton add = new ToggleButton("Add");
-	private ToggleButton move = new ToggleButton("Move");
-	//private ToggleButton transform = new ToggleButton("Transform");
-	private ToggleButton remove = new ToggleButton ("Remove");
 	private int numChildrenInBorder;
 			
 
@@ -80,7 +76,6 @@ public class View {
 		//Toolbar
 		toolbarpane = new ToolBar();
 
-		toolbarpane.getItems().addAll( add, new Separator(), move,  new Separator(), remove);
 
 		// DragnDropPane
 		plantSearchPane = new PlantSearchPane(this);
@@ -143,9 +138,10 @@ public class View {
 		imgView.setImage(plantIV.getImage());
     	imgView.setPreserveRatio(true);
     	imgView.setFitHeight(100);
-    	imgView.setX(plant.getxCor() - 50);
-    	imgView.setY(plant.getyCor() - 50);
-    	imgView.setId(plant.getName() + plant.getxCor());
+    	imgView.setFitWidth(100);
+    	imgView.setX(plant.getxCor() - imgView.getFitWidth()/2);
+    	imgView.setY(plant.getyCor() - imgView.getFitHeight()/2);
+    	imgView.setId(plant.getName() + plant.getxCor() + plant.getyCor());
     	control.setHandlerForRemoveClick(imgView);
     	control.setHandlerForPlantDragged(imgView);
  
@@ -156,9 +152,9 @@ public class View {
 	}
 	
 	public void movePlant(ImageView imgView, Plant p) {
-		imgView.setId(p.getName() + p.getxCor());
-		imgView.setX(p.getxCor() - 50);
-		imgView.setY(p.getyCor() - 50);
+		imgView.setId(p.getName() + p.getxCor() + p.getyCor());
+		imgView.setX(p.getxCor() - imgView.getFitWidth()/2);
+		imgView.setY(p.getyCor() - imgView.getFitHeight()/2);
 		
 	}
 	
@@ -207,17 +203,6 @@ public class View {
 		this.done = done;
 	}
 
-	public ToggleButton getAdd() {
-		return add;
-	}
-	
-	public ToggleButton getRemove() {
-		return remove;
-	}
-	
-	public ToggleButton getMove() {
-		return move; 
-	}
 	
 }
 

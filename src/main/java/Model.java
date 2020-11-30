@@ -2,7 +2,7 @@ package src.main.java;
 
 import java.util.ArrayList;
 
-public class Model {
+public class Model implements java.io.Serializable {
 	
 	ArrayList<Plant> plantList;
 	int gardenWidth;
