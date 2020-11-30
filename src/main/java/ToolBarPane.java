@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
@@ -22,6 +23,12 @@ public class ToolBarPane {
 		
 		Label rating = new Label("Rating:");
 		ratingToolBar = new ToolBar();
+		
+		Button save = new Button("Save");
+		Button open = new Button("Open");
+		mainView.control.setHandlerForSaveClicked(save);
+		mainView.control.setHandlerForOpenClicked(open);
+		
 		HBox hb4 = new HBox();
 		circle = new Circle();
 		circle.setCenterX(25.0f);
@@ -32,7 +39,7 @@ public class ToolBarPane {
 		circle.setStrokeWidth(1);
 		hb4.setPadding(new Insets(5, 10, 5, 5));
 		hb4.getChildren().addAll(circle);
-		ratingToolBar.getItems().addAll(rating, hb4);
+		ratingToolBar.getItems().addAll(rating, hb4, save, open);
 	}
 	
 	public ToolBar getRatingToolBar() {

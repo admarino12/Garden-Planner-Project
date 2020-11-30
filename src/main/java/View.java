@@ -45,6 +45,7 @@ public class View implements java.io.Serializable {
 	private ToolBarPane ratingToolBar;
 	private BorderPane border;
 	private int numChildrenInBorder;
+
 			
 
 	final private int ROOT_WIDTH = 1225;
@@ -64,6 +65,7 @@ public class View implements java.io.Serializable {
 		
 		//ToolBar
 		ratingToolBar = new ToolBarPane(this);
+	
 		
 
 
@@ -130,7 +132,12 @@ public class View implements java.io.Serializable {
 				border.getChildren().remove(control.garden.getPlantsInGarden().indexOf(plant) + numChildrenInBorder);
 			
 	}
+	public void openNew() {
+	}
 	
+	public void removeOldView() {
+		
+	}
 	
 	public GraphicsContext getgc() {
 		return gc;

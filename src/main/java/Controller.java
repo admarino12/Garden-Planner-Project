@@ -3,9 +3,13 @@ package src.main.java;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,6 +18,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -28,10 +33,11 @@ public class Controller extends Application implements java.io.Serializable {
 
 	View view;
 	Model model;
-	Scanner scan;
+	transient Scanner scan;
 	Garden garden;
+	Canvas canvas; 
 	
-	private final int X_DRAW_OFFSET = 258;
+	final int X_DRAW_OFFSET = 258;
 	private final int Y_DRAW_OFFSET = 58;
 	
 	public static void main(String[] args) {
@@ -46,6 +52,7 @@ public class Controller extends Application implements java.io.Serializable {
 		model = new Model(loadPlantList());
 		view = new View(theStage, this);
 		scan = new Scanner(System.in);
+		canvas = view.getDrawGardenPane().getDrawGardenCanvas();
 		
 		this.garden = model.garden;
         
@@ -197,5 +204,50 @@ public class Controller extends Application implements java.io.Serializable {
 //				+ "repeat, gray 1%, transparent 2%);"));
 //	}
 //	
+	public void setHandlerForSaveClicked(Button b) {
+		b.setOnAction(event -> save(event));
+	}
+	
+	public void save(ActionEvent event) {
+		 try {
+	         FileOutputStream fileOut =
+	         new FileOutputStream("garden.ser");
+	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	         out.writeObject(this);
+	         out.close();
+	         fileOut.close();
+	         System.out.printf("Serialized data is saved in garden.ser");
+	      } catch (IOException i) {
+	         i.printStackTrace();
+	      }
+	}
+	
+	public void setHandlerForOpenClicked(Button b) {
+		b.setOnAction(event -> open(event));
+	}
+	
+	public void open(ActionEvent event) {
+		try {
+	         FileInputStream fileIn = new FileInputStream("garden.ser");
+	         ObjectInputStream in = new ObjectInputStream(fileIn);
+	         Controller c = (Controller) in.readObject();
+	         openNewFile(c);
+	         in.close();
+	         fileIn.close();
+	      } catch (IOException i) {
+	         i.printStackTrace();
+	         return;
+	      } catch (ClassNotFoundException c) {
+	         System.out.println("Employee class not found");
+	         c.printStackTrace();
+	         return;
+	      }
+	}
+	
+	public void openNewFile(Controller c) {
+		this.model = c.model;
+		this.garden = c.garden;
+		this.view.openNew();
+	}
 }
 
