@@ -57,6 +57,23 @@ public class Model implements java.io.Serializable {
 					spring = true;
 				case "Yellow_Thistle":
 					spring = true;
+				case "Chrysanthemum":
+					summer = true;
+					fall = true;
+				case "Aster":
+					fall = true;
+				case "Marigold":
+					fall = true;
+				case "Dahlia":
+					fall = true;
+				case "Snowdrop":
+					winter = true;
+				case "Winter_Aconite":
+					winter = true;
+				case "Winter_Jasmine":
+					winter = true;
+				case "Crocus":
+					winter = true;
 			}
 		}
 		if(spring = true)

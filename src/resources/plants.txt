@@ -18,3 +18,19 @@ White_Ash
 Tree: Yellow, maroon to purple fall color, butterfly larval plant, wants full sun, moist or wet soils, has a spreading canopy;
 Yellow_Thistle
 Flower: Bright yellow clusters of loose, single 1" daisy-like flower, Asteraceae family, blooms in spring, full sun, moist soil;
+Chrysanthemum
+Flower: Yellow/orange flower, blooms in the summer and fall, partial to full sun;
+Aster
+Flower: Purple flower, blooms in summer and fall, partial to full sun;
+Marigold
+Flower: orange/yellow/red flower, blooms in spring summer and fall, partial to full sun;
+Dahlia
+Flower: orange/pink/purple flower, blooms in summer and fall, full sun;
+Snowdrop
+Flower: white/purple/pink flower, blooms at the end of winter;
+Winter_Aconite
+Flower: white/yellow flower, blooms in late winter;
+Winter_Jasmine
+Flower: white/yellow flower, blooms in late winter/early spring;
+Crocus
+Flower: blue/purple flower, blooms in winter and spring, partial to full sun;
