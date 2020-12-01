@@ -86,6 +86,31 @@ public class Controller extends Application implements java.io.Serializable {
 			}
 			});
 		
+		//Change Seasons
+		//Spring
+		String springstyle = "-fx-background-color: #81EEA4, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
+		view.getDrawGardenPane().getSpringButton().setOnAction(e -> 
+			view.getDrawGardenPane().getHolder().setStyle(springstyle)
+		);
+		
+		//Summer
+		String summerstyle = "-fx-background-color: #FFF4B3, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
+		view.getDrawGardenPane().getSummerButton().setOnAction(e -> 
+		view.getDrawGardenPane().getHolder().setStyle(summerstyle)
+	);
+		
+		//Fall
+		String fallstyle = "-fx-background-color: #E8C696, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
+		view.getDrawGardenPane().getFallButton().setOnAction(e -> 
+		view.getDrawGardenPane().getHolder().setStyle(fallstyle)
+	);
+		
+		//Winter
+		String winterstyle = "-fx-background-color: #E6FFFF, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
+		view.getDrawGardenPane().getWinterButton().setOnAction(e -> 
+		view.getDrawGardenPane().getHolder().setStyle(winterstyle)
+	);
+		
 		
     }
 	
