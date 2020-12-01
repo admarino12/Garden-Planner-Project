@@ -31,9 +31,9 @@ public class PlantSearchPane  {
 	ObservableList<String> options = 
 			FXCollections.observableArrayList(
 					"All",
-					"Flowers",
+					"Perennials",
 					"Trees",
-					"Bushes"
+					"Shrubs"
 					);
 	final ComboBox<String> typesofplants = new ComboBox<String>(options);
 	
