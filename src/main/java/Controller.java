@@ -234,17 +234,7 @@ public class Controller extends Application implements java.io.Serializable {
 	}
 	
 	public void save(ActionEvent event) {
-		 try {
-	         FileOutputStream fileOut =
-	         new FileOutputStream("garden.ser");
-	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	         out.writeObject(this);
-	         out.close();
-	         fileOut.close();
-	         System.out.printf("Serialized data is saved in garden.ser");
-	      } catch (IOException i) {
-	         i.printStackTrace();
-	      }
+		 model.save();
 	}
 	
 	public void setHandlerForOpenClicked(Button b) {
@@ -252,27 +242,12 @@ public class Controller extends Application implements java.io.Serializable {
 	}
 	
 	public void open(ActionEvent event) {
-		try {
-	         FileInputStream fileIn = new FileInputStream("garden.ser");
-	         ObjectInputStream in = new ObjectInputStream(fileIn);
-	         Controller c = (Controller) in.readObject();
-	         openNewFile(c);
-	         in.close();
-	         fileIn.close();
-	      } catch (IOException i) {
-	         i.printStackTrace();
-	         return;
-	      } catch (ClassNotFoundException c) {
-	         System.out.println("Employee class not found");
-	         c.printStackTrace();
-	         return;
-	      }
+		model.open(this);
 	}
 	
-	public void openNewFile(Controller c) {
-		this.model = c.model;
-		this.garden = c.garden;
-		this.view.openNew();
+	public void openNewFile(SavedData sd) {
+		this.garden = sd.garden;
+		this.view.updatePlants();
 	}
 }
 

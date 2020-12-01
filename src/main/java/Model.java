@@ -1,5 +1,10 @@
 package src.main.java;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Model implements java.io.Serializable {
@@ -10,6 +15,7 @@ public class Model implements java.io.Serializable {
 	String plantTraits = "Trees, FLowers, Bushes, Yellow, Blue, Pink";
 	Garden garden;
 	int rating;
+	SavedData savedData; 
 
 	public Model(ArrayList<Plant> plantList) {
 		this.plantList = plantList;
@@ -100,6 +106,38 @@ public class Model implements java.io.Serializable {
 		return results;
 	}
 	
+	public void open(Controller con) {
+		try {
+	         FileInputStream fileIn = new FileInputStream("garden.ser");
+	         ObjectInputStream in = new ObjectInputStream(fileIn);
+	         SavedData sd = (SavedData) in.readObject();
+	         con.openNewFile(sd);
+	         in.close();
+	         fileIn.close();
+	      } catch (IOException i) {
+	         i.printStackTrace();
+	         return;
+	      } catch (ClassNotFoundException c) {
+	         System.out.println("Employee class not found");
+	         c.printStackTrace();
+	         return;
+	      }
+	}
+	
+	public void save() {
+		this.savedData = new SavedData(this);
+		try {
+	         FileOutputStream fileOut =
+	         new FileOutputStream("garden.ser");
+	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	         out.writeObject(this.savedData);
+	         out.close();
+	         fileOut.close();
+	         System.out.printf("Serialized data is saved in garden.ser");
+	      } catch (IOException i) {
+	         i.printStackTrace();
+	      }
+	}
 
 }
 

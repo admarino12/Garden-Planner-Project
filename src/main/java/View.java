@@ -132,11 +132,15 @@ public class View implements java.io.Serializable {
 				border.getChildren().remove(control.garden.getPlantsInGarden().indexOf(plant) + numChildrenInBorder);
 			
 	}
-	public void openNew() {
-	}
-	
-	public void removeOldView() {
-		
+	public void updatePlants(){
+		//Remove plants
+		for (int i = border.getChildren().size() - 1; i >=3; i--){
+			border.getChildren().remove(i);
+		}
+		//Add Plants
+		for (Plant p: control.garden.getPlantsInGarden()) {
+			addPlants(p);
+		}
 	}
 	
 	public GraphicsContext getgc() {
