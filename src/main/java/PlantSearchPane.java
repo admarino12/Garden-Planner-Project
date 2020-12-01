@@ -17,6 +17,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,6 +42,11 @@ public class PlantSearchPane implements java.io.Serializable {
 	private View mainView;
 	private VBox mainPane;
 	private TilePane imageContainerPane;
+	private ScrollPane scrollPane;
+	
+	final private int SCROLL_PANE_MAX_HEIGHT = 623;
+	
+	
 
 	private ArrayList<String> allPlantNames;
 	public Map<String, ImageView> plantList = new HashMap<String, ImageView>();
@@ -82,10 +88,15 @@ public class PlantSearchPane implements java.io.Serializable {
 		imageContainerPane.setVgap(20);
 		imageContainerPane.setAlignment(Pos.CENTER);
 		
+		scrollPane = new ScrollPane();
+		scrollPane.setFitToHeight(true);
+		scrollPane.setPrefHeight(SCROLL_PANE_MAX_HEIGHT);
+		
 		createHashMap();
 		update(allPlantNames);
 		
-		mainPane.getChildren().add(imageContainerPane);
+		scrollPane.setContent(imageContainerPane);
+		mainPane.getChildren().add(scrollPane);
 		
 	}
 	
