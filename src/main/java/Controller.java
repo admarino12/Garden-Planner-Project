@@ -344,5 +344,17 @@ public class Controller extends Application{
 	public String getPlantDescription(String plantName) {
 		return model.getPlantDescription(plantName);
 	}
+	
+	public void setHandlerForPlantEncyclopediaClicked(Button b) {
+		b.setOnAction(event -> {
+			view.getToolBarPane().getPlantEncycPopUp().show(view.getStage());
+		});
+	}
+	
+	public void setHandlerForDonePlantEncycClicked(Button b) {
+		b.setOnAction(event -> {
+			view.getToolBarPane().getPlantEncycPopUp().hide();
+		});
+	}
 }
 

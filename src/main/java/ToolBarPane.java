@@ -13,10 +13,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.stage.Popup;
 
 public class ToolBarPane {
@@ -25,6 +25,8 @@ public class ToolBarPane {
 	final private int RATING_TOTAL = 4;
 	
 	MenuButton fileButton;
+	Button plantEncyclopedia;
+	Popup plantEncycPopUp; 
 	Popup saveAsPopUp;
 	Popup openPopUp;
 	ListView files;
@@ -40,6 +42,7 @@ public class ToolBarPane {
 		ratingToolBar.setPadding(new Insets(0,0,0,5));
 		
 		createFileButton();
+		createPlantEncyclopediaButton();
 		
 		HBox hb4 = new HBox();
 		ratingCircles = new Circle[RATING_TOTAL];
@@ -56,7 +59,7 @@ public class ToolBarPane {
 		hb4.setPadding(new Insets(5, 10, 5, 0));
 		hb4.setSpacing(5);
 		hb4.getChildren().addAll(ratingCircles);
-		ratingToolBar.getItems().addAll(fileButton, rating, hb4);
+		ratingToolBar.getItems().addAll(fileButton, plantEncyclopedia, rating, hb4);
 	}
 	
 	public void createFileButton() {
@@ -69,6 +72,12 @@ public class ToolBarPane {
 		createOpenPopUp();
 		fileButton.getItems().addAll(saveAs, open);
 		
+	}
+	
+	public void createPlantEncyclopediaButton() {
+		plantEncyclopedia = new Button ("Plant Encyclopedia");
+		mainView.control.setHandlerForPlantEncyclopediaClicked(plantEncyclopedia);
+		createPlantEncyclopediaPopUp();
 	}
 	
 	public void createSaveAsPopUp() {
@@ -136,6 +145,43 @@ public class ToolBarPane {
 		}
 	}
 	
+	public void createPlantEncyclopediaPopUp() {
+		plantEncycPopUp = new Popup(); 
+		plantEncycPopUp.setAutoHide(true);
+		
+		Label label = new Label("Plant Encyclopedia");
+		label.setStyle("-fx-font-weight: bold");
+		
+		Button done = new Button ("Done");
+		mainView.control.setHandlerForDonePlantEncycClicked(done);
+		HBox hb = new HBox();
+		hb.setAlignment(Pos.CENTER);
+		hb.setAlignment(Pos.CENTER);
+		hb.setSpacing(12);
+		hb.setPadding(new Insets(10,5,5,10));
+		hb.getChildren().addAll(done);
+		
+		Text plantData[] = new Text [mainView.control.getPlantNames().size()];
+		int counter = 0;
+		for (String name: mainView.control.getPlantNames()) {
+			plantData[counter] = new Text( name + " " + mainView.control.getPlantDescription(name));
+			counter++;
+		}
+		
+		VBox vb = new VBox(8);
+		vb.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;-fx-hgap:4;-fx-vgap:6;");
+		vb.setPadding(new Insets(10,5,5,10));
+		vb.getChildren().add(label);
+		for (int i = 0; i < plantData.length; i++ ) {
+			vb.getChildren().add(plantData[i]);
+		}
+		vb.getChildren().addAll(hb);
+		
+		plantEncycPopUp.getContent().add(vb);
+		
+		
+	}
+	
 	public void updateRating(int rating) {
 		for(int i=0;i<ratingCircles.length;i++) {
 			if(i<rating) {
@@ -155,6 +201,10 @@ public class ToolBarPane {
 	
 	public Popup getOpenPopUp() {
 		return openPopUp;
+	}
+	
+	public Popup getPlantEncycPopUp() {
+		return plantEncycPopUp; 
 	}
 	
 }

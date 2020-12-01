@@ -34,7 +34,7 @@ public class View {
 		this.theStage = theStage;
 		theStage.setTitle("Garden Builder");
 		Group root = new Group();
-		Scene theScene = new Scene(root, ROOT_WIDTH, ROOT_HEIGHT);
+		Scene theScene = new Scene(root, ROOT_WIDTH, getROOT_HEIGHT());
 		theStage.setScene(theScene);
 
 		
@@ -133,6 +133,15 @@ public class View {
 	
 	public Stage getStage() {
 		return theStage;
+	}
+
+
+	public int getROOT_HEIGHT() {
+		return ROOT_HEIGHT;
+	}
+	
+	public int getROOT_WIDTH() {
+		return ROOT_WIDTH;
 	}
 
 }

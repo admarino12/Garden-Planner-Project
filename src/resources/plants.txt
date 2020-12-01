@@ -1,22 +1,22 @@
-American_Elm
+American Elm
 Tree: Green normally, Yellow fall color, high spreading canopy, Elm family, Was common in the 19th century to be planted in streets;
-Blueflag_Iris
+Blueflag Iris
 Flower: Blue flowers with yellow & white markings, blooms from may to june, part of the Iridaceae family, medium to wet soil, full sun to partly shade;
-Canada_Wild_Ginger
+Canada Wild Ginger
 Flower: Evergreen groundcover, glossy heart shaped leaves with brown flowers underneath, party shade to full shade, blooms in late spring, average to moist soil;
-Evening_Primrose
+Evening Primrose
 Flower: Yellow lemon scented flowers open at dusk, close by noon, Wants full sun, Average moisture for soil, Blooms june through september;
-Pink_Azalea
+Pink Azalea
 Shrub: Variable color, but often pink, Full sun or partial shade, Blooms early to late spring;
-Red_Maple
+Red Maple
 Tree: Buds & young twigs are red, scarlet leaves in the fall, wants about 6 hours of full sun and 4-6 of parial sun;
-Swamp_Rose
+Swamp Rose
 Shrub: Fragrant flowers in summer with pink color, Rosaceae family, blooms june to july, full sun, wet soil, has thorns;
-Virginia_Bluebells
+Virginia Bluebells
 Flower: Pink flowers buds open to sky blue flowers Mar-Apr, partial to full shade, moist soil, blooms spring to early summer;
-White_Ash
+White Ash
 Tree: Yellow, maroon to purple fall color, butterfly larval plant, wants full sun, moist or wet soils, has a spreading canopy;
-Yellow_Thistle
+Yellow Thistle
 Flower: Bright yellow clusters of loose, single 1" daisy-like flower, Asteraceae family, blooms in spring, full sun, moist soil;
 Chrysanthemum
 Flower: Yellow/orange flower, blooms in the summer and fall, partial to full sun;
@@ -28,9 +28,9 @@ Dahlia
 Flower: orange/pink/purple flower, blooms in summer and fall, full sun;
 Snowdrop
 Flower: white/purple/pink flower, blooms at the end of winter;
-Winter_Aconite
+Winter Aconite
 Flower: white/yellow flower, blooms in late winter;
-Winter_Jasmine
+Winter Jasmine
 Flower: white/yellow flower, blooms in late winter/early spring;
 Crocus
 Flower: blue/purple flower, blooms in winter and spring, partial to full sun;
