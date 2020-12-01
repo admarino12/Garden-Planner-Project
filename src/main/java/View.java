@@ -117,6 +117,9 @@ public class View {
 			addPlants(p);
 		}
 		
+		gc.clearRect(0, 0, drawGardenPane.getDrawGardenCanvas().getWidth(), drawGardenPane.getDrawGardenCanvas().getHeight());
+		
+		
 		//Update Rating
 		ratingToolBar.updateRating(rating);
 		

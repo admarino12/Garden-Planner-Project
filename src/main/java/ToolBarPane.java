@@ -35,7 +35,7 @@ public class ToolBarPane {
 		this.mainView = mainView;
 		
 		Label rating = new Label("Rating:");
-		rating.setPadding(new Insets(0,0,0,965));
+		rating.setPadding(new Insets(0,0,0,1015));
 		ratingToolBar = new ToolBar();
 		ratingToolBar.setPadding(new Insets(0,0,0,5));
 		
