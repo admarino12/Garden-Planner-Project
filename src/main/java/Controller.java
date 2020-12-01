@@ -314,7 +314,7 @@ public class Controller extends Application{
 	         i.printStackTrace();
 	         return;
 	      } catch (ClassNotFoundException c) {
-	         System.out.println("Employee class not found");
+	         System.out.println("File not found");
 	         c.printStackTrace();
 	         return;
 	      }
@@ -322,6 +322,7 @@ public class Controller extends Application{
 	
 	public void openNewFile(SavedData sd) {
 		model.setGarden(sd.getGarden());
+		this.garden = model.getGarden();
 		Garden newGarden = model.getGarden();
 		this.view.loadNewGarden(newGarden.getPlantsInGarden(), newGarden.getRating(), newGarden.getSeason());
 	}
