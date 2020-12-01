@@ -64,7 +64,7 @@ public class DrawGardenPane {
 		separator3.setOrientation(Orientation.VERTICAL);
 		hb2.setPadding(new Insets(5, 10, 5, 1));
 		hb2.getChildren().addAll(drawButton, separator, eraseButton);
-		hb3.setPadding(new Insets(5, 10, 5, 610));
+		hb3.setPadding(new Insets(5, 10, 5, 470));
 		hb3.getChildren().addAll(springButton, separator1, summerButton, separator2, fallButton, separator3,
 				winterButton);
 		drawGardenToolBar.getItems().addAll(hb2, hb3);
