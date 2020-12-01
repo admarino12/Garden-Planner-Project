@@ -150,6 +150,14 @@ public class Model implements java.io.Serializable {
 		}
 		return plantDescription;
 	}
+	
+	public Garden getGarden() {
+		return garden;
+	}
+	
+	public void setGarden(Garden garden) {
+		this.garden = garden;
+	}
 
 }
 

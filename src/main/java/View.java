@@ -1,5 +1,7 @@
 package src.main.java;
 
+import java.util.ArrayList;
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
@@ -105,15 +107,21 @@ public class View {
 				border.getChildren().remove(control.garden.getPlantsInGarden().indexOf(plant) + numChildrenInBorder);
 			
 	}
-	public void updatePlants(){
+	public void loadNewGarden(ArrayList<Plant> plants, int rating, Season season ){
 		//Remove plants
 		for (int i = border.getChildren().size() - 1; i >=3; i--){
 			border.getChildren().remove(i);
 		}
 		//Add Plants
-		for (Plant p: control.garden.getPlantsInGarden()) {
+		for (Plant p: plants) {
 			addPlants(p);
 		}
+		
+		//Update Rating
+		ratingToolBar.updateRating(rating);
+		
+		drawGardenPane.setSeason(season);
+		
 	}
 	
 	public GraphicsContext getgc() {

@@ -8,4 +8,8 @@ public class SavedData implements java.io.Serializable {
 		this.garden = model.garden; 
 		
 	}
+	
+	public Garden getGarden() {
+		return garden;
+	}
 }

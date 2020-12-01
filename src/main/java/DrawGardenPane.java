@@ -87,18 +87,18 @@ public class DrawGardenPane {
 
 	}
 	
-	public void setSeason(String seasonName) {
-		switch(seasonName) {
-		case "Spring":
+	public void setSeason(Season season) {
+		switch(season) {
+		case SPRING:
 			holder.setStyle(springStyle);
 			break;
-		case "Summer":
+		case SUMMER:
 			holder.setStyle(summerStyle);
 			break;
-		case "Autumn":
+		case AUTUMN:
 			holder.setStyle(fallStyle);
 			break;
-		case "Winter":
+		case WINTER:
 			holder.setStyle(winterStyle);
 			break;
 		}

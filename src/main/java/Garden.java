@@ -6,10 +6,15 @@ class Garden implements java.io.Serializable {
 	private double width;
 	private double height;
 	private ArrayList<Plant> plantsInGarden = new ArrayList<Plant>();
+	
+	private Season season;
+	private int rating;
 
 	public Garden(int width, int height) {
 		this.width = width;
 		this.height = height;
+		this.season = Season.SPRING;
+		this.rating = 0;
 	}
 
 	//Updated so that it needs a description variable. 
@@ -36,6 +41,22 @@ class Garden implements java.io.Serializable {
 	
 	public ArrayList<Plant> getPlantsInGarden() {
 		return this.plantsInGarden;
+	}
+	
+	public Season getSeason() {
+		return season;
+	}
+	
+	public void setSeason(Season season) {
+		this.season = season;
+	}
+	
+	public int getRating() {
+		return rating;
+	}
+	
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 	
 }

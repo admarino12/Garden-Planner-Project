@@ -129,8 +129,9 @@ public class Controller extends Application{
 	    Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId());
 	   view.addPlants(plant);
 	   model.updateRating();
+	   garden.setRating(model.getRating());
 	   view.getToolBarPane().updateRating(model.getRating());
-	   System.out.println(model.rating + " stars.");
+	   System.out.println(model.getRating() + " stars.");
 	 
 	}
 	
@@ -199,6 +200,9 @@ public class Controller extends Application{
 		}
 		view.removePlant(plantRemoved);
 		model.remove(plantRemoved);
+		model.updateRating();
+		garden.setRating(model.getRating());
+		view.getToolBarPane().updateRating(model.getRating());
 	}
 	
 	public void setHandlerForPlantDragged(ImageView imgView) {
@@ -221,7 +225,23 @@ public class Controller extends Application{
 	
 	public void setHandlerForSeasonButton(Button seasonButton) {
 		seasonButton.setOnAction(event -> {
-			view.getDrawGardenPane().setSeason(seasonButton.getText());
+			Season season = Season.SPRING;
+			switch(seasonButton.getText()) {
+			case "Spring":
+				season = Season.SPRING;
+				break;
+			case "Summer":
+				season = Season.SUMMER;
+				break;
+			case "Autumn":
+				season = Season.AUTUMN;
+				break;
+			case "Winter":
+				season = Season.WINTER;
+				break;
+			}
+			garden.setSeason(season);
+			view.getDrawGardenPane().setSeason(season);
 		});
 	}
 	
@@ -301,9 +321,9 @@ public class Controller extends Application{
 	}
 	
 	public void openNewFile(SavedData sd) {
-		this.garden = sd.garden;
-		model.garden = sd.garden;
-		this.view.updatePlants();
+		model.setGarden(sd.getGarden());
+		Garden newGarden = model.getGarden();
+		this.view.loadNewGarden(newGarden.getPlantsInGarden(), newGarden.getRating(), newGarden.getSeason());
 	}
 	
 	public ArrayList<String> getGardenFiles() {
