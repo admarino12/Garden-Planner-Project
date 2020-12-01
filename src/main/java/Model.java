@@ -45,44 +45,58 @@ public class Model implements java.io.Serializable {
 			switch (name) {
 				case "Blueflag_Iris":
 					spring = true;
+					break;
 				case "Canada_Wild_Ginger":
 					spring = true;
+					break;
 				case "Evening_Primrose":
 					summer = true;
+					break;
 				case "Pink_Azalea":
 					spring = true;
+					break;
 				case "Swamp_Rose":
 					summer = true;
+					break;
 				case "Virginia_Bluebells":
 					spring = true;
+					break;
 				case "Yellow_Thistle":
 					spring = true;
+					break;
 				case "Chrysanthemum":
-					summer = true;
 					fall = true;
+					break;
 				case "Aster":
 					fall = true;
+					break;
 				case "Marigold":
 					fall = true;
+					break;
 				case "Dahlia":
 					fall = true;
+					break;
 				case "Snowdrop":
 					winter = true;
+					break;
 				case "Winter_Aconite":
 					winter = true;
+					break;
 				case "Winter_Jasmine":
 					winter = true;
+					break;
 				case "Crocus":
 					winter = true;
+					break;
 			}
 		}
-		if(spring = true)
+		if(spring == true)
 			rating++;
-		if(summer = true)
+		if(summer == true)
 			rating++;
-		if(fall = true)
+		if(fall == true)
 			rating++;
-		if(winter = true)
+		if(winter == true)
 			rating++;
 	}
 	

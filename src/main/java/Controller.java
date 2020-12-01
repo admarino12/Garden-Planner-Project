@@ -185,6 +185,8 @@ public class Controller extends Application implements java.io.Serializable {
 	    Node n = (Node)event.getSource();
 	    Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId());
 	   view.addPlants(plant);
+	   model.updateRating();
+	   System.out.println(model.rating + " stars.");
 	 
 	}
 	
