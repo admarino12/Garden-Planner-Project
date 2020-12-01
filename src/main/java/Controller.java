@@ -2,8 +2,13 @@ package src.main.java;
 
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,6 +18,9 @@ import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,7 +38,7 @@ public class Controller extends Application{
 	private final String PLANT_INFO_CSV = "src/resources/plants.csv";
 	
 	final int X_DRAW_OFFSET = 258;
-	private final int Y_DRAW_OFFSET = 184;
+	private final int Y_DRAW_OFFSET = 80;
 	
 	public static void main(String[] args) {
 		//This initializes the JavaFX view
@@ -217,25 +225,99 @@ public class Controller extends Application{
 		});
 	}
 	
-	public void setHandlerForSaveClicked(Button b) {
-		b.setOnAction(event -> save(event));
+	public void setHandlerForSaveAsPopUpClicked(MenuItem saveAs) {
+		saveAs.setOnAction(event -> {
+			view.getToolBarPane().getSaveAsPopUp().show(view.getStage());
+		});
 	}
 	
-	public void save(ActionEvent event) {
-		 model.save();
+	public void setHandlerForSaveClicked(Button save, TextField fileName) {
+		save.setOnAction(event -> {
+			
+			save(fileName.getText());
+			fileName.setText("");
+			view.getToolBarPane().getSaveAsPopUp().hide();
+		});
 	}
 	
-	public void setHandlerForOpenClicked(Button b) {
-		b.setOnAction(event -> open(event));
+	public void save(String fileName) {
+		model.savedData = new SavedData(model);
+		try {
+	         FileOutputStream fileOut =
+	         new FileOutputStream("gardens/"+fileName + ".ser");
+	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	         out.writeObject(model.savedData);
+	         out.close();
+	         fileOut.close();
+	         System.out.printf("Serialized data is saved in "+fileName+".ser");
+	      } catch (IOException i) {
+	         i.printStackTrace();
+	      }
 	}
 	
-	public void open(ActionEvent event) {
-		model.open(this);
+	public void setHandlerForCancelSaveAsClicked(Button cancel) {
+		cancel.setOnAction(event -> {
+			view.getToolBarPane().getSaveAsPopUp().hide();
+		});
+	}
+	
+	public void setHandlerForOpenPopUpClicked(MenuItem open) {
+		open.setOnAction(event -> {
+			view.getToolBarPane().updateOpenPopUp(getGardenFiles());
+			view.getToolBarPane().getOpenPopUp().show(view.getStage());
+		});
+	}
+	
+	public void setHandlerForCancelOpenPopUpClicked(Button cancel) {
+		cancel.setOnAction(event -> {
+			view.getToolBarPane().getOpenPopUp().hide();
+		});
+	}
+	
+	public void setHandlerForOpenClicked(Button open, ListView files) {
+		open.setOnAction(event -> {
+			String fileName = (String)files.getSelectionModel().getSelectedItem();
+			open(fileName);
+			view.getToolBarPane().getOpenPopUp().hide();
+		});
+	}
+	
+	public void open(String fileName) {
+		try {
+	         FileInputStream fileIn = new FileInputStream("gardens/"+fileName);
+	         ObjectInputStream in = new ObjectInputStream(fileIn);
+	         SavedData sd = (SavedData) in.readObject();
+	         this.openNewFile(sd);
+	         in.close();
+	         fileIn.close();
+	      } catch (IOException i) {
+	         i.printStackTrace();
+	         return;
+	      } catch (ClassNotFoundException c) {
+	         System.out.println("Employee class not found");
+	         c.printStackTrace();
+	         return;
+	      }
 	}
 	
 	public void openNewFile(SavedData sd) {
 		this.garden = sd.garden;
+		model.garden = sd.garden;
 		this.view.updatePlants();
+	}
+	
+	public ArrayList<String> getGardenFiles() {
+		ArrayList<String> fileNames = new ArrayList<String>();
+		
+		File[] files = new File("gardens").listFiles();
+		if(files!=null) {
+			for(File file : files) {
+				fileNames.add(file.getName());
+			}
+		}
+		
+		
+		return fileNames;
 	}
 	
 	public String getPlantDescription(String plantName) {

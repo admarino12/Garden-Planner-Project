@@ -16,6 +16,7 @@ public class View {
 	private PlantSearchPane plantSearchPane;
 	private ToolBarPane ratingToolBar;
 	private BorderPane border;
+	private Stage theStage;
 	private int numChildrenInBorder;
 
 			
@@ -28,7 +29,7 @@ public class View {
 
 	public View(Stage theStage, Controller control) {
 		this.control = control;
-		
+		this.theStage = theStage;
 		theStage.setTitle("Garden Builder");
 		Group root = new Group();
 		Scene theScene = new Scene(root, ROOT_WIDTH, ROOT_HEIGHT);
@@ -117,6 +118,10 @@ public class View {
 	
 	public GraphicsContext getgc() {
 		return gc;
+	}
+	
+	public Stage getStage() {
+		return theStage;
 	}
 
 }

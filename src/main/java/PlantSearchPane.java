@@ -130,13 +130,14 @@ public class PlantSearchPane  {
 					plantNameLabel.setTextFill(Color.BLACK);
 					
 					String plantDescription = mainView.control.getPlantDescription(generalName);
-					Tooltip toolTip = new Tooltip(plantDescription);
 					
 					VBox vb = new VBox();
 					vb.setAlignment(Pos.CENTER);
 					
 					vb.getChildren().add(plantList.get(generalName));
 					vb.getChildren().add(plantNameLabel);
+					
+					Tooltip toolTip = new Tooltip(plantDescription);
 					Tooltip.install(vb, toolTip);
 					
 					imageContainerPane.getChildren().add(vb);

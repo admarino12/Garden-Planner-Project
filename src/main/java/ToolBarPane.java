@@ -1,32 +1,45 @@
 package src.main.java;
 
 
+import java.util.ArrayList;
+
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Popup;
 
 public class ToolBarPane {
 	private ToolBar ratingToolBar;
 	private Circle[] ratingCircles;
 	final private int RATING_TOTAL = 4;
 	
+	MenuButton fileButton;
+	Popup saveAsPopUp;
+	Popup openPopUp;
+	ListView files;
+	View mainView;
+	
 	
 	public ToolBarPane(View mainView) {
+		this.mainView = mainView;
 		
 		Label rating = new Label("Rating:");
 		rating.setPadding(new Insets(0,0,0,965));
 		ratingToolBar = new ToolBar();
 		ratingToolBar.setPadding(new Insets(0,0,0,5));
 		
-		
-		Button save = new Button("Save");
-		Button open = new Button("Open");
-		mainView.control.setHandlerForSaveClicked(save);
-		mainView.control.setHandlerForOpenClicked(open);
+		createFileButton();
 		
 		HBox hb4 = new HBox();
 		ratingCircles = new Circle[RATING_TOTAL];
@@ -40,14 +53,87 @@ public class ToolBarPane {
 			circle.setStrokeWidth(1);
 			ratingCircles[i] = circle;
 		}
-		hb4.setPadding(new Insets(5, 10, 5, 5));
+		hb4.setPadding(new Insets(5, 10, 5, 0));
 		hb4.setSpacing(5);
 		hb4.getChildren().addAll(ratingCircles);
-		ratingToolBar.getItems().addAll(save, open, rating, hb4);
+		ratingToolBar.getItems().addAll(fileButton, rating, hb4);
 	}
 	
-	public ToolBar getRatingToolBar() {
-		return ratingToolBar;
+	public void createFileButton() {
+		fileButton = new MenuButton("File");
+		MenuItem saveAs = new MenuItem("Save As...");
+		mainView.control.setHandlerForSaveAsPopUpClicked(saveAs);
+		createSaveAsPopUp();
+		MenuItem open = new MenuItem("Open...");
+		mainView.control.setHandlerForOpenPopUpClicked(open);
+		createOpenPopUp();
+		fileButton.getItems().addAll(saveAs, open);
+		
+	}
+	
+	public void createSaveAsPopUp() {
+		saveAsPopUp = new Popup();
+		saveAsPopUp.setAutoHide(true);
+		
+		//First Row of PopUp. Contains: Label and TextField
+		Label label = new Label("Save as: ");
+		TextField fileName = new TextField();
+		HBox hb1 = new HBox();
+		hb1.setPadding(new Insets(0,0,10,0));
+		hb1.getChildren().addAll(label, fileName);
+		
+		//Second Row of PupUp. Contains: Cancel Button and Save Button
+		Button save = new Button("Save");
+		mainView.control.setHandlerForSaveClicked(save, fileName);
+		Button cancel = new Button("Cancel");
+		mainView.control.setHandlerForCancelSaveAsClicked(cancel);
+		HBox hb2 = new HBox();
+		hb2.setAlignment(Pos.CENTER);
+		hb2.setSpacing(12);
+		hb2.getChildren().addAll(save, cancel);
+		
+		//ViewBox contains the two Rows above
+		VBox vb = new VBox();
+		vb.setStyle("-fx-background-color:white;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;-fx-hgap:3;-fx-vgap:5;");
+		vb.setPadding(new Insets(10,5,5,10));
+		vb.getChildren().addAll(hb1, hb2);
+		
+		saveAsPopUp.getContent().add(vb);
+	}
+	
+	public void createOpenPopUp() {
+		openPopUp = new Popup();
+		openPopUp.setAutoHide(true);
+		
+		Label label = new Label("Select a File:");
+		files = new ListView<String>();
+		files.setStyle("-fx-background-color:white;-fx-border-color: grey;-fx-border-width:1;-fx-border-radius:3;");
+		files.setMinHeight(300);
+		files.setMinWidth(200);
+		
+		Button open = new Button("Open");
+		mainView.control.setHandlerForOpenClicked(open, files);
+		Button cancel = new Button("Cancel");
+		mainView.control.setHandlerForCancelOpenPopUpClicked(cancel);
+		HBox hb = new HBox();
+		hb.setAlignment(Pos.CENTER);
+		hb.setSpacing(12);
+		hb.setPadding(new Insets(5,0,0,0));
+		hb.getChildren().addAll(open, cancel);
+		
+		VBox vb = new VBox();
+		vb.setStyle("-fx-background-color:white;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;-fx-hgap:3;-fx-vgap:5;");
+		vb.setPadding(new Insets(10,5,5,10));
+		vb.getChildren().addAll(label, files, hb);
+		
+		openPopUp.getContent().add(vb);
+	}
+	
+	public void updateOpenPopUp(ArrayList<String> fileNames) {
+		files.getItems().clear();
+		for(String name : fileNames) {
+			files.getItems().add(name);
+		}
 	}
 	
 	public void updateRating(int rating) {
@@ -58,4 +144,17 @@ public class ToolBarPane {
 			else ratingCircles[i].setFill(Color.WHITE);
 		}
 	}
+	
+	public ToolBar getRatingToolBar() {
+		return ratingToolBar;
+	}
+	
+	public Popup getSaveAsPopUp() {
+		return saveAsPopUp;
+	}
+	
+	public Popup getOpenPopUp() {
+		return openPopUp;
+	}
+	
 }

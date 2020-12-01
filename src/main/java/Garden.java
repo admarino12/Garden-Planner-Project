@@ -37,4 +37,5 @@ class Garden implements java.io.Serializable {
 	public ArrayList<Plant> getPlantsInGarden() {
 		return this.plantsInGarden;
 	}
+	
 }

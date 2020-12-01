@@ -141,39 +141,6 @@ public class Model implements java.io.Serializable {
 		return results;
 	}
 	
-	public void open(Controller con) {
-		try {
-	         FileInputStream fileIn = new FileInputStream("garden.ser");
-	         ObjectInputStream in = new ObjectInputStream(fileIn);
-	         SavedData sd = (SavedData) in.readObject();
-	         con.openNewFile(sd);
-	         in.close();
-	         fileIn.close();
-	      } catch (IOException i) {
-	         i.printStackTrace();
-	         return;
-	      } catch (ClassNotFoundException c) {
-	         System.out.println("Employee class not found");
-	         c.printStackTrace();
-	         return;
-	      }
-	}
-	
-	public void save() {
-		this.savedData = new SavedData(this);
-		try {
-	         FileOutputStream fileOut =
-	         new FileOutputStream("garden.ser");
-	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	         out.writeObject(this.savedData);
-	         out.close();
-	         fileOut.close();
-	         System.out.printf("Serialized data is saved in garden.ser");
-	      } catch (IOException i) {
-	         i.printStackTrace();
-	      }
-	}
-	
 	public String getPlantDescription(String plantName) {
 		String plantDescription = null;
 		for(Plant plant : plantList) {
