@@ -12,7 +12,7 @@ public class Model implements java.io.Serializable {
 	ArrayList<Plant> plantList;
 	int gardenWidth;
 	int gardenHeight;
-	String plantTraits = "Trees, FLowers, Bushes, Yellow, Blue, Pink";
+	String plantTraits = "Trees, Flowers, Bushes, Yellow, Blue, Pink";
 	Garden garden;
 	int rating;
 	SavedData savedData; 
