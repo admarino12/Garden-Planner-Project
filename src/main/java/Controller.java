@@ -38,7 +38,7 @@ public class Controller extends Application implements java.io.Serializable {
 	Canvas canvas; 
 	
 	final int X_DRAW_OFFSET = 258;
-	private final int Y_DRAW_OFFSET = 58;
+	private final int Y_DRAW_OFFSET = 82;
 	
 	public static void main(String[] args) {
 		//This initializes the JavaFX view
