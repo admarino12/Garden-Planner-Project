@@ -68,6 +68,10 @@ public class View {
 		return drawGardenPane;
 	}
 	
+	public ToolBarPane getToolBarPane() {
+		return ratingToolBar;
+	}
+	
 	
 	public void addPlants(Plant plant) {
 		ImageView plantIV = plantSearchPane.getPlantIV(plant.getName());
@@ -114,7 +118,6 @@ public class View {
 	public GraphicsContext getgc() {
 		return gc;
 	}
-
 
 }
 

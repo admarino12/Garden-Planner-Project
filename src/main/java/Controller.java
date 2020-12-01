@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -47,62 +48,6 @@ public class Controller extends Application{
 		
 		this.garden = model.garden;
         
-		//Draw start
-		view.getDrawGardenPane().getDrawGardenCanvas().setOnMousePressed(e->{
-			if(view.getDrawGardenPane().getDrawButton().isSelected() && !view.getDrawGardenPane().getEraseButton().isSelected()) {
-			view.getgc().beginPath();
-			view.getgc().lineTo(e.getSceneX()-X_DRAW_OFFSET, e.getSceneY()-Y_DRAW_OFFSET);
-			view.getgc().stroke();
-			}
-		//Erase start
-			else if(!view.getDrawGardenPane().getDrawButton().isSelected() && view.getDrawGardenPane().getEraseButton().isSelected()) {
-				double lineWidth = view.getgc().getLineWidth()*4;
-				view.getgc().clearRect(e.getSceneX()-X_DRAW_OFFSET - lineWidth , e.getSceneY()-Y_DRAW_OFFSET - lineWidth,
-						lineWidth, lineWidth);
-			}
-			
-			});	
-		
-		//Draw line
-		view.getDrawGardenPane().getDrawGardenCanvas().setOnMouseDragged(e->{
-			if(view.getDrawGardenPane().getDrawButton().isSelected() && !view.getDrawGardenPane().getEraseButton().isSelected()) {
-			view.getgc().lineTo(e.getSceneX()-X_DRAW_OFFSET, e.getSceneY()-Y_DRAW_OFFSET);
-			view.getgc().stroke();
-			}
-		//Erase line
-			else if(!view.getDrawGardenPane().getDrawButton().isSelected() && view.getDrawGardenPane().getEraseButton().isSelected()) {
-				double lineWidth = view.getgc().getLineWidth()*4;
-				view.getgc().clearRect(e.getSceneX()-X_DRAW_OFFSET - lineWidth , e.getSceneY()-Y_DRAW_OFFSET - lineWidth,
-						lineWidth, lineWidth);
-			}
-			});
-		
-		//Change Seasons
-		//Spring
-		String springstyle = "-fx-background-color: #81EEA4, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
-		view.getDrawGardenPane().getSpringButton().setOnAction(e -> 
-			view.getDrawGardenPane().getHolder().setStyle(springstyle)
-		);
-		
-		//Summer
-		String summerstyle = "-fx-background-color: #FFF4B3, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
-		view.getDrawGardenPane().getSummerButton().setOnAction(e -> 
-		view.getDrawGardenPane().getHolder().setStyle(summerstyle)
-	);
-		
-		//Fall
-		String fallstyle = "-fx-background-color: #E8C696, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
-		view.getDrawGardenPane().getFallButton().setOnAction(e -> 
-		view.getDrawGardenPane().getHolder().setStyle(fallstyle)
-	);
-		
-		//Winter
-		String winterstyle = "-fx-background-color: #E6FFFF, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
-		view.getDrawGardenPane().getWinterButton().setOnAction(e -> 
-		view.getDrawGardenPane().getHolder().setStyle(winterstyle)
-	);
-		
-		
     }
 	
 	public ArrayList<Plant> loadPlantList(){
@@ -176,8 +121,60 @@ public class Controller extends Application{
 	    Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId());
 	   view.addPlants(plant);
 	   model.updateRating();
+	   view.getToolBarPane().updateRating(model.getRating());
 	   System.out.println(model.rating + " stars.");
 	 
+	}
+	
+	public void setHandlerForDrawButton(ToggleButton drawButton) {
+		drawButton.setOnAction(event -> {
+			view.getDrawGardenPane().getEraseButton().setSelected(false);
+			
+			if(drawButton.isSelected()) {
+				//Draw Start
+				view.getDrawGardenPane().getDrawGardenCanvas().setOnMousePressed(e->{
+					view.getgc().beginPath();
+					view.getgc().lineTo(e.getSceneX()-X_DRAW_OFFSET, e.getSceneY()-Y_DRAW_OFFSET);
+					view.getgc().stroke();
+				});
+				
+				//Draw Line
+				view.getDrawGardenPane().getDrawGardenCanvas().setOnMouseDragged(e->{
+					view.getgc().lineTo(e.getSceneX()-X_DRAW_OFFSET, e.getSceneY()-Y_DRAW_OFFSET);
+					view.getgc().stroke();
+				});
+			}
+			else { 
+				view.getDrawGardenPane().getDrawGardenCanvas().setOnMousePressed(e -> {});
+				view.getDrawGardenPane().getDrawGardenCanvas().setOnMouseDragged(e->{});
+			}
+		});
+	}
+	
+	public void setHandlerForEraseButton(ToggleButton eraseButton) {
+		eraseButton.setOnAction(event -> {
+			view.getDrawGardenPane().getDrawButton().setSelected(false);
+			
+			if(eraseButton.isSelected()) {
+				//Erase Start
+				view.getDrawGardenPane().getDrawGardenCanvas().setOnMousePressed(e->{
+					double lineWidth = view.getgc().getLineWidth()*4;
+					view.getgc().clearRect(e.getSceneX()-X_DRAW_OFFSET - lineWidth , e.getSceneY()-Y_DRAW_OFFSET - lineWidth,
+							lineWidth, lineWidth);
+				});
+				
+				//Erase Line
+				view.getDrawGardenPane().getDrawGardenCanvas().setOnMouseDragged(e->{
+					double lineWidth = view.getgc().getLineWidth()*4;
+					view.getgc().clearRect(e.getSceneX()-X_DRAW_OFFSET - lineWidth , e.getSceneY()-Y_DRAW_OFFSET - lineWidth,
+							lineWidth, lineWidth);
+				});
+			}
+			else { 
+				view.getDrawGardenPane().getDrawGardenCanvas().setOnMousePressed(e -> {});
+				view.getDrawGardenPane().getDrawGardenCanvas().setOnMouseDragged(e->{});	
+			}
+		});
 	}
 	
 	public void setHandlerForRemoveClick(ImageView imgView) {
@@ -214,13 +211,12 @@ public class Controller extends Application{
 	
 	}
 	
-//	public void SetSeason() {
-//		view.getDrawGardenPane().getSpringButton()
-//		.setOnAction(e-> view.getDrawGardenPane().getHolder().setStyle(	"-fx-background-color: #81EEA4, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%),"
-//				+ "linear-gradient(from 0px 0.5px to 0px 20.5px, "
-//				+ "repeat, gray 1%, transparent 2%);"));
-//	}
-//	
+	public void setHandlerForSeasonButton(Button seasonButton) {
+		seasonButton.setOnAction(event -> {
+			view.getDrawGardenPane().setSeason(seasonButton.getText());
+		});
+	}
+	
 	public void setHandlerForSaveClicked(Button b) {
 		b.setOnAction(event -> save(event));
 	}

@@ -100,6 +100,10 @@ public class Model implements java.io.Serializable {
 			rating++;
 	}
 	
+	public int getRating() {
+		return rating;
+	}
+	
 	public Plant Add(double getX, double getY, String name) {
 		Plant plantReturned = null; 
 		for(Plant plant : plantList) {

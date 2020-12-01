@@ -17,6 +17,13 @@ public class DrawGardenPane {
 //
 //	final ComboBox<String> seasons = new ComboBox<String>(seasonOptions);
 
+	// Season Styles
+	final private String springStyle = "-fx-background-color: #81EEA4, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
+	final private String summerStyle = "-fx-background-color: #FFF4B3, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
+	final private String fallStyle = "-fx-background-color: #E8C696, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
+	final private String winterStyle = "-fx-background-color: #E6FFFF, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
+	final private String defaultStyle = springStyle;
+	
 	// Season Buttons
 	private Button springButton = new Button("Spring");
 	private Button summerButton = new Button("Summer");
@@ -45,9 +52,15 @@ public class DrawGardenPane {
 
 		holder = new StackPane();
 		holder.getChildren().add(drawGardenCanvas);
-
-		String defaultcolor = "-fx-background-color: #81EEA4, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
-		holder.setStyle(defaultcolor);
+		
+		mainView.control.setHandlerForDrawButton(drawButton);
+		mainView.control.setHandlerForEraseButton(eraseButton);
+		mainView.control.setHandlerForSeasonButton(springButton);
+		mainView.control.setHandlerForSeasonButton(summerButton);
+		mainView.control.setHandlerForSeasonButton(fallButton);
+		mainView.control.setHandlerForSeasonButton(winterButton);
+		
+		holder.setStyle(defaultStyle);
 		drawGardenToolBar = new ToolBar();
 		HBox hb3 = new HBox();
 		HBox hb2 = new HBox();
@@ -61,7 +74,7 @@ public class DrawGardenPane {
 		separator3.setOrientation(Orientation.VERTICAL);
 		hb2.setPadding(new Insets(5, 10, 5, 1));
 		hb2.getChildren().addAll(drawButton, separator, eraseButton);
-		hb3.setPadding(new Insets(5, 10, 5, 470));
+		hb3.setPadding(new Insets(5, 10, 5, 610));
 		hb3.getChildren().addAll(springButton, separator1, summerButton, separator2, fallButton, separator3,
 				winterButton);
 		drawGardenToolBar.getItems().addAll(hb2, hb3);
@@ -73,21 +86,22 @@ public class DrawGardenPane {
 		drawGardenBorder.setTop(drawGardenToolBar);
 
 	}
-
-	public Button getWinterButton() {
-		return winterButton;
-	}
-
-	public Button getFallButton() {
-		return fallButton;
-	}
-
-	public Button getSummerButton() {
-		return summerButton;
-	}
-
-	public Button getSpringButton() {
-		return springButton;
+	
+	public void setSeason(String seasonName) {
+		switch(seasonName) {
+		case "Spring":
+			holder.setStyle(springStyle);
+			break;
+		case "Summer":
+			holder.setStyle(summerStyle);
+			break;
+		case "Autumn":
+			holder.setStyle(fallStyle);
+			break;
+		case "Winter":
+			holder.setStyle(winterStyle);
+			break;
+		}
 	}
 
 	public BorderPane getDrawGardenBorder() {
@@ -105,10 +119,6 @@ public class DrawGardenPane {
 	public ToggleButton getDrawButton() {
 		return drawButton;
 	}
-
-//	public ComboBox<String> getSeasons() {
-//		return seasons;
-//	}
 
 	public StackPane getHolder() {
 		return holder;
