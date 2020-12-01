@@ -36,6 +36,8 @@ public class Controller extends Application implements java.io.Serializable {
 	transient Scanner scan;
 	Garden garden;
 	Canvas canvas; 
+
+	private final String PLANT_INFO_CSV = "src/resources/plants.csv";
 	
 	final int X_DRAW_OFFSET = 258;
 	private final int Y_DRAW_OFFSET = 184;
@@ -114,15 +116,13 @@ public class Controller extends Application implements java.io.Serializable {
 		
     }
 	
-	private final String plantResources = "src/resources/plants.csv";
-	
 	public ArrayList<Plant> loadPlantList(){
 		ArrayList<Plant> plantList = new ArrayList<Plant>();
 		String line = "";
 		
 		//Read each line of the CSV file and pull the plant name, description, and String array of plant traits
 		try {
-			FileReader file = new FileReader(plantResources);
+			FileReader file = new FileReader(PLANT_INFO_CSV);
 			BufferedReader csvFile = new BufferedReader(file);
 			
 			while((line = csvFile.readLine()) != null) {
@@ -172,6 +172,7 @@ public class Controller extends Application implements java.io.Serializable {
 			else {
 				names.add("");
 			}
+			
 			view.getPlantSearchPane().update(names);
 		});
 	}
@@ -250,6 +251,10 @@ public class Controller extends Application implements java.io.Serializable {
 	public void openNewFile(SavedData sd) {
 		this.garden = sd.garden;
 		this.view.updatePlants();
+	}
+	
+	public String getPlantDescription(String plantName) {
+		return model.getPlantDescription(plantName);
 	}
 }
 

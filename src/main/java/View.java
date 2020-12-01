@@ -65,13 +65,9 @@ public class View implements java.io.Serializable {
 		
 		//ToolBar
 		ratingToolBar = new ToolBarPane(this);
-	
-		
-
 
 		// DragnDropPane
 		plantSearchPane = new PlantSearchPane(this);
-		
 		
 		//DrawGardenPane
 		drawGardenPane = new DrawGardenPane(this);

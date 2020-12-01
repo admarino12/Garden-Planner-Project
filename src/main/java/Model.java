@@ -169,6 +169,16 @@ public class Model implements java.io.Serializable {
 	         i.printStackTrace();
 	      }
 	}
+	
+	public String getPlantDescription(String plantName) {
+		String plantDescription = null;
+		for(Plant plant : plantList) {
+			if(plant.getName().equals(plantName)) {
+				plantDescription = plant.getDescription();
+			}
+		}
+		return plantDescription;
+	}
 
 }
 

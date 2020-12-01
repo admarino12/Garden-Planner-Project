@@ -1,5 +1,6 @@
 package src.main.java;
 
+import java.awt.Paint;
 import java.io.FileInputStream; 
 import java.io.FileNotFoundException; 
 import java.util.ArrayList;
@@ -19,11 +20,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -89,8 +92,10 @@ public class PlantSearchPane implements java.io.Serializable {
 		imageContainerPane.setAlignment(Pos.CENTER);
 		
 		scrollPane = new ScrollPane();
-		scrollPane.setFitToHeight(true);
 		scrollPane.setPrefHeight(SCROLL_PANE_MAX_HEIGHT);
+		scrollPane.setPadding(new Insets(0,0,0,20));
+		scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent; "); 
+		
 		
 		createHashMap();
 		update(allPlantNames);
@@ -102,7 +107,6 @@ public class PlantSearchPane implements java.io.Serializable {
 	
 	public void createHashMap() {
 		for(String name : allPlantNames) {
-			//System.out.println(name);
 			Image plantImage;
 			try {
 				plantImage = new Image(new FileInputStream("src/resources/images/"+name+".png"));
@@ -110,9 +114,8 @@ public class PlantSearchPane implements java.io.Serializable {
 				plantImageView.setId(name);
 				plantImageView.setImage(plantImage);
 				plantImageView.setPreserveRatio(true);
-		    	plantImageView.setFitHeight(65);
+		    	plantImageView.setFitHeight(100);
 				mainView.control.setHandlerForDragAndDrop(plantImageView);
-		    	//plantImageView.setOnDragDetected(mainView.control.getHandlerForDrag());
 				plantList.put(name, plantImageView);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -121,30 +124,24 @@ public class PlantSearchPane implements java.io.Serializable {
 	}
 	
 	public void update(ArrayList<String> names) {
-		
 		imageContainerPane.getChildren().clear();
+		
 		for(String inputName : names) {
 			for(String generalName : allPlantNames) {
 				if(generalName.toLowerCase().contains(inputName.toLowerCase())) {
 					
-
 					Label plantNameLabel = new Label(generalName.replace("_", " "));
+					plantNameLabel.setTextFill(Color.BLACK);
 					
-					
-//					ContextMenu contextMenu = new ContextMenu();
-//					MenuItem menuItem1 = new MenuItem("menu item 1"); 
-//			        MenuItem menuItem2 = new MenuItem("menu item 2"); 
-//			        MenuItem menuItem3 = new MenuItem("menu item 3");
-//					contextMenu.getItems().addAll(menuItem1, menuItem2, menuItem3);
+					String plantDescription = mainView.control.getPlantDescription(generalName);
+					Tooltip toolTip = new Tooltip(plantDescription);
 					
 					VBox vb = new VBox();
 					vb.setAlignment(Pos.CENTER);
+					
 					vb.getChildren().add(plantList.get(generalName));
 					vb.getChildren().add(plantNameLabel);
-					
-
-					//plantNameLabel.setContextMenu(contextMenu);
-					
+					Tooltip.install(vb, toolTip);
 					
 					imageContainerPane.getChildren().add(vb);
 				}
@@ -164,28 +161,4 @@ public class PlantSearchPane implements java.io.Serializable {
 	public ImageView getPlantIV(String plantName) {
 		return plantList.get(plantName);
 	}
-	
-//	ContextMenu contextMenu = new ContextMenu();
-//	MenuItem menuItem1 = new MenuItem("menu item 1"); 
-//    MenuItem menuItem2 = new MenuItem("menu item 2"); 
-//    MenuItem menuItem3 = new MenuItem("menu item 3");
-//	contextMenu.getItems().addAll(menuItem1, menuItem2, menuItem3);
-//	
-//	searcher.setContextMenu(contextMenu);
-//	
-//
-//    // create window event 
-//    EventHandler<WindowEvent> event = new EventHandler<WindowEvent>() { 
-//        public void handle(WindowEvent e) 
-//        { 
-//            if (contextMenu.isShowing()) 
-//                searcher.setText("context menu showing"); 
-//            else
-//                searcher.setText("context menu hidden"); 
-//        } 
-//    }; 
-
-    // add event 
-//    contextMenu.setOnShowing(event); 
-//    contextMenu.setOnHiding(event); 
 }
