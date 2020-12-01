@@ -22,12 +22,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-<<<<<<< HEAD
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-=======
->>>>>>> 8d0c87f0c71955d73ebe8a57a99818b4e4c1001d
 
 public class PlantSearchPane  {
 	
