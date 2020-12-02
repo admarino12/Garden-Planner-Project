@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Model implements java.io.Serializable {
 	
@@ -34,70 +35,27 @@ public class Model implements java.io.Serializable {
 	//updates the rating integer based off of the current plants in garden. Can be max of 4.
 	public void updateRating() {
 		rating = 0;
-		boolean spring = false;
-		boolean summer = false;
-		boolean fall = false;
-		boolean winter = false;
-		String name;
+		HashSet<String> seasons = new HashSet<String>();
 		
 		for(Plant plant : garden.getPlantsInGarden()) {
-			name = plant.getName();
-			switch (name) {
-				case "Blueflag_Iris":
-					spring = true;
-					break;
-				case "Canada_Wild_Ginger":
-					spring = true;
-					break;
-				case "Evening_Primrose":
-					summer = true;
-					break;
-				case "Pink_Azalea":
-					spring = true;
-					break;
-				case "Swamp_Rose":
-					summer = true;
-					break;
-				case "Virginia_Bluebells":
-					spring = true;
-					break;
-				case "Yellow_Thistle":
-					spring = true;
-					break;
-				case "Chrysanthemum":
-					fall = true;
-					break;
-				case "Aster":
-					fall = true;
-					break;
-				case "Marigold":
-					fall = true;
-					break;
-				case "Dahlia":
-					fall = true;
-					break;
-				case "Snowdrop":
-					winter = true;
-					break;
-				case "Winter_Aconite":
-					winter = true;
-					break;
-				case "Winter_Jasmine":
-					winter = true;
-					break;
-				case "Crocus":
-					winter = true;
-					break;
+			String description = plant.getDescription();
+			String[] splitDescription = description.split(":");
+			switch(splitDescription[0]) {
+			case "Spring":
+				seasons.add("Spring");
+				break;
+			case "Summer":
+				seasons.add("Summer");
+				break;
+			case "Fall":
+				seasons.add("Fall");
+				break;
+			case "Winter":
+				seasons.add("Winter");
+				break;
 			}
 		}
-		if(spring == true)
-			rating++;
-		if(summer == true)
-			rating++;
-		if(fall == true)
-			rating++;
-		if(winter == true)
-			rating++;
+		rating = seasons.size();
 	}
 	
 	public int getRating() {
