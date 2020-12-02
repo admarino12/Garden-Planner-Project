@@ -172,8 +172,8 @@ public class ToolBarPane {
 		vb.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;-fx-hgap:4;-fx-vgap:6;");
 		vb.setPadding(new Insets(10,5,5,10));
 		vb.getChildren().add(label);
-		for (int i = 0; i < plantData.length; i++ ) {
-			vb.getChildren().add(plantData[i]);
+		for (Text data: plantData) {
+			vb.getChildren().add(data);
 		}
 		vb.getChildren().addAll(hb);
 		
