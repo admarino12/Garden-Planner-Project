@@ -8,6 +8,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import javafx.scene.image.Image;
+
 public class Model implements java.io.Serializable {
 	
 	ArrayList<Plant> plantList;
@@ -62,13 +64,13 @@ public class Model implements java.io.Serializable {
 		return rating;
 	}
 	
-	public Plant Add(double getX, double getY, String name) {
+	public Plant Add(double getX, double getY, String name, Image image) {
 		Plant plantReturned = null; 
 		for(Plant plant : plantList) {
 			if (plant.getName().equals(name)){
 				plant.setxCor(getX);
 				plant.setyCor(getY);
-				garden.addPlant(getX, getY, name, plant.getDescription(), plant.getTraits());
+				garden.addPlant(getX, getY, name, plant.getDescription(), plant.getTraits(), image) ;
 				
 				plantReturned = plant; 
 				

@@ -1,5 +1,7 @@
 package src.main.java;
 
+import javafx.scene.image.Image;
+
 public class Plant implements java.io.Serializable{
 
 	private String plantName;
@@ -8,6 +10,7 @@ public class Plant implements java.io.Serializable{
 	private String[] plantTraits;
 	private double xCor;
 	private double yCor;
+	private Image plantImage;
 
 	public Plant(String plantName, String plantDescription, String[] plantTraits) {
 		this.plantName = plantName;
@@ -48,6 +51,15 @@ public class Plant implements java.io.Serializable{
 	public void setyCor(double yCor) {
 		this.yCor = yCor;
 	}
+	
+	public void setImage(Image image) {
+		plantImage = image;
+	}
+	
+	public Image getImage() {
+		return plantImage;
+	}
+	
 	
 	
 }

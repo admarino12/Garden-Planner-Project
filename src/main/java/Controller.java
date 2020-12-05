@@ -22,6 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
@@ -126,12 +127,12 @@ public class Controller extends Application{
 	
 	
 		public void setHandlerForDragAndDrop(ImageView imgView) {
-		imgView.setOnMouseReleased(event -> dragAndDrop(event));
+		imgView.setOnMouseReleased(event -> dragAndDrop(event, imgView.getImage()));
 	}
 	
-	public void dragAndDrop(MouseEvent event) {
+	public void dragAndDrop(MouseEvent event, Image img) {
 	    Node n = (Node)event.getSource();
-	    Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId());
+	    Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId(), img);
 	   view.addPlants(plant);
 	   model.updateRating();
 	   garden.setRating(model.getRating());
