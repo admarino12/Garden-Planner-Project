@@ -164,7 +164,7 @@ public class ToolBarPane {
 		Text plantData[] = new Text [mainView.control.getPlantNames().size()];
 		int counter = 0;
 		for (String name: mainView.control.getPlantNames()) {
-			plantData[counter] = new Text( name + " " + mainView.control.getPlantDescription(name));
+			plantData[counter] = new Text( name.replace("_", " ") + ": " + mainView.control.getPlantDescription(name));
 			counter++;
 		}
 		
@@ -172,9 +172,11 @@ public class ToolBarPane {
 		vb.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;-fx-hgap:4;-fx-vgap:6;");
 		vb.setPadding(new Insets(10,5,5,10));
 		vb.getChildren().add(label);
+		
 		for (Text data: plantData) {
 			vb.getChildren().add(data);
 		}
+		
 		vb.getChildren().addAll(hb);
 		
 		plantEncycPopUp.getContent().add(vb);

@@ -55,6 +55,7 @@ public class PlantSearchPane  {
 		this.mainView = mainView;
 		allPlantNames = mainView.control.getPlantNames();
 		
+		
 		mainPane = new VBox(0);
 		mainPane.setStyle("-fx-background-color: #E7DEBC;");
 		

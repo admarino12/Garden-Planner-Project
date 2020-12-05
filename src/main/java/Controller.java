@@ -23,6 +23,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -121,7 +122,7 @@ public class Controller extends Application{
 	
 	
 		public void setHandlerForDragAndDrop(ImageView imgView) {
-		imgView.setOnMouseReleased(event -> dragAndDrop(event));	
+		imgView.setOnMouseReleased(event -> dragAndDrop(event));
 	}
 	
 	public void dragAndDrop(MouseEvent event) {
