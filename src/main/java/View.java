@@ -32,6 +32,7 @@ public class View {
 	private Stage theStage;
 	private int numChildrenInBorder;
 	private StartPageView startPage;
+	private Scene theScene;
 
 			
 
@@ -45,15 +46,14 @@ public class View {
 		this.control = control;
 		this.theStage = theStage;
 		
+		theStage.setTitle("Garden Builder");
 		startPage = new StartPageView(this);
+
 		
 		
 		//Garden Builder View
-		theStage.setTitle("Garden Builder");
 		Group root = new Group();
-		Scene theScene = new Scene(root, getROOT_WIDTH(), getROOT_HEIGHT());
-		theStage.setScene(theScene);
-
+		theScene = new Scene(root, getROOT_WIDTH(), getROOT_HEIGHT());
 		
 		//ToolBar
 		ratingToolBar = new ToolBarPane(this);
@@ -84,6 +84,9 @@ public class View {
 		}
 	}
 	
+	public void setMainScene() {
+		theStage.setScene(theScene);
+	}
 	
 	public PlantSearchPane getPlantSearchPane() {
 		return plantSearchPane;
@@ -127,6 +130,8 @@ public class View {
 			
 	}
 	public void loadNewGarden(ArrayList<Plant> plants, int rating, Season season ){
+		
+		theStage.setScene(theScene);
 		//Remove plants
 		for (int i = border.getChildren().size() - 1; i >=3; i--){
 			border.getChildren().remove(i);
@@ -163,9 +168,7 @@ public class View {
 		return ROOT_WIDTH;
 	}
 	
-	public Stage getStartPageViewStage() {
-		return startPage.getStage();
-	}
+	
 
 }
 

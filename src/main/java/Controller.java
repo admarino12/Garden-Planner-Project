@@ -250,6 +250,44 @@ public class Controller extends Application{
 		});
 	}
 	
+	public void setHandlerForNewFilePopUpClicked(MenuItem newFile) {
+		newFile.setOnAction(event -> {
+			ToolBarPane tbp = view.getToolBarPane();
+			tbp.gardenName.setText("");
+			tbp.widthText.setText("");
+			tbp.heightText.setText("");
+			tbp.getNewFilePopUp().show(view.getStage());
+		});
+	}
+	
+	public void setHandlerForNewFilePopUpClicked(Button newFile) {
+		newFile.setOnAction(event -> {
+			view.getToolBarPane().getNewFilePopUp().show(view.getStage());
+		});
+	}
+	
+	public void setHandlerForNewFileClicked(Button start) {
+		start.setOnAction(event -> {
+			ToolBarPane tbp = view.getToolBarPane();
+			createNewFile(tbp.gardenName.getText(), Integer.parseInt(tbp.widthText.getText()), Integer.parseInt(tbp.heightText.getText()));
+			view.getToolBarPane().getNewFilePopUp().hide();
+			view.getToolBarPane().getHelpPopUp().show(view.getStage());
+		});
+	}
+	
+	public void createNewFile(String gardenName, int width, int height) {
+		garden = new Garden(width, height);
+		model.setGarden(garden);
+		this.view.loadNewGarden(garden.getPlantsInGarden(), garden.getRating(), garden.getSeason());
+		save(gardenName);
+	}
+	
+	public void setHandlerForSaveMenuItemClicked(MenuItem save) {
+		save.setOnAction(event -> {
+			save(model.savedData.getFileName());
+		});
+	}
+	
 	public void setHandlerForSaveAsPopUpClicked(MenuItem saveAs) {
 		saveAs.setOnAction(event -> {
 			view.getToolBarPane().getSaveAsPopUp().show(view.getStage());
@@ -266,7 +304,7 @@ public class Controller extends Application{
 	}
 	
 	public void save(String fileName) {
-		model.savedData = new SavedData(model);
+		model.savedData = new SavedData(fileName, model);
 		try {
 	         FileOutputStream fileOut =
 	         new FileOutputStream("gardens/"+fileName + ".ser");
@@ -287,6 +325,13 @@ public class Controller extends Application{
 	}
 	
 	public void setHandlerForOpenPopUpClicked(MenuItem open) {
+		open.setOnAction(event -> {
+			view.getToolBarPane().updateOpenPopUp(getGardenFiles());
+			view.getToolBarPane().getOpenPopUp().show(view.getStage());
+		});
+	}
+	
+	public void setHandlerForOpenPopUpClicked(Button open) {
 		open.setOnAction(event -> {
 			view.getToolBarPane().updateOpenPopUp(getGardenFiles());
 			view.getToolBarPane().getOpenPopUp().show(view.getStage());
@@ -332,14 +377,6 @@ public class Controller extends Application{
 		this.view.loadNewGarden(newGarden.getPlantsInGarden(), newGarden.getRating(), newGarden.getSeason());
 	}
 	
-	public void openNewFile2(SavedData sd) {
-		model.setGarden(sd.getGarden());
-		this.garden = model.getGarden();
-		Garden newGarden = model.getGarden();
-		loadedGarden = newGarden;
-		loadGarden = true;
-	}
-	
 	public ArrayList<String> getGardenFiles() {
 		ArrayList<String> fileNames = new ArrayList<String>();
 		
@@ -379,34 +416,6 @@ public class Controller extends Application{
 	public void setHandlerForHelpButtonClose(Button b) {
 		b.setOnAction(event -> {
 			view.getToolBarPane().getHelpPopUp().hide();
-		});
-	}
-	
-	public void setHandlerForUploadGardenBtn(Button uploadBtn, Stage popUpWindow) {
-		uploadBtn.setOnAction(event -> {
-			popUpWindow.close();
-			FileChooser fileChooser = new FileChooser();
-			fileChooser.setTitle("Open Garden");
-			File file = fileChooser.showOpenDialog(null);
-			if (file != null) {
-				try {
-			         FileInputStream fileIn = new FileInputStream(file);
-			         ObjectInputStream in = new ObjectInputStream(fileIn);
-			         SavedData sd = (SavedData) in.readObject();
-			         this.openNewFile2(sd);
-			         in.close();
-			         fileIn.close();
-			      } catch (IOException i) {
-			         i.printStackTrace();
-			         return;
-			      } catch (ClassNotFoundException c) {
-			         System.out.println("File not found");
-			         c.printStackTrace();
-			         return;
-			      }
-				
-			}
-			
 		});
 	}
 	
