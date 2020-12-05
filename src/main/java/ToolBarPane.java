@@ -26,9 +26,11 @@ public class ToolBarPane {
 	
 	MenuButton fileButton;
 	Button plantEncyclopedia;
+	Button helpButton; 
 	Popup plantEncycPopUp; 
 	Popup saveAsPopUp;
 	Popup openPopUp;
+	Popup helpPopUp;
 	ListView files;
 	View mainView;
 	
@@ -43,6 +45,7 @@ public class ToolBarPane {
 		
 		createFileButton();
 		createPlantEncyclopediaButton();
+		createHelpButton();
 		
 		HBox hb4 = new HBox();
 		ratingCircles = new Circle[RATING_TOTAL];
@@ -59,7 +62,7 @@ public class ToolBarPane {
 		hb4.setPadding(new Insets(5, 10, 5, 0));
 		hb4.setSpacing(5);
 		hb4.getChildren().addAll(ratingCircles);
-		ratingToolBar.getItems().addAll(fileButton, plantEncyclopedia, rating, hb4);
+		ratingToolBar.getItems().addAll( fileButton, plantEncyclopedia,helpButton, rating, hb4);
 	}
 	
 	public void createFileButton() {
@@ -78,6 +81,12 @@ public class ToolBarPane {
 		plantEncyclopedia = new Button ("Plant Encyclopedia");
 		mainView.control.setHandlerForPlantEncyclopediaClicked(plantEncyclopedia);
 		createPlantEncyclopediaPopUp();
+	}
+	
+	public void createHelpButton() {
+		helpButton = new Button ("Help");
+		mainView.control.setHandlerForHelpButton(helpButton);
+		createHelpPopUp();
 	}
 	
 	public void createSaveAsPopUp() {
@@ -184,6 +193,33 @@ public class ToolBarPane {
 		
 	}
 	
+	public void createHelpPopUp() {
+		helpPopUp = new Popup();
+		helpPopUp.setAutoHide(true);
+		
+		Label label = new Label("Help");
+		label.setStyle("-fx-font-weight: bold");
+		
+		Button done = new Button ("Done");
+		mainView.control.setHandlerForHelpButtonClose(done);
+		HBox hb = new HBox();
+		hb.setAlignment(Pos.CENTER);
+		hb.setAlignment(Pos.CENTER);
+		hb.setSpacing(12);
+		hb.setPadding(new Insets(10,5,5,10));
+		hb.getChildren().addAll(done);
+		
+		VBox vb = new VBox(8);
+		vb.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;-fx-hgap:4;-fx-vgap:6;");
+		vb.setPadding(new Insets(10,5,5,10));
+		vb.getChildren().add(label);
+		
+		vb.getChildren().addAll(hb);
+		
+		helpPopUp.getContent().add(vb);
+		
+	}
+	
 	public void updateRating(int rating) {
 		for(int i=0;i<ratingCircles.length;i++) {
 			if(i<rating) {
@@ -209,4 +245,7 @@ public class ToolBarPane {
 		return plantEncycPopUp; 
 	}
 	
+	public Popup getHelpPopUp() {
+		return helpPopUp; 
+	}
 }

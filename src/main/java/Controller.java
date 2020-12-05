@@ -357,5 +357,17 @@ public class Controller extends Application{
 			view.getToolBarPane().getPlantEncycPopUp().hide();
 		});
 	}
+	
+	public void setHandlerForHelpButton(Button helpButton) {
+		helpButton.setOnAction(event -> {
+			view.getToolBarPane().getHelpPopUp().show(view.getStage());
+		});
+	}
+	
+	public void setHandlerForHelpButtonClose(Button b) {
+		b.setOnAction(event -> {
+			view.getToolBarPane().getHelpPopUp().hide();
+		});
+	}
 }
 
