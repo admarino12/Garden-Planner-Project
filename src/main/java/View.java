@@ -31,6 +31,7 @@ public class View {
 	private BorderPane border;
 	private Stage theStage;
 	private int numChildrenInBorder;
+	private StartPageView startPage;
 
 			
 
@@ -44,7 +45,7 @@ public class View {
 		this.control = control;
 		this.theStage = theStage;
 		
-		StartPageView startPage = new StartPageView(this);
+		startPage = new StartPageView(this);
 		
 		
 		//Garden Builder View
@@ -76,6 +77,11 @@ public class View {
 
 		numChildrenInBorder = border.getChildren().size();
 		theStage.show();
+		
+		if (control.getLoadGarden()) {
+			Garden newGarden = control.getLoadedGarden();
+			loadNewGarden(newGarden.getPlantsInGarden(), newGarden.getRating(), newGarden.getSeason());
+		}
 	}
 	
 	
@@ -155,6 +161,10 @@ public class View {
 	
 	public int getROOT_WIDTH() {
 		return ROOT_WIDTH;
+	}
+	
+	public Stage getStartPageViewStage() {
+		return startPage.getStage();
 	}
 
 }

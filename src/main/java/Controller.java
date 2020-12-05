@@ -25,6 +25,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 
@@ -35,6 +36,8 @@ public class Controller extends Application{
 	transient Scanner scan;
 	Garden garden;
 	Canvas canvas; 
+	boolean loadGarden;
+	Garden loadedGarden;
 
 	private final String PLANT_INFO_CSV = "src/resources/plants.csv";
 	
@@ -54,6 +57,7 @@ public class Controller extends Application{
 		view = new View(theStage, this);
 		scan = new Scanner(System.in);
 		canvas = view.getDrawGardenPane().getDrawGardenCanvas();
+		loadGarden = false;
 		
 		this.garden = model.garden;
         
@@ -328,6 +332,14 @@ public class Controller extends Application{
 		this.view.loadNewGarden(newGarden.getPlantsInGarden(), newGarden.getRating(), newGarden.getSeason());
 	}
 	
+	public void openNewFile2(SavedData sd) {
+		model.setGarden(sd.getGarden());
+		this.garden = model.getGarden();
+		Garden newGarden = model.getGarden();
+		loadedGarden = newGarden;
+		loadGarden = true;
+	}
+	
 	public ArrayList<String> getGardenFiles() {
 		ArrayList<String> fileNames = new ArrayList<String>();
 		
@@ -368,6 +380,42 @@ public class Controller extends Application{
 		b.setOnAction(event -> {
 			view.getToolBarPane().getHelpPopUp().hide();
 		});
+	}
+	
+	public void setHandlerForUploadGardenBtn(Button uploadBtn, Stage popUpWindow) {
+		uploadBtn.setOnAction(event -> {
+			popUpWindow.close();
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.setTitle("Open Garden");
+			File file = fileChooser.showOpenDialog(null);
+			if (file != null) {
+				try {
+			         FileInputStream fileIn = new FileInputStream(file);
+			         ObjectInputStream in = new ObjectInputStream(fileIn);
+			         SavedData sd = (SavedData) in.readObject();
+			         this.openNewFile2(sd);
+			         in.close();
+			         fileIn.close();
+			      } catch (IOException i) {
+			         i.printStackTrace();
+			         return;
+			      } catch (ClassNotFoundException c) {
+			         System.out.println("File not found");
+			         c.printStackTrace();
+			         return;
+			      }
+				
+			}
+			
+		});
+	}
+	
+	public boolean getLoadGarden() {
+		return loadGarden; 
+	}
+	
+	public Garden getLoadedGarden() {
+		return loadedGarden;
 	}
 }
 
