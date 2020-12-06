@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 public class Model implements java.io.Serializable {
 	
@@ -87,13 +89,21 @@ public class Model implements java.io.Serializable {
 		p.setyCor(y);
 	}
 	
-	public ArrayList<String> searchPlantListByTrait(String search){
+	public ArrayList<String> searchPlantListByTrait(String plantTypeTrait, String seasonTrait, String colorTrait){
+		if(plantTypeTrait=="All Plants") {
+			plantTypeTrait = " ";
+		}
+		if(seasonTrait=="All Seasons") {
+			seasonTrait = " ";
+		}
+		if(colorTrait=="All Colors") {
+			colorTrait = " ";
+		}
 		ArrayList<String> results = new ArrayList<String>();
 		for(Plant plant : plantList) {
-			for(String trait : plant.getTraits()) {
-				if(trait.equals(search)) {
-					results.add(plant.getName());
-				}
+			List<String> plantsTraits = Arrays.asList(plant.getTraits());
+			if(plantsTraits.contains(plantTypeTrait) && plantsTraits.contains(seasonTrait) && plantsTraits.contains(colorTrait)) {
+				results.add(plant.getName());
 			}
 		}
 		return results;

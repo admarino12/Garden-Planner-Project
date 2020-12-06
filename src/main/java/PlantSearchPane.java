@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException; 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import javafx.collections.FXCollections;
@@ -28,14 +29,36 @@ import javafx.stage.WindowEvent;
 
 public class PlantSearchPane  {
 	
-	ObservableList<String> options = 
+	ObservableList<String> plantOptions = 
 			FXCollections.observableArrayList(
-					"All",
+					"All Plants",
 					"Perennials",
 					"Trees",
 					"Shrubs"
 					);
-	final ComboBox<String> typesofplants = new ComboBox<String>(options);
+	final ComboBox<String> typesOfPlants = new ComboBox<String>(plantOptions);
+	ObservableList<String> seasonOptions = 
+			FXCollections.observableArrayList(
+					"All Seasons",
+					"Spring",
+					"Summer",
+					"Autumn",
+					"Winter"
+					);
+	final ComboBox<String>  typesOfSeasons = new ComboBox<String>(seasonOptions);
+	ObservableList<String> colorOptions = 
+			FXCollections.observableArrayList(
+					"All Colors",
+					"Yellow",
+					"Green",
+					"Red",
+					"Purple",
+					"Blue",
+					"Orange",
+					"White",
+					"Pink"
+					);
+	final ComboBox<String>  typesOfColors = new ComboBox<String>(colorOptions);
 	
 	private TextField searcher;
 	private View mainView;
@@ -71,26 +94,33 @@ public class PlantSearchPane  {
 		hb.setSpacing(8);
 		hb.setPadding(new Insets(5, 10, 5, 10));
 		hb.setMaxHeight(50);
+		hb.setAlignment(Pos.CENTER);
 		
 		//HBox contains the drop down selection box
+		typesOfPlants.getSelectionModel().selectFirst();
+		typesOfSeasons.getSelectionModel().selectFirst();
+		typesOfColors.getSelectionModel().selectFirst();
 		HBox hb1 = new HBox();
-		mainView.control.setHandlerForSearchTab(typesofplants);
-		hb1.getChildren().add(typesofplants);
+		mainView.control.setHandlerForSearchTab(typesOfPlants);
+		mainView.control.setHandlerForSearchTab(typesOfSeasons);
+		mainView.control.setHandlerForSearchTab(typesOfColors);
+		hb1.getChildren().addAll(typesOfPlants, typesOfSeasons, typesOfColors);
 		hb1.setPadding(new Insets(5, 10, 30, 10));
 		hb1.setMaxHeight(50);
+		hb1.setSpacing(5);
 		hb1.setAlignment(Pos.BOTTOM_CENTER);
-		mainPane.getChildren().add(hb);
-		mainPane.getChildren().add(hb1);
 		
 		//TilePane contains the image and labels
 		imageContainerPane = new TilePane();
 		imageContainerPane.setPrefColumns(2);
-		imageContainerPane.setVgap(20);
+		imageContainerPane.setVgap(35);
+		imageContainerPane.setHgap(35);
 		imageContainerPane.setAlignment(Pos.CENTER);
 		
 		scrollPane = new ScrollPane();
 		scrollPane.setPrefHeight(SCROLL_PANE_MAX_HEIGHT);
-		scrollPane.setPadding(new Insets(0,0,0,20));
+		scrollPane.setPadding(new Insets(0,0,0,0));
+		scrollPane.setFitToWidth(true);
 		scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent; "); 
 		
 		
@@ -98,7 +128,7 @@ public class PlantSearchPane  {
 		update(allPlantNames);
 		
 		scrollPane.setContent(imageContainerPane);
-		mainPane.getChildren().add(scrollPane);
+		mainPane.getChildren().addAll(hb, hb1, scrollPane);
 		
 	}
 	

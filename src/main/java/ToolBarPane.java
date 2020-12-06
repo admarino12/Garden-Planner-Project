@@ -143,6 +143,7 @@ public class ToolBarPane {
 		Button start = new Button("Start");
 		mainView.control.setHandlerForNewFileClicked(start);
 		Button cancel = new Button("Cancel");
+		mainView.control.setHandlerForCancelNewFileClicked(cancel);
 		hb4.getChildren().addAll(start, cancel);
 		hb4.setAlignment(Pos.CENTER);
 		hb4.setSpacing(20);

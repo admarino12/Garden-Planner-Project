@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Scanner;
 
 import javafx.application.Application;
@@ -75,7 +79,10 @@ public class Controller extends Application{
 			while((line = csvFile.readLine()) != null) {
 				
 				String[] plant = line.split(",");
+				
 				String[] plantTraits = plant[2].split("-");
+				plantTraits = Arrays.copyOf(plantTraits,  plantTraits.length+1);
+				plantTraits[plantTraits.length - 1] = " ";
 				plantList.add(  new Plant(plant[0], plant[1], plantTraits) );
 				
 			}			
@@ -111,15 +118,19 @@ public class Controller extends Application{
 	public void setHandlerForSearchTab(ComboBox<String> options) {
 		options.setOnAction(event -> {
 			view.getPlantSearchPane().getTextField().setText("");
-			String trait = options.getSelectionModel().getSelectedItem();
+			
+			String plantTypeTrait = view.getPlantSearchPane().typesOfPlants.getSelectionModel().getSelectedItem();
+			String seasonTrait = view.getPlantSearchPane().typesOfSeasons.getSelectionModel().getSelectedItem();
+			String colorTrait = view.getPlantSearchPane().typesOfColors.getSelectionModel().getSelectedItem();
+			
+			System.out.println(plantTypeTrait+" "+seasonTrait+" "+colorTrait);
 			ArrayList<String> names = new ArrayList<String>();
-			if(trait!="All") {
-				names = model.searchPlantListByTrait(trait);
+			if(plantTypeTrait!="All Plants" || seasonTrait!="All Seasons" || colorTrait!= "All Colors") {
+				names = model.searchPlantListByTrait(plantTypeTrait, seasonTrait, colorTrait);
 			}
 			else {
 				names.add("");
 			}
-			
 			view.getPlantSearchPane().update(names);
 		});
 	}
@@ -288,6 +299,12 @@ public class Controller extends Application{
 		});
 	}
 	
+	public void setHandlerForCancelNewFileClicked(Button cancel) {
+		cancel.setOnAction(event -> {
+			view.getToolBarPane().getNewFilePopUp().hide();
+		});
+	}
+	
 	public void setHandlerForSaveAsPopUpClicked(MenuItem saveAs) {
 		saveAs.setOnAction(event -> {
 			view.getToolBarPane().getSaveAsPopUp().show(view.getStage());
@@ -372,9 +389,9 @@ public class Controller extends Application{
 	
 	public void openNewFile(SavedData sd) {
 		model.setGarden(sd.getGarden());
+		model.savedData = sd;
 		this.garden = model.getGarden();
-		Garden newGarden = model.getGarden();
-		this.view.loadNewGarden(newGarden.getPlantsInGarden(), newGarden.getRating(), newGarden.getSeason());
+		this.view.loadNewGarden(garden.getPlantsInGarden(), garden.getRating(), garden.getSeason());
 	}
 	
 	public ArrayList<String> getGardenFiles() {
