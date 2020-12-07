@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -63,6 +64,7 @@ public class StartPageView {
 			
 			//set Front Page scene
 			introScene= new Scene(layout,view.getROOT_WIDTH(), view.getROOT_HEIGHT()); 
+			introScene.setCursor(Cursor.HAND);
 			view.getStage().setScene(introScene);
 	}
 	
