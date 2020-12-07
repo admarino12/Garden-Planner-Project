@@ -131,6 +131,17 @@ public class View {
 		
 	}
 	
+	public void showPlantsInSeason(ArrayList<Plant> plantsInSeason) {
+		//Remove plants
+		for (int i = border.getChildren().size() - 1; i >=3; i--){
+			border.getChildren().remove(i);
+		}
+		//Add Plants
+		for (Plant p: plantsInSeason) {
+			addPlants(p);
+		}
+	}
+	
 	public void removePlant(Plant plant) {
 				border.getChildren().remove(control.garden.getPlantsInGarden().indexOf(plant) + numChildrenInBorder);
 			
@@ -154,6 +165,7 @@ public class View {
 		ratingToolBar.updateRating(rating);
 		
 		drawGardenPane.setSeason(season);
+		drawGardenPane.setSeasonComboBox(season);
 		
 	}
 	

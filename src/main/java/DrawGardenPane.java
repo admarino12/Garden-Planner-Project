@@ -1,9 +1,12 @@
 package src.main.java;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Separator;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToolBar;
@@ -13,22 +16,22 @@ import javafx.scene.layout.StackPane;
 
 public class DrawGardenPane {
 
-//	ObservableList<String> seasonOptions = FXCollections.observableArrayList("Spring", "Summer", "Fall", "Winter");
-//
-//	final ComboBox<String> seasons = new ComboBox<String>(seasonOptions);
-
 	// Season Styles
 	final private String springStyle = "-fx-background-color: #81EEA4, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
 	final private String summerStyle = "-fx-background-color: #FFF4B3, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
 	final private String fallStyle = "-fx-background-color: #E8C696, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
 	final private String winterStyle = "-fx-background-color: #E6FFFF, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
-	final private String defaultStyle = springStyle;
+	final private String allSeasonStyle = "-fx-background-color: #bff5d0, linear-gradient(from 0.5px 0px to 20.5px 0px, repeat, gray 1%, transparent 2%), linear-gradient(from 0px 0.5px to 0px 20.5px, repeat, gray 1%, transparent 2%);";
 	
-	// Season Buttons
-	private Button springButton = new Button("Spring");
-	private Button summerButton = new Button("Summer");
-	private Button fallButton = new Button("Autumn");
-	private Button winterButton = new Button("Winter");
+	ObservableList<String> seasonOptions = 
+			FXCollections.observableArrayList(
+					"All Seasons",
+					"Spring",
+					"Summer",
+					"Autumn",
+					"Winter"
+					);
+	final ComboBox<String>  selectSeason = new ComboBox<String>(seasonOptions);
 
 	// DrawGardenPane ToolBar
 	private ToolBar drawGardenToolBar;
@@ -55,28 +58,19 @@ public class DrawGardenPane {
 		
 		mainView.control.setHandlerForDrawButton(drawButton);
 		mainView.control.setHandlerForEraseButton(eraseButton);
-		mainView.control.setHandlerForSeasonButton(springButton);
-		mainView.control.setHandlerForSeasonButton(summerButton);
-		mainView.control.setHandlerForSeasonButton(fallButton);
-		mainView.control.setHandlerForSeasonButton(winterButton);
+		mainView.control.setHandlerForSeasonComboBox(selectSeason);
 		
-		holder.setStyle(defaultStyle);
+		holder.setStyle(allSeasonStyle);
 		drawGardenToolBar = new ToolBar();
 		HBox hb3 = new HBox();
 		HBox hb2 = new HBox();
 		Separator separator = new Separator();
 		separator.setOrientation(Orientation.VERTICAL);
-		Separator separator1 = new Separator();
-		separator1.setOrientation(Orientation.VERTICAL);
-		Separator separator2 = new Separator();
-		separator2.setOrientation(Orientation.VERTICAL);
-		Separator separator3 = new Separator();
-		separator3.setOrientation(Orientation.VERTICAL);
+		selectSeason.setMaxWidth(400);
 		hb2.setPadding(new Insets(5, 10, 5, 1));
 		hb2.getChildren().addAll(drawButton, separator, eraseButton);
-		hb3.setPadding(new Insets(5, 10, 5, 610));
-		hb3.getChildren().addAll(springButton, separator1, summerButton, separator2, fallButton, separator3,
-				winterButton);
+		hb3.setPadding(new Insets(5, 10, 5, 710));
+		hb3.getChildren().addAll(selectSeason);
 		drawGardenToolBar.getItems().addAll(hb2, hb3);
 
 		drawGardenBorder = new BorderPane();
@@ -100,6 +94,29 @@ public class DrawGardenPane {
 			break;
 		case WINTER:
 			holder.setStyle(winterStyle);
+			break;
+		default:
+			holder.setStyle(allSeasonStyle);
+			break;
+		}
+	}
+	
+	public void setSeasonComboBox(Season season) {
+		switch(season) {
+		case SPRING:
+			selectSeason.getSelectionModel().select("Spring");
+			break;
+		case SUMMER:
+			selectSeason.getSelectionModel().select("Summer");
+			break;
+		case AUTUMN:
+			selectSeason.getSelectionModel().select("Autumn");
+			break;
+		case WINTER:
+			selectSeason.getSelectionModel().select("Winter");
+			break;
+		default:
+			selectSeason.getSelectionModel().select("All Seasons");
 			break;
 		}
 	}

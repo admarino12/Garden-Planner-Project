@@ -1,6 +1,8 @@
 package src.main.java;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javafx.scene.image.Image;
 
@@ -15,7 +17,7 @@ class Garden implements java.io.Serializable {
 	public Garden(int width, int height) {
 		this.width = width;
 		this.height = height;
-		this.season = Season.SPRING;
+		this.season = Season.ALL_SEASONS;
 		this.rating = 0;
 	}
 
@@ -27,8 +29,6 @@ class Garden implements java.io.Serializable {
 		plant.setyCor(yCord);
 		getPlantsInGarden().add(plant);
 	}
-
-
 
 	public double getGardenWidth() {
 		return width;

@@ -121,6 +121,22 @@ public class Model implements java.io.Serializable {
 		return plantDescription;
 	}
 	
+	public ArrayList<Plant> getPlantsInSeason() {
+		ArrayList<Plant> plantsInSeason = new ArrayList<Plant>();
+		if(garden.getSeason() == Season.ALL_SEASONS) {
+			return garden.getPlantsInGarden();
+		}
+		else {
+			for(Plant plant : garden.getPlantsInGarden()) {
+				List<String> plantTraits = Arrays.asList(plant.getTraits());
+				if(plantTraits.contains(garden.getSeason().getSeason())) {
+					plantsInSeason.add(plant);
+				}
+			}
+		}
+		return plantsInSeason;
+	}
+	
 	public Garden getGarden() {
 		return garden;
 	}

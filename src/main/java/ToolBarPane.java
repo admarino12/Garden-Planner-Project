@@ -53,8 +53,8 @@ public class ToolBarPane {
 	public ToolBarPane(View mainView) {
 		this.mainView = mainView;
 		
-		Label rating = new Label("Rating:");
-		rating.setPadding(new Insets(0,0,0,900));
+		Label rating = new Label("Continuous Bloom:");
+		rating.setPadding(new Insets(0,0,0,840));
 		ratingToolBar = new ToolBar();
 		ratingToolBar.setPadding(new Insets(0,0,0,5));
 		

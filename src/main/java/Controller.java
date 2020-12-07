@@ -257,10 +257,10 @@ public class Controller extends Application{
 	
 	}
 	
-	public void setHandlerForSeasonButton(Button seasonButton) {
-		seasonButton.setOnAction(event -> {
+	public void setHandlerForSeasonComboBox(ComboBox<String> selectSeason) {
+		selectSeason.setOnAction(event -> {
 			Season season = Season.SPRING;
-			switch(seasonButton.getText()) {
+			switch(selectSeason.getSelectionModel().getSelectedItem()) {
 			case "Spring":
 				season = Season.SPRING;
 				break;
@@ -273,8 +273,11 @@ public class Controller extends Application{
 			case "Winter":
 				season = Season.WINTER;
 				break;
+			default:
+				season = Season.ALL_SEASONS;
 			}
 			garden.setSeason(season);
+			view.showPlantsInSeason(model.getPlantsInSeason());
 			view.getDrawGardenPane().setSeason(season);
 		});
 	}
