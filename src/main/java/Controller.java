@@ -283,8 +283,8 @@ public class Controller extends Application{
 		newFile.setOnAction(event -> {
 			ToolBarPane tbp = view.getToolBarPane();
 			tbp.gardenName.setText("");
-			tbp.widthText.setText("");
-			tbp.heightText.setText("");
+			tbp.widthValueFactory.setValue(1);
+			tbp.heightValueFactory.setValue(1);
 			tbp.getNewFilePopUp().show(view.getStage());
 		});
 	}
@@ -298,7 +298,7 @@ public class Controller extends Application{
 	public void setHandlerForNewFileClicked(Button start) {
 		start.setOnAction(event -> {
 			ToolBarPane tbp = view.getToolBarPane();
-			createNewFile(tbp.gardenName.getText(), Integer.parseInt(tbp.widthText.getText()), Integer.parseInt(tbp.heightText.getText()));
+			createNewFile(tbp.gardenName.getText(), tbp.widthValueFactory.getValue(), tbp.heightValueFactory.getValue());
 			view.getToolBarPane().getNewFilePopUp().hide();
 			view.getToolBarPane().getHelpPopUp().show(view.getStage());
 		});

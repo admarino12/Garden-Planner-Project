@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.HBox;
@@ -25,6 +27,12 @@ public class ToolBarPane {
 	private Circle[] ratingCircles;
 	final private int RATING_TOTAL = 4;
 	
+	final private int MIN_GARDEN_WIDTH = 1;
+	final private int MAX_GARDEN_WIDTH = 60;
+	final private int MIN_GARDEN_HEIGHT = 1;
+	final private int MAX_GARDEN_HEIGHT = 60;
+	
+	
 	MenuButton fileButton;
 	Button plantEncyclopedia;
 	Button helpButton; 
@@ -34,8 +42,10 @@ public class ToolBarPane {
 	Popup openPopUp;
 	Popup helpPopUp;
 	TextField gardenName;
-	TextField widthText;
-	TextField heightText;
+	Spinner<Integer> heightSpinner;
+	SpinnerValueFactory<Integer> heightValueFactory;
+	Spinner<Integer> widthSpinner;
+	SpinnerValueFactory<Integer> widthValueFactory;
 	ListView<String> files;
 	View mainView;
 	
@@ -123,20 +133,24 @@ public class ToolBarPane {
 		gardenDemLabel.setPadding(new Insets(0,0,0,0));
 		HBox hb2 = new HBox();
 		Label heightLabel = new Label("Height: ");
-		heightText = new TextField();
-		heightText.setMaxWidth(60);
+		heightSpinner = new Spinner<Integer>();
+		heightValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_GARDEN_HEIGHT, MAX_GARDEN_HEIGHT, 1);
+		heightSpinner.setValueFactory(heightValueFactory);
+		heightSpinner.setMaxWidth(60);
 		Label feetLabel1 = new Label("ft.");
 		feetLabel1.setPadding(new Insets(0,5,0,2));
-		hb2.getChildren().addAll(heightLabel, heightText, feetLabel1);
+		hb2.getChildren().addAll(heightLabel, heightSpinner, feetLabel1);
 		hb2.setPadding(new Insets(0,0,0,0));
 		
 		HBox hb3 = new HBox();
 		Label widthLabel = new Label("Width:  ");
-		widthText = new TextField();
-		widthText.setMaxWidth(60);
+		widthSpinner = new Spinner<Integer>();
+		widthValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_GARDEN_WIDTH, MAX_GARDEN_WIDTH, 1);
+		widthSpinner.setValueFactory(widthValueFactory);
+		widthSpinner.setMaxWidth(60);
 		Label feetLabel2 = new Label("ft.");
 		feetLabel2.setPadding(new Insets(0,5,0,2));
-		hb3.getChildren().addAll(widthLabel, widthText, feetLabel2);
+		hb3.getChildren().addAll(widthLabel, widthSpinner, feetLabel2);
 		hb3.setPadding(new Insets(0,0,20,0));
 
 		HBox hb4 = new HBox();
