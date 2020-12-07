@@ -18,7 +18,10 @@ import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -46,8 +49,8 @@ public class Controller extends Application{
 
 	private final String PLANT_INFO_CSV = "src/resources/plants.csv";
 	
-	final int X_DRAW_OFFSET = 258;
-	private final int Y_DRAW_OFFSET = 80;
+	final int X_DRAW_OFFSET = 332;
+	private final int Y_DRAW_OFFSET = 77;
 	
 	public static void main(String[] args) {
 		//This initializes the JavaFX view
@@ -138,10 +141,14 @@ public class Controller extends Application{
 	
 	
 		public void setHandlerForDragAndDrop(ImageView imgView) {
+		imgView.setOnMousePressed (event -> {
+			view.getScene().setCursor(Cursor.CLOSED_HAND);
+		});
 		imgView.setOnMouseReleased(event -> dragAndDrop(event, imgView.getImage()));
 	}
 	
 	public void dragAndDrop(MouseEvent event, Image img) {
+		view.getScene().setCursor(Cursor.HAND);
 	    Node n = (Node)event.getSource();
 	    Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId(), img);
 	   view.addPlants(plant);
@@ -154,9 +161,12 @@ public class Controller extends Application{
 	
 	public void setHandlerForDrawButton(ToggleButton drawButton) {
 		drawButton.setOnAction(event -> {
+			view.getScene().setCursor(Cursor.CROSSHAIR);
 			view.getDrawGardenPane().getEraseButton().setSelected(false);
 			
 			if(drawButton.isSelected()) {
+
+				view.getScene().setCursor(Cursor.CROSSHAIR);
 				//Draw Start
 				view.getDrawGardenPane().getDrawGardenCanvas().setOnMousePressed(e->{
 					view.getgc().beginPath();
@@ -171,6 +181,7 @@ public class Controller extends Application{
 				});
 			}
 			else { 
+				view.getScene().setCursor(Cursor.DEFAULT);
 				view.getDrawGardenPane().getDrawGardenCanvas().setOnMousePressed(e -> {});
 				view.getDrawGardenPane().getDrawGardenCanvas().setOnMouseDragged(e->{});
 			}
@@ -182,6 +193,7 @@ public class Controller extends Application{
 			view.getDrawGardenPane().getDrawButton().setSelected(false);
 			
 			if(eraseButton.isSelected()) {
+				view.getScene().setCursor(Cursor.CROSSHAIR);
 				//Erase Start
 				view.getDrawGardenPane().getDrawGardenCanvas().setOnMousePressed(e->{
 					double lineWidth = view.getgc().getLineWidth()*4;
@@ -197,6 +209,7 @@ public class Controller extends Application{
 				});
 			}
 			else { 
+				view.getScene().setCursor(Cursor.DEFAULT);
 				view.getDrawGardenPane().getDrawGardenCanvas().setOnMousePressed(e -> {});
 				view.getDrawGardenPane().getDrawGardenCanvas().setOnMouseDragged(e->{});	
 			}
@@ -223,9 +236,13 @@ public class Controller extends Application{
 	}
 	
 	public void setHandlerForPlantDragged(ImageView imgView) {
+		imgView.setOnMousePressed (event -> {
+			view.getScene().setCursor(Cursor.CLOSED_HAND);
+		});
 		imgView.setOnMouseReleased(event -> movePlant(event));
 	}
 	public void movePlant(MouseEvent event) {
+		view.getScene().setCursor(Cursor.HAND);
 		ImageView imgView = (ImageView) event.getSource();
 		Node n = (Node)event.getSource();
 		Plant plantMoved = null;

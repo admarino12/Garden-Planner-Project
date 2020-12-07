@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
@@ -54,6 +55,7 @@ public class View {
 		//Garden Builder View
 		Group root = new Group();
 		theScene = new Scene(root, getROOT_WIDTH(), getROOT_HEIGHT());
+		theScene.setCursor(Cursor.HAND);
 		
 		//ToolBar
 		ratingToolBar = new ToolBarPane(this);
@@ -86,6 +88,10 @@ public class View {
 	
 	public void setMainScene() {
 		theStage.setScene(theScene);
+	}
+	
+	public Scene getScene() {
+		return theScene; 
 	}
 	
 	public PlantSearchPane getPlantSearchPane() {

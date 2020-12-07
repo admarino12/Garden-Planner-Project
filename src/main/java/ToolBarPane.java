@@ -245,6 +245,9 @@ public class ToolBarPane {
 		int counter = 0;
 		for (String name: mainView.control.getPlantNames()) {
 			plantData[counter] = new Text( name.replace("_", " ") + ": " + mainView.control.getPlantDescription(name));
+			//plantData[counter].setOnMouseClicked(event -> {
+				
+			//});
 			counter++;
 		}
 		
