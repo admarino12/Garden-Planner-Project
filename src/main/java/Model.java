@@ -59,15 +59,16 @@ public class Model implements java.io.Serializable {
 	}
 	
 	public ArrayList<String> searchPlantListByTrait(String plantTypeTrait, String seasonTrait, String colorTrait){
-		if(plantTypeTrait=="All Plants") {
+		if(plantTypeTrait=="All Plants" || plantTypeTrait==null) {
 			plantTypeTrait = " ";
 		}
-		if(seasonTrait=="All Seasons") {
+		if(seasonTrait=="All Seasons" || seasonTrait==null) {
 			seasonTrait = " ";
 		}
-		if(colorTrait=="All Colors") {
+		if(colorTrait=="All Colors"|| colorTrait==null) {
 			colorTrait = " ";
 		}
+		
 		ArrayList<String> results = new ArrayList<String>();
 		for(Plant plant : plantList) {
 			List<String> plantsTraits = Arrays.asList(plant.getTraits());

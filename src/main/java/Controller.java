@@ -62,7 +62,7 @@ public class Controller extends Application{
 	@Override
 	public void start(Stage theStage) {
 		model = new Model(loadPlantList());
-		view = new View(theStage, this);
+		view = new View(theStage, this, model.garden.getGardenWidth(), model.garden.getGardenHeight());
 		scan = new Scanner(System.in);
 		canvas = view.getDrawGardenPane().getDrawGardenCanvas();
 		loadGarden = false;
@@ -126,9 +126,9 @@ public class Controller extends Application{
 			String plantTypeTrait = view.getPlantSearchPane().typesOfPlants.getSelectionModel().getSelectedItem();
 			String seasonTrait = view.getPlantSearchPane().typesOfSeasons.getSelectionModel().getSelectedItem();
 			String colorTrait = view.getPlantSearchPane().typesOfColors.getSelectionModel().getSelectedItem();
-			
 			System.out.println(plantTypeTrait+" "+seasonTrait+" "+colorTrait);
 			ArrayList<String> names = new ArrayList<String>();
+			
 			if(plantTypeTrait!="All Plants" || seasonTrait!="All Seasons" || colorTrait!= "All Colors") {
 				names = model.searchPlantListByTrait(plantTypeTrait, seasonTrait, colorTrait);
 			}
@@ -309,7 +309,7 @@ public class Controller extends Application{
 	public void createNewFile(String gardenName, int width, int height) {
 		garden = new Garden(width, height);
 		model.setGarden(garden);
-		this.view.loadNewGarden(garden.getPlantsInGarden(), garden.getSeasonRatings(), garden.getSeason());
+		this.view.loadNewGarden(garden.getPlantsInGarden(), garden.getSeasonRatings(), garden.getSeason(), garden.getGardenWidth(), garden.getGardenHeight());
 		save(gardenName);
 	}
 	
@@ -411,7 +411,7 @@ public class Controller extends Application{
 		model.setGarden(sd.getGarden());
 		model.savedData = sd;
 		this.garden = model.getGarden();
-		this.view.loadNewGarden(garden.getPlantsInGarden(), garden.getSeasonRatings(), garden.getSeason());
+		this.view.loadNewGarden(garden.getPlantsInGarden(), garden.getSeasonRatings(), garden.getSeason(), garden.getGardenWidth(), garden.getGardenHeight());
 	}
 	
 	public ArrayList<String> getGardenFiles() {

@@ -89,15 +89,15 @@ public class PlantSearchPane  {
 		hb.setAlignment(Pos.CENTER);
 		
 		//HBox contains the drop down selection box
-		typesOfPlants.getSelectionModel().selectFirst();
-		typesOfSeasons.getSelectionModel().selectFirst();
-		typesOfColors.getSelectionModel().selectFirst();
+		typesOfPlants.setPromptText("Select Plant...");
+		typesOfSeasons.setPromptText("Select Season...");
+		typesOfColors.setPromptText("Select Color...");
 		HBox hb1 = new HBox();
 		mainView.control.setHandlerForSearchTab(typesOfPlants);
 		mainView.control.setHandlerForSearchTab(typesOfSeasons);
 		mainView.control.setHandlerForSearchTab(typesOfColors);
 		hb1.getChildren().addAll(typesOfPlants, typesOfSeasons, typesOfColors);
-		hb1.setPadding(new Insets(5, 10, 30, 10));
+		hb1.setPadding(new Insets(5, 5, 30, 5));
 		hb1.setMaxHeight(50);
 		hb1.setSpacing(5);
 		hb1.setAlignment(Pos.BOTTOM_CENTER);

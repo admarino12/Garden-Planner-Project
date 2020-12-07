@@ -133,18 +133,8 @@ public class ToolBarPane {
 		
 		Label gardenDemLabel = new Label("Garden Dimensions");
 		gardenDemLabel.setPadding(new Insets(0,0,0,0));
-		HBox hb2 = new HBox();
-		Label heightLabel = new Label("Height: ");
-		heightSpinner = new Spinner<Integer>();
-		heightValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_GARDEN_HEIGHT, MAX_GARDEN_HEIGHT, 1);
-		heightSpinner.setValueFactory(heightValueFactory);
-		heightSpinner.setMaxWidth(60);
-		Label feetLabel1 = new Label("ft.");
-		feetLabel1.setPadding(new Insets(0,5,0,2));
-		hb2.getChildren().addAll(heightLabel, heightSpinner, feetLabel1);
-		hb2.setPadding(new Insets(0,0,0,0));
 		
-		HBox hb3 = new HBox();
+		HBox hb2 = new HBox();
 		Label widthLabel = new Label("Width:  ");
 		widthSpinner = new Spinner<Integer>();
 		widthValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_GARDEN_WIDTH, MAX_GARDEN_WIDTH, 1);
@@ -152,7 +142,18 @@ public class ToolBarPane {
 		widthSpinner.setMaxWidth(60);
 		Label feetLabel2 = new Label("ft.");
 		feetLabel2.setPadding(new Insets(0,5,0,2));
-		hb3.getChildren().addAll(widthLabel, widthSpinner, feetLabel2);
+		hb2.getChildren().addAll(widthLabel, widthSpinner, feetLabel2);
+		hb2.setPadding(new Insets(0,0,0,0));
+		
+		HBox hb3 = new HBox();
+		Label heightLabel = new Label("Height: ");
+		heightSpinner = new Spinner<Integer>();
+		heightValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_GARDEN_HEIGHT, MAX_GARDEN_HEIGHT, 1);
+		heightSpinner.setValueFactory(heightValueFactory);
+		heightSpinner.setMaxWidth(60);
+		Label feetLabel1 = new Label("ft.");
+		feetLabel1.setPadding(new Insets(0,5,0,2));
+		hb3.getChildren().addAll(heightLabel, heightSpinner, feetLabel1);
 		hb3.setPadding(new Insets(0,0,20,0));
 
 		HBox hb4 = new HBox();

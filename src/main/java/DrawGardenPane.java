@@ -4,15 +4,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 
 public class DrawGardenPane {
 
@@ -42,12 +45,15 @@ public class DrawGardenPane {
 	private StackPane holder;
 	private BorderPane drawGardenBorder;
 	private Canvas drawGardenCanvas;
+	
+	private Label gardenDimLabel;
 
 	// DrawGardenPane Dimensions
 	final private int DRAW_GARDENPANE_WIDTH = 1000;
 	final private int DRAW_GARDENPANE_HEIGHT = 750;
+	
 
-	public DrawGardenPane(View mainView) {
+	public DrawGardenPane(View mainView, int width, int height) {
 
 		drawGardenCanvas = new Canvas(DRAW_GARDENPANE_WIDTH, DRAW_GARDENPANE_HEIGHT);
 		drawGardenCanvas.minWidth(DRAW_GARDENPANE_WIDTH);
@@ -69,7 +75,7 @@ public class DrawGardenPane {
 		selectSeason.setMaxWidth(400);
 		hb2.setPadding(new Insets(5, 10, 5, 1));
 		hb2.getChildren().addAll(drawButton, separator, eraseButton);
-		hb3.setPadding(new Insets(5, 10, 5, 710));
+		hb3.setPadding(new Insets(5, 10, 5, 660));
 		hb3.getChildren().addAll(selectSeason);
 		drawGardenToolBar.getItems().addAll(hb2, hb3);
 
@@ -78,6 +84,14 @@ public class DrawGardenPane {
 		drawGardenBorder.setMinHeight(DRAW_GARDENPANE_HEIGHT);
 		drawGardenBorder.setCenter(holder);
 		drawGardenBorder.setTop(drawGardenToolBar);
+		
+		gardenDimLabel = new Label();
+		gardenDimLabel.setText(width+"ft x "+height+"ft");
+		gardenDimLabel.setLayoutX(0);
+		gardenDimLabel.setLayoutY(0);
+		gardenDimLabel.setFont(new Font(24));
+		gardenDimLabel.setPadding(new Insets(550,0,0,700));
+		holder.getChildren().add(gardenDimLabel);
 
 	}
 	
@@ -119,6 +133,10 @@ public class DrawGardenPane {
 			selectSeason.getSelectionModel().select("All Seasons");
 			break;
 		}
+	}
+	
+	public void setGardenDim(int width, int height) {
+		gardenDimLabel.setText(width+"ft x "+height+"ft");
 	}
 
 	public BorderPane getDrawGardenBorder() {

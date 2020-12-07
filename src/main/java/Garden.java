@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 class Garden implements java.io.Serializable {
-	private double width;
-	private double height;
+	private int width;
+	private int height;
 	private ArrayList<Plant> plantsInGarden = new ArrayList<Plant>();
 	
 	private Season season;
@@ -67,11 +67,11 @@ class Garden implements java.io.Serializable {
 		ratings = seasons;
 	}
 
-	public double getGardenWidth() {
+	public int getGardenWidth() {
 		return width;
 	}
 
-	public double getGardenHeight() {
+	public int getGardenHeight() {
 		return height;
 	}
 

@@ -49,7 +49,7 @@ public class View {
 	private ArrayList<String> allPlantNames;
 	public Map<String, ImageView> plantList = new HashMap<String, ImageView>();
 
-	public View(Stage theStage, Controller control) {
+	public View(Stage theStage, Controller control, int width, int height) {
 		this.control = control;
 		this.theStage = theStage;
 		
@@ -72,7 +72,7 @@ public class View {
 		plantSearchPane = new PlantSearchPane(this);
 		
 		//DrawGardenPane
-		drawGardenPane = new DrawGardenPane(this);
+		drawGardenPane = new DrawGardenPane(this, width, height);
 		
 		
 		border = new BorderPane();
@@ -90,7 +90,7 @@ public class View {
 		
 		if (control.getLoadGarden()) {
 			Garden newGarden = control.getLoadedGarden();
-			loadNewGarden(newGarden.getPlantsInGarden(), newGarden.getSeasonRatings(), newGarden.getSeason());
+			loadNewGarden(newGarden.getPlantsInGarden(), newGarden.getSeasonRatings(), newGarden.getSeason(), newGarden.getGardenWidth(), newGarden.getGardenHeight());
 		}
 	}
 	
@@ -172,7 +172,7 @@ public class View {
 				border.getChildren().remove(control.garden.getPlantsInGarden().indexOf(plant) + numChildrenInBorder);
 			
 	}
-	public void loadNewGarden(ArrayList<Plant> plants, ArrayList<Integer> seasonRatings, Season season ){
+	public void loadNewGarden(ArrayList<Plant> plants, ArrayList<Integer> seasonRatings, Season season, int width, int height ){
 		
 		theStage.setScene(theScene);
 		//Remove plants
@@ -189,9 +189,9 @@ public class View {
 		
 		//Update Rating
 		ratingToolBar.updateRating(seasonRatings);
-		
 		drawGardenPane.setSeason(season);
 		drawGardenPane.setSeasonComboBox(season);
+		drawGardenPane.setGardenDim(width, height);
 		
 	}
 	
