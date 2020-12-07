@@ -152,10 +152,9 @@ public class Controller extends Application{
 	    Node n = (Node)event.getSource();
 	    Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId());
 	   view.addPlants(plant);
-	   model.updateRating();
-	   garden.setRating(model.getRating());
-	   view.getToolBarPane().updateRating(model.getRating());
-	   System.out.println(model.getRating() + " stars.");
+	   garden.setSeasonRatings();
+	   view.getToolBarPane().updateRating(garden.getSeasonRatings());
+	   System.out.println("Rating Updated");
 	 
 	}
 	
@@ -230,9 +229,9 @@ public class Controller extends Application{
 		}
 		view.removePlant(plantRemoved);
 		model.remove(plantRemoved);
-		model.updateRating();
-		garden.setRating(model.getRating());
-		view.getToolBarPane().updateRating(model.getRating());
+		
+		garden.setSeasonRatings();
+		view.getToolBarPane().updateRating(garden.getSeasonRatings());
 	}
 	
 	public void setHandlerForPlantDragged(ImageView imgView) {
@@ -277,7 +276,7 @@ public class Controller extends Application{
 				season = Season.ALL_SEASONS;
 			}
 			garden.setSeason(season);
-			view.showPlantsInSeason(model.getPlantsInSeason());
+			view.showPlantsInSeason(garden.getPlantsInSeason());
 			view.getDrawGardenPane().setSeason(season);
 		});
 	}
@@ -310,7 +309,7 @@ public class Controller extends Application{
 	public void createNewFile(String gardenName, int width, int height) {
 		garden = new Garden(width, height);
 		model.setGarden(garden);
-		this.view.loadNewGarden(garden.getPlantsInGarden(), garden.getRating(), garden.getSeason());
+		this.view.loadNewGarden(garden.getPlantsInGarden(), garden.getSeasonRatings(), garden.getSeason());
 		save(gardenName);
 	}
 	
@@ -382,7 +381,7 @@ public class Controller extends Application{
 		});
 	}
 	
-	public void setHandlerForOpenClicked(Button open, ListView files) {
+	public void setHandlerForOpenClicked(Button open, ListView<String> files) {
 		open.setOnAction(event -> {
 			String fileName = (String)files.getSelectionModel().getSelectedItem();
 			open(fileName);
@@ -412,7 +411,7 @@ public class Controller extends Application{
 		model.setGarden(sd.getGarden());
 		model.savedData = sd;
 		this.garden = model.getGarden();
-		this.view.loadNewGarden(garden.getPlantsInGarden(), garden.getRating(), garden.getSeason());
+		this.view.loadNewGarden(garden.getPlantsInGarden(), garden.getSeasonRatings(), garden.getSeason());
 	}
 	
 	public ArrayList<String> getGardenFiles() {

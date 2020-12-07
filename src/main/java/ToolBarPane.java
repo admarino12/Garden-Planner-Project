@@ -32,6 +32,9 @@ public class ToolBarPane {
 	final private int MIN_GARDEN_HEIGHT = 1;
 	final private int MAX_GARDEN_HEIGHT = 60;
 	
+	final private String springColor = "rgba:(129, 238, 164";
+	final private String summerColor = "rgba:(129, 238, 164";
+	
 	
 	MenuButton fileButton;
 	Button plantEncyclopedia;
@@ -69,7 +72,6 @@ public class ToolBarPane {
 			circle.setCenterX(25.0f);
 			circle.setCenterY(25.0f);
 			circle.setRadius(10.0f);
-			circle.setFill(Color.WHITE);
 			circle.setStroke(Color.BLACK);
 			circle.setStrokeWidth(1);
 			ratingCircles[i] = circle;
@@ -307,13 +309,30 @@ public class ToolBarPane {
 		
 	}
 	
-	public void updateRating(int rating) {
+	public void updateRating(ArrayList<Integer> ratings) {
+		double opacity = 0;
 		for(int i=0;i<ratingCircles.length;i++) {
-			if(i<rating) {
-				ratingCircles[i].setFill(Color.GOLD);
+			if(ratings.get(i) > 10) {
+				opacity = 1;
 			}
-			else ratingCircles[i].setFill(Color.WHITE);
+			else opacity = (double)((double)(ratings.get(i)) / 10.0);
+			System.out.println(i+"  "+ "season rating: " +ratings.get(i)+ " opacity: "+opacity);
+			switch(i) {
+				case 0: 
+					ratingCircles[i].setFill(Color.rgb(129, 238, 164, opacity));
+					break;
+				case 1:
+					ratingCircles[i].setFill(Color.rgb(255, 244, 179, opacity));
+					break;
+				case 2: 
+					ratingCircles[i].setFill(Color.rgb(232, 198, 150, opacity));
+					break;
+				case 3:
+					ratingCircles[i].setFill(Color.rgb(230, 255, 255, opacity));
+					break;
+			}
 		}
+		
 	}
 	
 	public ToolBar getRatingToolBar() {

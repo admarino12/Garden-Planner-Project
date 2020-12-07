@@ -90,7 +90,7 @@ public class View {
 		
 		if (control.getLoadGarden()) {
 			Garden newGarden = control.getLoadedGarden();
-			loadNewGarden(newGarden.getPlantsInGarden(), newGarden.getRating(), newGarden.getSeason());
+			loadNewGarden(newGarden.getPlantsInGarden(), newGarden.getSeasonRatings(), newGarden.getSeason());
 		}
 	}
 	
@@ -172,7 +172,7 @@ public class View {
 				border.getChildren().remove(control.garden.getPlantsInGarden().indexOf(plant) + numChildrenInBorder);
 			
 	}
-	public void loadNewGarden(ArrayList<Plant> plants, int rating, Season season ){
+	public void loadNewGarden(ArrayList<Plant> plants, ArrayList<Integer> seasonRatings, Season season ){
 		
 		theStage.setScene(theScene);
 		//Remove plants
@@ -188,7 +188,7 @@ public class View {
 		
 		
 		//Update Rating
-		ratingToolBar.updateRating(rating);
+		ratingToolBar.updateRating(seasonRatings);
 		
 		drawGardenPane.setSeason(season);
 		drawGardenPane.setSeasonComboBox(season);
