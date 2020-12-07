@@ -10,8 +10,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-import javafx.scene.image.Image;
-
 public class Model implements java.io.Serializable {
 	
 	ArrayList<Plant> plantList;
@@ -66,13 +64,13 @@ public class Model implements java.io.Serializable {
 		return rating;
 	}
 	
-	public Plant Add(double getX, double getY, String name, Image image) {
+	public Plant Add(double getX, double getY, String name) {
 		Plant plantReturned = null; 
 		for(Plant plant : plantList) {
 			if (plant.getName().equals(name)){
 				plant.setxCor(getX);
 				plant.setyCor(getY);
-				garden.addPlant(getX, getY, name, plant.getDescription(), plant.getTraits(), image) ;
+				garden.addPlant(getX, getY, name, plant.getDescription(), plant.getTraits()) ;
 				
 				plantReturned = plant; 
 				

@@ -3,6 +3,8 @@ package src.main.java;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -42,14 +44,20 @@ public class View {
 
 	// garden dimensions
 	int gardenWidth, gardenHeight;
+	
+
+	private ArrayList<String> allPlantNames;
+	public Map<String, ImageView> plantList = new HashMap<String, ImageView>();
 
 	public View(Stage theStage, Controller control) {
 		this.control = control;
 		this.theStage = theStage;
 		
+		allPlantNames = control.getPlantNames();
+		createHashMap();
+		
 		theStage.setTitle("Garden Builder");
 		startPage = new StartPageView(this);
-
 		
 		
 		//Garden Builder View
@@ -86,6 +94,24 @@ public class View {
 		}
 	}
 	
+	public void createHashMap() {
+		for(String name : allPlantNames) {
+			Image plantImage;
+			try {
+				plantImage = new Image(new FileInputStream("src/resources/images/"+name+".png"));
+				ImageView plantImageView = new ImageView();
+				plantImageView.setId(name);
+				plantImageView.setImage(plantImage);
+				plantImageView.setPreserveRatio(true);
+		    	plantImageView.setFitHeight(100);
+				control.setHandlerForDragAndDrop(plantImageView);
+				plantList.put(name, plantImageView);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public void setMainScene() {
 		theStage.setScene(theScene);
 	}
@@ -108,7 +134,7 @@ public class View {
 	
 	
 	public void addPlants(Plant plant) {
-		ImageView plantIV = plantSearchPane.getPlantIV(plant.getName());
+		ImageView plantIV = plantList.get(plant.getName());
 		
 		ImageView imgView = new ImageView();
 		imgView.setImage(plantIV.getImage());
@@ -175,6 +201,14 @@ public class View {
 	
 	public Stage getStage() {
 		return theStage;
+	}
+	
+	public ArrayList<String> getAllPlantNames() {
+		return allPlantNames;
+	}
+	
+	public Map<String, ImageView> getPlantList() {
+		return plantList;
 	}
 
 

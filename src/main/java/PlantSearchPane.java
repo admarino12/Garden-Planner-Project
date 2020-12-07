@@ -68,16 +68,8 @@ public class PlantSearchPane  {
 	
 	final private int SCROLL_PANE_MAX_HEIGHT = 623;
 	
-	
-
-	private ArrayList<String> allPlantNames;
-	public Map<String, ImageView> plantList = new HashMap<String, ImageView>();
-	
-	
 	public PlantSearchPane(View mainView)  {
 		this.mainView = mainView;
-		allPlantNames = mainView.control.getPlantNames();
-		
 		
 		mainPane = new VBox(0);
 		mainPane.setStyle("-fx-background-color: #E7DEBC;");
@@ -123,38 +115,19 @@ public class PlantSearchPane  {
 		scrollPane.setFitToWidth(true);
 		scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent; "); 
 		
-		
-		createHashMap();
-		update(allPlantNames);
+
+		update(mainView.getAllPlantNames());
 		
 		scrollPane.setContent(imageContainerPane);
 		mainPane.getChildren().addAll(hb, hb1, scrollPane);
 		
 	}
 	
-	public void createHashMap() {
-		for(String name : allPlantNames) {
-			Image plantImage;
-			try {
-				plantImage = new Image(new FileInputStream("src/resources/images/"+name+".png"));
-				ImageView plantImageView = new ImageView();
-				plantImageView.setId(name);
-				plantImageView.setImage(plantImage);
-				plantImageView.setPreserveRatio(true);
-		    	plantImageView.setFitHeight(100);
-				mainView.control.setHandlerForDragAndDrop(plantImageView);
-				plantList.put(name, plantImageView);
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
 	public void update(ArrayList<String> names) {
 		imageContainerPane.getChildren().clear();
 		
 		for(String inputName : names) {
-			for(String generalName : allPlantNames) {
+			for(String generalName : mainView.getAllPlantNames()) {
 				if(generalName.toLowerCase().contains(inputName.toLowerCase())) {
 					
 					Label plantNameLabel = new Label(generalName.replace("_", " "));
@@ -165,7 +138,7 @@ public class PlantSearchPane  {
 					VBox vb = new VBox();
 					vb.setAlignment(Pos.CENTER);
 					
-					vb.getChildren().add(plantList.get(generalName));
+					vb.getChildren().add(mainView.getPlantList().get(generalName));
 					vb.getChildren().add(plantNameLabel);
 					
 					Tooltip toolTip = new Tooltip(plantDescription);
@@ -186,7 +159,4 @@ public class PlantSearchPane  {
 		return searcher;
 	}
 	
-	public ImageView getPlantIV(String plantName) {
-		return plantList.get(plantName);
-	}
 }

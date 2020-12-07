@@ -150,7 +150,7 @@ public class Controller extends Application{
 	public void dragAndDrop(MouseEvent event, Image img) {
 		view.getScene().setCursor(Cursor.HAND);
 	    Node n = (Node)event.getSource();
-	    Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId(), img);
+	    Plant plant = model.Add(event.getSceneX(),event.getSceneY(), n.getId());
 	   view.addPlants(plant);
 	   model.updateRating();
 	   garden.setRating(model.getRating());

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javafx.scene.image.Image;
-
 class Garden implements java.io.Serializable {
 	private double width;
 	private double height;
@@ -22,9 +20,8 @@ class Garden implements java.io.Serializable {
 	}
 
 	//Updated so that it needs a description variable. 
-	public void addPlant(double xCord, double yCord, String name, String description, String[] traits, Image image) {
+	public void addPlant(double xCord, double yCord, String name, String description, String[] traits) {
 		Plant plant = new Plant(name,description, traits);
-		plant.setImage(image);
 		plant.setxCor(xCord);
 		plant.setyCor(yCord);
 		getPlantsInGarden().add(plant);
