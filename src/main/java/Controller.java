@@ -48,6 +48,8 @@ public class Controller extends Application{
 	Garden loadedGarden;
 
 	private final String PLANT_INFO_CSV = "src/resources/plants.csv";
+	private final String HELP_TXT = "src/resources/help.txt";
+	public String[] helpText = loadHelp();
 	
 	final int X_DRAW_OFFSET = 332;
 	private final int Y_DRAW_OFFSET = 77;
@@ -96,6 +98,22 @@ public class Controller extends Application{
 		catch (IOException e) { e.printStackTrace(); }
 		
 		return plantList;
+	}
+	
+	public String[] loadHelp() {
+		int lineNumber = 0;
+		String[] helpInfo = new String[12];
+		String line = "";
+		try {
+			FileReader file = new FileReader(HELP_TXT);
+			BufferedReader txtFile = new BufferedReader(file);
+			while((line = txtFile.readLine()) != null) {
+				helpInfo[lineNumber] = line;
+				lineNumber++;
+			}
+			txtFile.close();
+		} catch (IOException e) {e.printStackTrace(); }
+		return helpInfo;
 	}
 	
 	public ArrayList<String> getPlantNames() {
@@ -462,6 +480,9 @@ public class Controller extends Application{
 	
 	public Garden getLoadedGarden() {
 		return loadedGarden;
+	}
+	public String[] getHelpText() {
+		return helpText;
 	}
 }
 

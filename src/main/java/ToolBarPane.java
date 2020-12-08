@@ -299,12 +299,27 @@ public class ToolBarPane {
 		hb.setPadding(new Insets(10,5,5,10));
 		hb.getChildren().addAll(done);
 		
+		
+		Text HelpInfo[] = new Text [mainView.control.getHelpText().length];
+		int counter = 0;
+		String[] helpText = mainView.control.getHelpText();
+		for (String name: helpText) {
+			HelpInfo[counter] = new Text(name);
+			//plantData[counter] = new Text( name.replace("_", " ") + ": " + mainView.control.getPlantDescription(name));
+			counter++;
+		}
+		
 		VBox vb = new VBox(8);
 		vb.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;-fx-hgap:4;-fx-vgap:6;");
 		vb.setPadding(new Insets(10,5,5,10));
 		vb.getChildren().add(label);
 		vb.setMinSize(250, 250);
 		vb.getChildren().addAll(hb);
+		
+		for (Text data: HelpInfo) {
+			vb.getChildren().add(data);
+		}
+		
 		
 		helpPopUp.getContent().add(vb);
 		
