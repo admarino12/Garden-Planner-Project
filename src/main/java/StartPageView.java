@@ -24,6 +24,9 @@ public class StartPageView {
 	private Scene introScene;
 	private View mainView;
 	
+	final private int FRONT_PAGE_WIDTH = 1275;
+	final private int FRONT_PAGE_HEIGHT = 760;
+	
 	private String FRONT_PAGE_IMG = "src/resources/images/Front_Page.png";
 	
 	public StartPageView(View view) {
@@ -63,7 +66,7 @@ public class StartPageView {
 			layout.setAlignment(Pos.CENTER);
 			
 			//set Front Page scene
-			introScene= new Scene(layout,view.getROOT_WIDTH(), view.getROOT_HEIGHT()); 
+			introScene= new Scene(layout, FRONT_PAGE_WIDTH, FRONT_PAGE_HEIGHT); 
 			introScene.setCursor(Cursor.HAND);
 			view.getStage().setScene(introScene);
 	}

@@ -66,7 +66,7 @@ public class PlantSearchPane  {
 	private TilePane imageContainerPane;
 	private ScrollPane scrollPane;
 	
-	final private int SCROLL_PANE_MAX_HEIGHT = 623;
+	final private int SCROLL_PANE_MAX_HEIGHT = 745;
 	
 	public PlantSearchPane(View mainView)  {
 		this.mainView = mainView;
