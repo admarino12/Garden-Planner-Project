@@ -40,8 +40,8 @@ public class View {
 
 			
 
-	final private int ROOT_WIDTH = 1170;
-	final private int ROOT_HEIGHT = 870;
+	final private int ROOT_WIDTH = 1270;
+	final private int ROOT_HEIGHT = 970;
 
 	// garden dimensions
 	int gardenWidth, gardenHeight;
@@ -208,7 +208,7 @@ public class View {
 		drawGardenPane.setSeason(season);
 		drawGardenPane.setSeasonComboBox(season);
 		drawGardenPane.setGardenDim(width, height);
-		
+		drawGardenPane.setLines(width);
 	}
 	
 	public GraphicsContext getgc() {

@@ -36,20 +36,21 @@ public class DrawGardenPane {
 	private ToolBar drawGardenToolBar;
 	private ToggleButton eraseButton = new ToggleButton("Erase");
 	private ToggleButton drawButton = new ToggleButton("Draw");
-
+		
 	// DrawGardenPane MainPane
 	private BorderPane holder;
 	private BorderPane drawGardenBorder;
 	private Canvas drawGardenCanvas;
 
 	private Label gardenDimLabel;
-
+	
 	// DrawGardenPane Dimensions
-	final private int DRAW_GARDENPANE_WIDTH = 800;
-	final private int DRAW_GARDENPANE_HEIGHT = 800;
-
+	final private int DRAW_GARDENPANE_WIDTH = 900;
+	final private int DRAW_GARDENPANE_HEIGHT = 900;
+	
+	
 	// Incremeter
-	final private double GRID_INCREMENT = DRAW_GARDENPANE_WIDTH / 10;
+	private int GRID_INCREMENT;
 
 	public DrawGardenPane(View mainView, int width, int height) {
 
@@ -59,16 +60,6 @@ public class DrawGardenPane {
 
 		holder = new BorderPane();
 
-		// grid
-		for (int i = 0; i < DRAW_GARDENPANE_WIDTH; i += GRID_INCREMENT) {
-			Line vertical = new Line(i, 0, i, DRAW_GARDENPANE_WIDTH);
-			vertical.setStroke(Color.DARKGRAY);
-			vertical.setStrokeWidth(0.9);
-			Line horizontal = new Line(0, i, DRAW_GARDENPANE_WIDTH, i);
-			horizontal.setStroke(Color.DARKGRAY);
-			horizontal.setStrokeWidth(0.9);
-			holder.getChildren().addAll(vertical, horizontal);
-		}
 
 		holder.getChildren().add(drawGardenCanvas);
 
@@ -83,26 +74,24 @@ public class DrawGardenPane {
 		Separator separator = new Separator();
 		separator.setOrientation(Orientation.VERTICAL);
 		selectSeason.setMaxWidth(400);
-		hb2.setPadding(new Insets(5, 10, 5, 1));
-		hb2.getChildren().addAll(drawButton, separator, eraseButton);
-		hb3.setPadding(new Insets(5, 10, 5, 572));
+		hb2.setPadding(new Insets(5, 5, 5, 5));
+		hb2.setSpacing(4);
+		hb2.getChildren().addAll(drawButton, eraseButton);
+		hb3.setPadding(new Insets(5, 5, 5, 0));
 		hb3.getChildren().addAll(selectSeason);
-		drawGardenToolBar.getItems().addAll(hb2, hb3);
-
+		
+		gardenDimLabel = new Label();
+		gardenDimLabel.setLayoutX(0);
+		gardenDimLabel.setLayoutY(0);
+		gardenDimLabel.setFont(new Font(14));
+		gardenDimLabel.setPadding(new Insets(0, 0, 0, 532));
+		drawGardenToolBar.getItems().addAll(hb3, hb2, gardenDimLabel);
+				
 		drawGardenBorder = new BorderPane();
 		drawGardenBorder.setMinWidth(DRAW_GARDENPANE_WIDTH);
 		drawGardenBorder.setMinHeight(DRAW_GARDENPANE_HEIGHT);
 		drawGardenBorder.setCenter(holder);
 		drawGardenBorder.setTop(drawGardenToolBar);
-
-		gardenDimLabel = new Label();
-		gardenDimLabel.setText(width + "ft x " + height + "ft");
-		gardenDimLabel.setLayoutX(0);
-		gardenDimLabel.setLayoutY(0);
-		gardenDimLabel.setFont(new Font(24));
-		gardenDimLabel.setPadding(new Insets(0, 0, 0, 0));
-		holder.getChildren().add(gardenDimLabel);
-
 	}
 
 	public void setSeason(Season season) {
@@ -145,8 +134,22 @@ public class DrawGardenPane {
 		}
 	}
 
+	public void setLines(int width) {
+		GRID_INCREMENT = DRAW_GARDENPANE_WIDTH / width;
+		for (int i = 0; i < DRAW_GARDENPANE_WIDTH-10; i += GRID_INCREMENT) {
+			Line vertical = new Line(i, 0, i, DRAW_GARDENPANE_WIDTH);
+			vertical.setStroke(Color.DARKGRAY);
+			vertical.setStrokeWidth(0.9);
+			Line horizontal = new Line(0, i, DRAW_GARDENPANE_WIDTH, i);
+			horizontal.setStroke(Color.DARKGRAY);
+			horizontal.setStrokeWidth(0.9);
+			holder.getChildren().add(vertical);
+			holder.getChildren().add(horizontal);
+		}
+	}
+	
 	public void setGardenDim(int width, int height) {
-		gardenDimLabel.setText(width + "ft x " + height + "ft");
+		gardenDimLabel.setText("Dimensions: " + width + "ft x " + height + "ft");
 	}
 
 	public BorderPane getDrawGardenBorder() {
