@@ -46,7 +46,7 @@ public class View {
 
 			
 
-	final private int ROOT_WIDTH = 1270;
+	final private int ROOT_WIDTH = 1271;
 	final private int ROOT_HEIGHT = 970;
 
 	// garden dimensions
