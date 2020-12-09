@@ -49,7 +49,7 @@ public class Controller extends Application {
 	private final String HELP_TXT = "src/resources/help.txt";
 	public String[] helpText = loadHelp();
 
-	final int X_DRAW_OFFSET = 332;
+	final int X_DRAW_OFFSET = 369;
 	private final int Y_DRAW_OFFSET = 77;
 
 	/**
