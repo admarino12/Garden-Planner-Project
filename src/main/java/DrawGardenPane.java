@@ -68,7 +68,7 @@ public class DrawGardenPane {
 		holder = new BorderPane();
 
 
-		holder.getChildren().add(drawGardenCanvas);
+		//holder.getChildren().add(drawGardenCanvas);
 
 		mainView.control.setHandlerForDrawButton(drawButton);
 		mainView.control.setHandlerForEraseButton(eraseButton);
@@ -152,6 +152,7 @@ public class DrawGardenPane {
  */
 	public void setLines(int width) {
 		holder.getChildren().clear();
+		holder.getChildren().add(drawGardenCanvas);
 		GRID_INCREMENT = DRAW_GARDENPANE_WIDTH / width;
 		for (int i = 0; i < DRAW_GARDENPANE_WIDTH-10; i += GRID_INCREMENT) {
 			Line vertical = new Line(i, 0, i, DRAW_GARDENPANE_WIDTH);
