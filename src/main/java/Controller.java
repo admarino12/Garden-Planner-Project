@@ -46,6 +46,7 @@ public class Controller extends Application{
 	Canvas canvas; 
 	boolean loadGarden;
 	Garden loadedGarden;
+	boolean isEncyc; 
 
 	private final String PLANT_INFO_CSV = "src/resources/plants.csv";
 	private final String HELP_TXT = "src/resources/help.txt";
@@ -450,15 +451,22 @@ public class Controller extends Application{
 		return model.getPlantDescription(plantName);
 	}
 	
+	public ArrayList<String> getPlantTraits(String plantName) {
+		return model.getPlantTraits(plantName); 
+	}
+	
 	public void setHandlerForPlantEncyclopediaClicked(Button b) {
 		b.setOnAction(event -> {
-			view.getToolBarPane().getPlantEncycPopUp().show(view.getStage());
+			this.isEncyc = true; 
+			view.removePlantsInGarden(garden.getPlantsInGarden());
+			view.showEncyclopedia();
 		});
 	}
 	
 	public void setHandlerForDonePlantEncycClicked(Button b) {
 		b.setOnAction(event -> {
-			view.getToolBarPane().getPlantEncycPopUp().hide();
+			this.isEncyc = false;
+			view.showGarden(garden.getPlantsInGarden());
 		});
 	}
 	
@@ -471,6 +479,14 @@ public class Controller extends Application{
 	public void setHandlerForHelpButtonClose(Button b) {
 		b.setOnAction(event -> {
 			view.getToolBarPane().getHelpPopUp().hide();
+		});
+	}
+	
+	public void setHandlerForEncyclopediaChoice(ImageView img) {
+		img.setOnMouseClicked(event -> {
+			if (this.isEncyc) {
+				
+			}
 		});
 	}
 	

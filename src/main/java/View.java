@@ -32,6 +32,7 @@ public class View {
 	private PlantSearchPane plantSearchPane;
 	private ToolBarPane ratingToolBar;
 	private BorderPane border;
+	private EncyclopediaPane encyclopediaPane; 
 	private Stage theStage;
 	private int numChildrenInBorder;
 	private StartPageView startPage;
@@ -73,6 +74,9 @@ public class View {
 		
 		//DrawGardenPane
 		drawGardenPane = new DrawGardenPane(this, width, height);
+		
+		//EncyclopediaPane
+		encyclopediaPane = new EncyclopediaPane(this);
 		
 		
 		border = new BorderPane();
@@ -132,6 +136,17 @@ public class View {
 		return ratingToolBar;
 	}
 	
+	public void showEncyclopedia() {
+		border.setCenter(encyclopediaPane.getPane());
+	}
+	
+	public void showGarden(ArrayList<Plant> plants) {
+		border.setCenter(drawGardenPane.getDrawGardenBorder());
+		for (Plant p: plants) {
+			addPlants(p);
+		}
+	}
+	
 	
 	public void addPlants(Plant plant) {
 		ImageView plantIV = plantList.get(plant.getName());
@@ -158,6 +173,7 @@ public class View {
 	}
 	
 	public void showPlantsInSeason(ArrayList<Plant> plantsInSeason) {
+		System.out.println(this.numChildrenInBorder);
 		//Remove plants
 		for (int i = border.getChildren().size() - 1; i >=3; i--){
 			border.getChildren().remove(i);
@@ -220,7 +236,12 @@ public class View {
 		return ROOT_WIDTH;
 	}
 	
-	
+	public void removePlantsInGarden(ArrayList<Plant> plants) {
+		//Remove plants
+				for (int i = border.getChildren().size() - 1; i >=3; i--){
+					border.getChildren().remove(i);
+				}
+	}
 
 }
 

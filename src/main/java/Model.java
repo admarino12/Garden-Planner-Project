@@ -89,6 +89,16 @@ public class Model implements java.io.Serializable {
 		return plantDescription;
 	}
 	
+	public ArrayList<String> getPlantTraits(String plantName) {
+		ArrayList<String> plantTraits = null;
+		for(Plant plant : plantList) {
+			if(plant.getName().equals(plantName)) {
+				plantTraits = (ArrayList<String>) Arrays.asList(plant.getTraits());
+			}
+		}
+		return plantTraits;
+	}
+	
 	public Garden getGarden() {
 		return garden;
 	}

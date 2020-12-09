@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
@@ -14,7 +15,9 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -246,40 +249,33 @@ public class ToolBarPane {
 		plantEncycPopUp = new Popup(); 
 		plantEncycPopUp.setAutoHide(true);
 		
+		TilePane tp = new TilePane();
+		
 		Label label = new Label("Plant Encyclopedia");
 		label.setStyle("-fx-font-weight: bold");
 		
 		Button done = new Button ("Done");
 		mainView.control.setHandlerForDonePlantEncycClicked(done);
-		HBox hb = new HBox();
-		hb.setAlignment(Pos.CENTER);
-		hb.setAlignment(Pos.CENTER);
-		hb.setSpacing(12);
-		hb.setPadding(new Insets(10,5,5,10));
-		hb.getChildren().addAll(done);
 		
-		Text plantData[] = new Text [mainView.control.getPlantNames().size()];
-		int counter = 0;
+		tp.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;-fx-hgap:4;-fx-vgap:6;");
+		tp.getChildren().add(label);
+		ImageView img = new ImageView();
+		Hyperlink plantData = new Hyperlink();
 		for (String name: mainView.control.getPlantNames()) {
-			plantData[counter] = new Text( name.replace("_", " ") + ": " + mainView.control.getPlantDescription(name));
+			
+			plantData = new Hyperlink( name.replace("_", " "));
+			plantData.setStyle("-fx-color: black");
+			img = mainView.getPlantList().get(name);
+			tp.getChildren().add(mainView.getPlantList().get(name));
+			//tp.getChildren().add(plantData);
+			
 			//plantData[counter].setOnMouseClicked(event -> {
 				
 			//});
-			counter++;
 		}
 		
-		VBox vb = new VBox(8);
-		vb.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;-fx-hgap:4;-fx-vgap:6;");
-		vb.setPadding(new Insets(10,5,5,10));
-		vb.getChildren().add(label);
-		
-		for (Text data: plantData) {
-			vb.getChildren().add(data);
-		}
-		
-		vb.getChildren().addAll(hb);
-		
-		plantEncycPopUp.getContent().add(vb);
+		tp.getChildren().add(done);
+		plantEncycPopUp.getContent().addAll(tp,img);
 		
 		
 	}
