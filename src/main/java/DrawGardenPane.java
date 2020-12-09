@@ -151,6 +151,7 @@ public class DrawGardenPane {
  * @param width Width set by user.
  */
 	public void setLines(int width) {
+		holder.getChildren().clear();
 		GRID_INCREMENT = DRAW_GARDENPANE_WIDTH / width;
 		for (int i = 0; i < DRAW_GARDENPANE_WIDTH-10; i += GRID_INCREMENT) {
 			Line vertical = new Line(i, 0, i, DRAW_GARDENPANE_WIDTH);
