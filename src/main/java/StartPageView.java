@@ -20,6 +20,11 @@ import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
+/**
+ * The StartPageView contains all View elements for the Splash Screen.
+ * @author Elijah Haberman
+ *
+ */
 public class StartPageView {
 	private Scene introScene;
 	private View mainView;
@@ -29,6 +34,11 @@ public class StartPageView {
 	
 	private String FRONT_PAGE_IMG = "src/resources/images/Front_Page.png";
 	
+	/**
+	 * Constructor for StartPageView.
+	 * Initializes the StartPageView.
+	 * @param view View this instance of view.
+	 */
 	public StartPageView(View view) {
 			mainView = view;	
 			//Front Page View
@@ -71,6 +81,10 @@ public class StartPageView {
 			view.getStage().setScene(introScene);
 	}
 	
+	/**
+	 * Getter for Scene.
+	 * @return introScene Scene Splash Screen.
+	 */
 	public Scene getScene() {
 		return introScene;
 	}

@@ -34,3 +34,47 @@ Winter Jasmine
 Flower: white/yellow flower, blooms in late winter/early spring;
 Crocus
 Flower: blue/purple flower, blooms in winter and spring, partial to full sun;
+Coneflower
+Summer: Purple flower that blooms in the summer
+Hyacinth
+Spring: Blue,pink, and white flowers that bloom in the spring
+Daffodil
+Spring: White and yellow flower that blooms in spring
+Bleeding_Heart
+Spring: Pink heart shaped flowers that bloom in spring
+Willow
+Tree: Long drooping leaves
+Japanese_Maple
+Tree: A tree with red leaves most of the year
+Forsythia
+Spring: A shrub with yellow flowers
+Tulip_Poplar
+Tree: Fast growing yellow tree
+Babys_Breath
+Summer: Shrub with white and pink flowers that blooms in the summer
+Naked_Lady_Lily
+Summer: Pink flower that blooms in the summer
+Weeping_Cherry
+Tree: tree with pink leaves
+Bee_Balm
+Summer: Pink or red flower that blooms in the summer that attracts bees
+Carnation
+Summer: Pink and white flower that blooms in the summer.
+Allium
+Spring: Usually pink flower that comes in multiple colors and blooms multiple seasons
+Poppy
+Spring: Blue red orange and white flower that bloons in spring and summer
+Peony
+Spring: Pink red and yellow flower that blooms in spring
+Snapdragon
+Spring: Red orange and pink flower that blooms year round
+Birch
+Tree: Tall tree that has white almost sandy bark
+Oak
+Tree:Green tree from the fagaceae family
+Red_Cedar
+Tree: Green tree with small berries that birds enjoy and a redish inner bark
+Sycamore
+Tree: Large green tree with a faster growth rate
+Blackwood_Acacia
+Tree: Green tree with a wide canopy

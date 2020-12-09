@@ -1,6 +1,5 @@
 package src.main.java;
 
-import java.awt.Paint;
 import java.io.FileInputStream; 
 import java.io.FileNotFoundException; 
 import java.util.ArrayList;
@@ -27,6 +26,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+/**
+ * The PlantSearchPane contains the view for the PlantSearchPane portion of the view.
+ * This includes the images of the draggable plants, searchbar, and filters.
+ * @author Elijah Haberman
+ *
+ */
 public class PlantSearchPane  {
 	
 	ObservableList<String> plantOptions = 
@@ -68,6 +73,11 @@ public class PlantSearchPane  {
 	
 	final private int SCROLL_PANE_MAX_HEIGHT = 845;
 	
+	/**
+	 * Constructor for PlantSearchPane.
+	 * Initializes the PlantSearchPane.
+	 * @param mainView View instance of the view.
+	 */
 	public PlantSearchPane(View mainView)  {
 		this.mainView = mainView;
 		
@@ -123,6 +133,10 @@ public class PlantSearchPane  {
 		
 	}
 	
+	/**
+	 * Update method that updates the pane with the appropriate plant images based on the filters.
+	 * @param names ArrayList of names of plants.
+	 */
 	public void update(ArrayList<String> names) {
 		imageContainerPane.getChildren().clear();
 		
@@ -151,10 +165,18 @@ public class PlantSearchPane  {
 		
 	}
 	
+	/**
+	 * Getter for mainPane VBox.
+	 * @return mainPane
+	 */
 	public VBox getMainPane() {
 		return mainPane;
 	}
 	
+	/**
+	 * Getter for searcher TextField.
+	 * @return searcher
+	 */
 	public TextField getTextField() {
 		return searcher;
 	}

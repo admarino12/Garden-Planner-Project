@@ -1,18 +1,18 @@
 package src.main.java;
-
-import java.util.ArrayList;
-
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
+/**
+ * The EncyclopediaPane class contains all View elements for the EncylopediaPane.
+ * @author Elijah Haberman
+ *
+ */
 public class EncyclopediaPane {
 	
 	// EncyclopediaPane Dimensions
@@ -53,11 +53,18 @@ public class EncyclopediaPane {
 		
 		
 	}
-	
+	/**
+	 * Getter for borderPane.
+	 * @return borderPane
+	 */
 	public BorderPane getPane() {
 		return borderPane; 
 	}
 	
+	/**
+	 * Builds the Encyclopedia page view.
+	 * @param name String name of plant.
+	 */
 	public void buildPlantPage(String name) {
 		
 		borderPane = new BorderPane();

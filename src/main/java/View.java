@@ -24,6 +24,12 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * The View classes contains all pane elements and is the UI of the application
+ * Contains all panes.
+ * @author Elijah Haberman
+ *
+ */
 public class View {
 	
 	public Controller control;
@@ -50,6 +56,14 @@ public class View {
 	private ArrayList<String> allPlantNames;
 	public Map<String, ImageView> plantList = new HashMap<String, ImageView>();
 
+	/**
+	 * Constructor for View.
+	 * Initializes the View.
+	 * @param theStage The JavaFX Stage class is the top level JavaFX container.
+	 * @param control Instance of Controller class.
+	 * @param width Width of garden.
+	 * @param height Height of garden.
+	 */
 	public View(Stage theStage, Controller control, int width, int height) {
 		this.control = control;
 		this.theStage = theStage;
@@ -98,6 +112,9 @@ public class View {
 		}
 	}
 	
+	/**
+	 * Creates a HashMap of the plant ImageViews.
+	 */
 	public void createHashMap() {
 		for(String name : allPlantNames) {
 			Image plantImage;
@@ -116,30 +133,56 @@ public class View {
 		}
 	}
 	
+	/**
+	 * Setter for MainScene.
+	 */
 	public void setMainScene() {
 		theStage.setScene(theScene);
 	}
 	
+	/**
+	 * Getter for theScene.
+	 * @return theScene Scene.
+	 */
 	public Scene getScene() {
 		return theScene; 
 	}
 	
+	/**
+	 * Getter for plantSearchPane.
+	 * @return plantSearchPane
+	 */
 	public PlantSearchPane getPlantSearchPane() {
 		return plantSearchPane;
 	}
 	
+	/**
+	 * Getter for drawGardenPane.
+	 * @return drawGardenPane
+	 */
 	public DrawGardenPane getDrawGardenPane() {
 		return drawGardenPane;
 	}
 	
+	/**
+	 * Getter for ratingToolBar.
+	 * @return ratingToolBar
+	 */
 	public ToolBarPane getToolBarPane() {
 		return ratingToolBar;
 	}
 	
+	/**
+	 * Method to show the Plant Encyclopedia.
+	 */
 	public void showEncyclopedia() {
 		border.setCenter(encyclopediaPane.getPane());
 	}
 	
+	/**
+	 * Method to show the drawGardenPane.
+	 * @param plants ArrayList of Plants.
+	 */
 	public void showGarden(ArrayList<Plant> plants) {
 		border.setCenter(drawGardenPane.getDrawGardenBorder());
 		for (Plant p: plants) {
@@ -147,7 +190,10 @@ public class View {
 		}
 	}
 	
-	
+	/**
+	 * Scales and adds plant image view to the garden.
+	 * @param plant Plant Object.
+	 */
 	public void addPlants(Plant plant) {
 		ImageView plantIV = plantList.get(plant.getName());
 		
@@ -165,6 +211,12 @@ public class View {
     	border.getChildren().add(imgView);
 	}
 	
+	/**
+	 * Moves plant ImageView.
+	 * Takes the plant ID and moves the coordinates of the plant.
+	 * @param imgView ImageView of plant.
+	 * @param p Plant Object.
+	 */
 	public void movePlant(ImageView imgView, Plant p) {
 		imgView.setId(p.getName() + p.getxCor() + p.getyCor());
 		imgView.setX(p.getxCor() - imgView.getFitWidth()/2);
@@ -172,6 +224,10 @@ public class View {
 		
 	}
 	
+	/**
+	 * Shows plants in the drawGardenPane based on if they bloom during that season.
+	 * @param plantsInSeason Updated ArrayList of Plants that bloom in that season.
+	 */
 	public void showPlantsInSeason(ArrayList<Plant> plantsInSeason) {
 		System.out.println(this.numChildrenInBorder);
 		//Remove plants
@@ -184,10 +240,24 @@ public class View {
 		}
 	}
 	
+	/**
+	 * Removes plants from view.
+	 * @param plant Plant Object.
+	 */
 	public void removePlant(Plant plant) {
 				border.getChildren().remove(control.garden.getPlantsInGarden().indexOf(plant) + numChildrenInBorder);
 			
 	}
+	
+	/**
+	 * Updates the Garden.
+	 * Updates the ArrayList of plants, seasonsRatings, season state, and width and height of garden.
+	 * @param plants Plant Object.
+	 * @param seasonRatings ArrayList of seasonRatings.
+	 * @param season Enum for season.
+	 * @param width width of the garden.
+	 * @param height height of the garden.
+	 */
 	public void loadNewGarden(ArrayList<Plant> plants, ArrayList<Integer> seasonRatings, Season season, int width, int height ){
 		
 		theStage.setScene(theScene);
@@ -211,31 +281,58 @@ public class View {
 		drawGardenPane.setLines(width);
 	}
 	
+	/**
+	 * Getter for gc (GraphicsContext).
+	 * @return gc GraphicsContext
+	 */
 	public GraphicsContext getgc() {
 		return gc;
 	}
 	
+	/**
+	 * Getter for theStage.
+	 * @return theStage Stage.
+	 */
 	public Stage getStage() {
 		return theStage;
 	}
 	
+	/**
+	 * Getter for allPlantNames.
+	 * @return allPlantNames ArrayList of plant names.
+	 */
 	public ArrayList<String> getAllPlantNames() {
 		return allPlantNames;
 	}
 	
+	/**
+	 * Getter for plantList HashMap.
+	 * @return plantList HashMap.
+	 */
 	public Map<String, ImageView> getPlantList() {
 		return plantList;
 	}
 
-
+	/**
+	 * Getter for ROOT_HEIGHT.
+	 * @return ROOT_HEIGHT
+	 */
 	public int getROOT_HEIGHT() {
 		return ROOT_HEIGHT;
 	}
 	
+	/**
+	 * Getter for ROOT_WIDTH.
+	 * @return ROOT_WIDTH
+	 */
 	public int getROOT_WIDTH() {
 		return ROOT_WIDTH;
 	}
 	
+	/**
+	 * Removes plants from Garden ArrayList.
+	 * @param plants Plant Object.
+	 */
 	public void removePlantsInGarden(ArrayList<Plant> plants) {
 		//Remove plants
 				for (int i = border.getChildren().size() - 1; i >=3; i--){

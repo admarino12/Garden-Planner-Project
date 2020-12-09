@@ -1,6 +1,7 @@
 package src.main.java;
 
 import java.io.FileInputStream;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -10,6 +11,12 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * The Model class contains all data.
+ * This data is garden width and height, plants and their data (Names, traits, descriptions, coordinates).
+ * @author Elijah Haberman
+ *
+ */
 public class Model implements java.io.Serializable {
 	
 	ArrayList<Plant> plantList;
@@ -18,21 +25,40 @@ public class Model implements java.io.Serializable {
 	String plantTraits = "Trees, Flowers, Bushes, Yellow, Blue, Pink";
 	Garden garden;
 	SavedData savedData; 
-
+/**
+ * Constructor For Model.
+ * Initializes the Model.
+ * @param plantList ArrayList of plants.
+ */
 	public Model(ArrayList<Plant> plantList) {
 		this.plantList = plantList;
 		this.garden = new Garden(gardenWidth, gardenHeight);
 
 	}
-
+	
+	/**
+	 * Getter for plantList.
+	 * @return plantList
+	 */
 	public ArrayList<Plant> getPlantList() {
 		return plantList;
 	}
 	
+	/**
+	 * Getter for plantTraits.
+	 * @return plantTraits
+	 */
 	public String getPlantTraits() {
 		return plantTraits;
 	}
 	
+	/**
+	 * Adds plants to the Garden List.
+	 * @param getX x coordinate of plant.
+	 * @param getY y coordinate of plant.
+	 * @param name name of plant.
+	 * @return plantReturned the plant with the given name, and coordinates.
+	 */
 	public Plant Add(double getX, double getY, String name) {
 		Plant plantReturned = null; 
 		for(Plant plant : plantList) {
@@ -49,15 +75,32 @@ public class Model implements java.io.Serializable {
 		return plantReturned; 
     }
 	
+	/**
+	 * Removes plants for garden list.
+	 * @param p Plant Object.
+	 */
 	public void remove(Plant p) {
 		garden.getPlantsInGarden().remove(p);
 	}
 	
+	/**
+	 * Keeps track of each plant's X and Y coordinates.
+	 * @param x x coordinate of the plants.
+	 * @param y y coordinate of the plants.
+	 * @param p Plant Object.
+	 */
 	public void move(double x, double y, Plant p) {
 		p.setxCor(x);
 		p.setyCor(y);
 	}
 	
+	/**
+	 * Searches the PlantList for plants with specified traits.
+	 * @param plantTypeTrait String for plant traits.
+	 * @param seasonTrait String for season of bloom.
+	 * @param colorTrait String for color of plant.
+	 * @return results Return plant list with the results.
+	 */
 	public ArrayList<String> searchPlantListByTrait(String plantTypeTrait, String seasonTrait, String colorTrait){
 		if(plantTypeTrait=="All Plants" || plantTypeTrait==null) {
 			plantTypeTrait = " ";
@@ -79,6 +122,11 @@ public class Model implements java.io.Serializable {
 		return results;
 	}
 	
+	/**
+	 * Getter for plant description.
+	 * @param plantName Name of plant.
+	 * @return plantDescription Description of plant based on name.
+	 */
 	public String getPlantDescription(String plantName) {
 		String plantDescription = null;
 		for(Plant plant : plantList) {
@@ -89,6 +137,11 @@ public class Model implements java.io.Serializable {
 		return plantDescription;
 	}
 	
+	/**
+	 * Getter for plant traits.
+	 * @param plantName Name of plant.
+	 * @return plantTraits Traits of plant based on name.
+	 */
 	public ArrayList<String> getPlantTraits(String plantName) {
 		ArrayList<String> plantTraits = null;
 		for(Plant plant : plantList) {
@@ -99,10 +152,18 @@ public class Model implements java.io.Serializable {
 		return plantTraits;
 	}
 	
+	/**
+	 * Getter for Garden Object.
+	 * @return garden Garden Object.
+	 */
 	public Garden getGarden() {
 		return garden;
 	}
 	
+	/**
+	 * Setter for Garden Object.
+	 * @param garden Garden Object.
+	 */
 	public void setGarden(Garden garden) {
 		this.garden = garden;
 	}

@@ -4,9 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -14,11 +12,14 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
-
+/**
+ * The DrawGardenPane class contains all JavaFx View elements for the Garden Area of the View.
+ * @author Elijah Haberman
+ *
+ */
 public class DrawGardenPane {
 
 	// Season Styles
@@ -49,9 +50,15 @@ public class DrawGardenPane {
 	final private int DRAW_GARDENPANE_HEIGHT = 900;
 	
 	
-	// Incremeter
+	// Increment
 	private int GRID_INCREMENT;
-
+/**
+ * Constructor for DrawGarden Pane.
+ * Initializes UI elements for DrawGardenPane.
+ * @param mainView View.
+ * @param width Width of Garden set by User.
+ * @param height Height of Gardens set by User.
+ */
 	public DrawGardenPane(View mainView, int width, int height) {
 
 		drawGardenCanvas = new Canvas(DRAW_GARDENPANE_WIDTH, DRAW_GARDENPANE_HEIGHT);
@@ -84,7 +91,7 @@ public class DrawGardenPane {
 		gardenDimLabel.setLayoutX(0);
 		gardenDimLabel.setLayoutY(0);
 		gardenDimLabel.setFont(new Font(14));
-		gardenDimLabel.setPadding(new Insets(0, 0, 0, 532));
+		gardenDimLabel.setPadding(new Insets(0, 0, 0, 526));
 		drawGardenToolBar.getItems().addAll(hb3, hb2, gardenDimLabel);
 				
 		drawGardenBorder = new BorderPane();
@@ -93,7 +100,10 @@ public class DrawGardenPane {
 		drawGardenBorder.setCenter(holder);
 		drawGardenBorder.setTop(drawGardenToolBar);
 	}
-
+/**
+ * Setter for holder(BorderPane) background based on season.
+ * @param season Enum for season.
+ */
 	public void setSeason(Season season) {
 		switch (season) {
 		case SPRING:
@@ -113,7 +123,10 @@ public class DrawGardenPane {
 			break;
 		}
 	}
-
+/**
+ * Setter for ComboBox based on season.
+ * @param season Enum for season.
+ */
 	public void setSeasonComboBox(Season season) {
 		switch (season) {
 		case SPRING:
@@ -133,7 +146,10 @@ public class DrawGardenPane {
 			break;
 		}
 	}
-
+/**
+ * Sets the scale of the grid based on width set by user.
+ * @param width Width set by user.
+ */
 	public void setLines(int width) {
 		GRID_INCREMENT = DRAW_GARDENPANE_WIDTH / width;
 		for (int i = 0; i < DRAW_GARDENPANE_WIDTH-10; i += GRID_INCREMENT) {
@@ -147,27 +163,47 @@ public class DrawGardenPane {
 			holder.getChildren().add(horizontal);
 		}
 	}
-	
+/**
+ * Sets the GardenDimensions Label.
+ * @param width Width set by user.
+ * @param height Height set by user.
+ */
 	public void setGardenDim(int width, int height) {
 		gardenDimLabel.setText("Dimensions: " + width + "ft x " + height + "ft");
 	}
-
+/**
+ * Getter for drawGardenBorder.
+ * @return drawGardenBorder
+ */
 	public BorderPane getDrawGardenBorder() {
 		return drawGardenBorder;
 	}
-
+/**
+ * Getter for drawGardenCanvas.
+ * @return drawGardenCanvas
+ */
 	public Canvas getDrawGardenCanvas() {
 		return drawGardenCanvas;
 	}
-
+/**
+ * Getter for eraseButton.
+ * @return eraseButton
+ */
 	public ToggleButton getEraseButton() {
 		return eraseButton;
 	}
-
+/**
+ * Getter for drawButton.
+ * @return drawButton
+ */
 	public ToggleButton getDrawButton() {
 		return drawButton;
 	}
 
+/**
+ * Getter for the holder BorderPane.
+ * @return holder
+ */
 	public BorderPane getHolder() {
 		return holder;
 	}
