@@ -79,6 +79,8 @@ public class View {
 		Group root = new Group();
 		theScene = new Scene(root, getROOT_WIDTH(), getROOT_HEIGHT());
 		theScene.setCursor(Cursor.HAND);
+		root.minWidth(ROOT_WIDTH);
+		root.maxWidth(ROOT_WIDTH);
 		
 		//ToolBar
 		ratingToolBar = new ToolBarPane(this);

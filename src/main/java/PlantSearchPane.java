@@ -83,7 +83,7 @@ public class PlantSearchPane  {
 		
 		mainPane = new VBox(0);
 		mainPane.setStyle("-fx-background-color: #E7DEBC;");
-		
+
 		//Hbox contains the search Bar
 		Label searchlabel = new Label("Search:");
 		searcher = new TextField();
@@ -114,7 +114,7 @@ public class PlantSearchPane  {
 		
 		//TilePane contains the image and labels
 		imageContainerPane = new TilePane();
-		imageContainerPane.setPrefColumns(2);
+		imageContainerPane.setPrefColumns(1);
 		imageContainerPane.setVgap(35);
 		imageContainerPane.setHgap(35);
 		imageContainerPane.setAlignment(Pos.CENTER);
