@@ -24,11 +24,11 @@ import javafx.scene.text.Font;
 public class DrawGardenPane {
 
 	// Season Styles
-	final private String springStyle = "-fx-background-color: #81EEA4;";
-	final private String summerStyle = "-fx-background-color: #FFF4B3;";
-	final private String fallStyle = "-fx-background-color: #E8C696;";
-	final private String winterStyle = "-fx-background-color: #E6FFFF;";
-	final private String allSeasonStyle = "-fx-background-color: #bff5d0;";
+	final private Color springStyle = Color.rgb(129, 238, 164);
+	final private Color summerStyle = Color.rgb(255, 244, 179);
+	final private Color fallStyle = Color.rgb(232, 198, 150);
+	final private Color winterStyle = Color.rgb(230, 255, 255);
+	final private Color allSeasonStyle = Color.rgb(191,  245,  208);
 
 	ObservableList<String> seasonOptions = FXCollections.observableArrayList("All Seasons", "Spring", "Summer",
 			"Autumn", "Winter");
@@ -48,12 +48,17 @@ public class DrawGardenPane {
 	private Label gardenDimLabel;
 	
 	// DrawGardenPane Dimensions
-	final private int DRAW_GARDENPANE_WIDTH = 900;
-	final private int DRAW_GARDENPANE_HEIGHT = 900;
+	final private double DRAW_GARDENPANE_WIDTH = 910;
+	final private double DRAW_GARDENPANE_HEIGHT = 682;
 	
-	Rectangle rect = new Rectangle();
+	private int gardenX = 0;
+	private int gardenY = 0;
+	public double largerDim;
+	
+	private Rectangle gardenRect = new Rectangle();
+	
 	// Increment
-	private int GRID_INCREMENT;
+	private double GRID_INCREMENT;
 /**
  * Constructor for DrawGarden Pane.
  * Initializes UI elements for DrawGardenPane.
@@ -68,7 +73,7 @@ public class DrawGardenPane {
 		drawGardenCanvas.minHeight(DRAW_GARDENPANE_HEIGHT);
 
 		holder = new BorderPane();
-
+		
 
 		//holder.getChildren().add(drawGardenCanvas);
 
@@ -77,7 +82,6 @@ public class DrawGardenPane {
 		mainView.control.setHandlerForSeasonComboBox(selectSeason);
 		mainView.control.setHandlerForPaintPlantButton(paintPlantsButton);
 
-		holder.setStyle(allSeasonStyle);
 		drawGardenToolBar = new ToolBar();
 		drawGardenToolBar.setStyle("-fx-background-color: #dbd0ab;-fx-border-color: #a8a083;-fx-border-width:1;-fx-border-radius:3;");
 		drawButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
@@ -116,19 +120,19 @@ public class DrawGardenPane {
 	public void setSeason(Season season) {
 		switch (season) {
 		case SPRING:
-			holder.setStyle(springStyle);
+			gardenRect.setFill(springStyle);
 			break;
 		case SUMMER:
-			holder.setStyle(summerStyle);
+			gardenRect.setFill(summerStyle);
 			break;
 		case AUTUMN:
-			holder.setStyle(fallStyle);
+			gardenRect.setFill(fallStyle);
 			break;
 		case WINTER:
-			holder.setStyle(winterStyle);
+			gardenRect.setFill(winterStyle);
 			break;
 		default:
-			holder.setStyle(allSeasonStyle);
+			gardenRect.setFill(allSeasonStyle);
 			break;
 		}
 	}
@@ -159,35 +163,63 @@ public class DrawGardenPane {
  * Sets the scale of the grid based on width set by user.
  * @param width Width set by user.
  */
+	
 	public void setLines(int width, int height) {
-		holder.getChildren().clear();
-		holder.getChildren().add(drawGardenCanvas);
+		int tileCounter = 0;
+		System.out.println("Grid Increment: "+GRID_INCREMENT);
+		for (int i = 0; i < largerDim; i += GRID_INCREMENT) {
+			if(tileCounter<=width) {
+				Line vertical = new Line(i, 0, i, gardenY);
+				vertical.setStroke(Color.DARKGRAY);
+				vertical.setStrokeWidth(0.8);
+				holder.getChildren().add(vertical);
+			}
+			if(tileCounter<=height) {	
+				Line horizontal = new Line(0, i, gardenX, i);
+				horizontal.setStroke(Color.DARKGRAY);
+				horizontal.setStrokeWidth(0.8);
+				holder.getChildren().add(horizontal);
+			}
+			tileCounter++;
+		}
+		
+	}
+
+	public void setGardenDim(int width, int height) {
+		int tileCounter = 0;
 		if (width > height) {
-		GRID_INCREMENT = DRAW_GARDENPANE_WIDTH / width;
+			GRID_INCREMENT = DRAW_GARDENPANE_WIDTH / (double)width;
+			largerDim = DRAW_GARDENPANE_WIDTH;
 		}
 		else {
-			GRID_INCREMENT = DRAW_GARDENPANE_HEIGHT / height;
+			GRID_INCREMENT = DRAW_GARDENPANE_HEIGHT / (double)height;
+			largerDim = DRAW_GARDENPANE_HEIGHT;
 		}
-		for (int i = 0; i < DRAW_GARDENPANE_WIDTH; i += GRID_INCREMENT) {
-			Line vertical = new Line(i, 0, i, DRAW_GARDENPANE_WIDTH);
-			vertical.setStroke(Color.DARKGRAY);
-			vertical.setStrokeWidth(0.8);
-			Line horizontal = new Line(0, i, DRAW_GARDENPANE_HEIGHT, i);
-			horizontal.setStroke(Color.DARKGRAY);
-			horizontal.setStrokeWidth(0.8);
-			holder.getChildren().add(vertical);
-			holder.getChildren().add(horizontal);
+		for (int i = 0; i < largerDim; i += GRID_INCREMENT) {
+			if(tileCounter<=width) {
+				gardenX = i;
+			}
+			if(tileCounter<=height) {	
+				gardenY = i;
+			}
+			tileCounter++;
 		}
+		
+		gardenDimLabel.setText("Dimensions: " + width + "ft x " + height + "ft");
 	}
 	
-/**
- * Sets the GardenDimensions Label.
- * @param width Width set by user.
- * @param height Height set by user.
- */
-	public void setGardenDim(int width) {
-		gardenDimLabel.setText("Dimensions: " + width + "ft x " + width + "ft");
+	public void setRectangle() {
+		gardenRect.setHeight(DRAW_GARDENPANE_HEIGHT - (DRAW_GARDENPANE_HEIGHT - gardenY));
+		gardenRect.setWidth(DRAW_GARDENPANE_WIDTH - (DRAW_GARDENPANE_WIDTH - gardenX));
+		gardenRect.setX(0);
+		gardenRect.setY(0);
+		holder.getChildren().clear();
+		holder.getChildren().add(gardenRect);
+		
+		
 	}
+	
+
 /**
  * Getter for drawGardenBorder.
  * @return drawGardenBorder
@@ -225,11 +257,11 @@ public class DrawGardenPane {
 		return holder;
 	}
 	
-	public int getGardenPaneWidth() {
+	public double getGardenPaneWidth() {
 		return DRAW_GARDENPANE_WIDTH;
 	}
 	
-	public int getGardenPaneHeight() {
+	public double getGardenPaneHeight() {
 		return DRAW_GARDENPANE_HEIGHT;
 	}
 }

@@ -86,6 +86,7 @@ public class View {
 		// DragnDropPane
 		plantSearchPane = new PlantSearchPane(this);
 		
+		
 		//DrawGardenPane
 		drawGardenPane = new DrawGardenPane(this, width, height);
 		
@@ -124,7 +125,7 @@ public class View {
 				plantImageView.setId(name);
 				plantImageView.setImage(plantImage);
 				plantImageView.setPreserveRatio(true);
-		    	plantImageView.setFitHeight(50);
+		    	plantImageView.setFitHeight(70);
 				control.setHandlerForDragAndDrop(plantImageView);
 				control.setHandlerForToggledImageViews(plantImageView);
 				plantList.put(name, plantImageView);
@@ -288,7 +289,8 @@ public class View {
 		ratingToolBar.updateRating(seasonRatings);
 		drawGardenPane.setSeason(season);
 		drawGardenPane.setSeasonComboBox(season);
-		drawGardenPane.setGardenDim(width);
+		drawGardenPane.setGardenDim(width, height);
+		drawGardenPane.setRectangle();
 		drawGardenPane.setLines(width, height);
 	}
 	

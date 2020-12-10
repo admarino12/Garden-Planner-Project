@@ -801,10 +801,10 @@ public class Controller extends Application {
 	 */
 	public boolean checkPlantSize(String plantName) {
 		Plant plant = model.getPlant(plantName);
-		if(plant.getPlantSizeNum()>model.garden.getGardenHeight() || plant.getPlantSizeNum()>model.garden.getGardenWidth()) {
-			return false;
+		if(plant.getPlantSizeNum()<model.garden.getGardenHeight() || plant.getPlantSizeNum()<model.garden.getGardenWidth()) {
+			return true;
 		}
-		else return true;
+		else return false;
 	}
 
 	/**

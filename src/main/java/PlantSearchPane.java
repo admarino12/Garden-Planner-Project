@@ -76,7 +76,7 @@ public class PlantSearchPane  {
 	private ArrayList<VBox> plantContainers;
 	private VBox currVBox = null;
 	
-	final private int SCROLL_PANE_MAX_HEIGHT = 700;
+	final private int SCROLL_PANE_MAX_HEIGHT = 625;
 	
 	/**
 	 * Constructor for PlantSearchPane.
@@ -131,7 +131,6 @@ public class PlantSearchPane  {
 		
 		scrollPane = new ScrollPane();
 		scrollPane.setPrefHeight(SCROLL_PANE_MAX_HEIGHT);
-		scrollPane.setPadding(new Insets(0,0,0,0));
 		scrollPane.setFitToWidth(true);
 		scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent; "); 
 		
