@@ -4,7 +4,11 @@ package src.main.java;
  * The Plant class contains all plant data. This includes name, characters,
  * traits, descriptions, x and y coordinates.
  * 
- * @author Elijah Haberman
+ *@author Elijah Haberman
+ * @author Emily Oldham
+ * @author JC Sergent
+ * @author Arthur Marino
+ * @author Caroline Graham
  *
  */
 public class Plant implements java.io.Serializable {

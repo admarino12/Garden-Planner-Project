@@ -23,6 +23,10 @@ import javafx.stage.Stage;
 /**
  * The StartPageView contains all View elements for the Splash Screen.
  * @author Elijah Haberman
+ * @author Emily Oldham
+ * @author JC Sergent
+ * @author Arthur Marino
+ * @author Caroline Graham
  *
  */
 public class StartPageView {

@@ -6,7 +6,11 @@ import java.util.List;
 /**
  * The Garden Class contains all model data for the Garden.
  * Contains height, width, seasons, rating, and plant data.
- * @author Elijah Haberman
+ *  *@author Elijah Haberman
+ * @author Emily Oldham
+ * @author JC Sergent
+ * @author Arthur Marino
+ * @author Caroline Graham
  *
  */
 class Garden implements java.io.Serializable {

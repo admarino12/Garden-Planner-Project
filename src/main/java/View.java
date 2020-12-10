@@ -28,6 +28,10 @@ import javafx.scene.image.ImageView;
  * The View classes contains all pane elements and is the UI of the application
  * Contains all panes.
  * @author Elijah Haberman
+ * @author Emily Oldham
+ * @author JC Sergent
+ * @author Arthur Marino
+ * @author Caroline Graham
  *
  */
 public class View {

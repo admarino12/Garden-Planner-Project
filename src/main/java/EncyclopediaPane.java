@@ -11,7 +11,11 @@ import javafx.scene.text.Text;
 
 /**
  * The EncyclopediaPane class contains all View elements for the EncylopediaPane.
- * @author Elijah Haberman
+  *@author Elijah Haberman
+ * @author Emily Oldham
+ * @author JC Sergent
+ * @author Arthur Marino
+ * @author Caroline Graham
  * 
  *
  */

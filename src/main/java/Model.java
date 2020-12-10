@@ -14,7 +14,11 @@ import java.util.List;
 /**
  * The Model class contains all data.
  * This data is garden width and height, plants and their data (Names, traits, descriptions, coordinates).
- * @author Elijah Haberman
+  *@author Elijah Haberman
+ * @author Emily Oldham
+ * @author JC Sergent
+ * @author Arthur Marino
+ * @author Caroline Graham
  *
  */
 public class Model implements java.io.Serializable {

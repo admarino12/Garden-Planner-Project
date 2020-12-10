@@ -31,6 +31,11 @@ import javafx.stage.WindowEvent;
 /**
  * The PlantSearchPane contains the view for the PlantSearchPane portion of the view.
  * This includes the images of the draggable plants, searchbar, and filters.
+ * @author Elijah Haberman
+ * @author Emily Oldham
+ * @author JC Sergent
+ * @author Arthur Marino
+ * @author Caroline Graham
  *
  *
  */
@@ -158,7 +163,7 @@ public class PlantSearchPane  {
 					if(mainView.control.checkPlantSize(generalName)) {
 						plantNameLabel.setFill(Color.BLACK);
 					}
-					else plantNameLabel.setFill(Color.RED);
+					else plantNameLabel.setFill(Color.BROWN);
 				
 					String plantDescription = mainView.control.getPlantDescription(generalName);
 					
@@ -190,7 +195,7 @@ public class PlantSearchPane  {
 		else {
 			for(VBox vbox : plantContainers) {
 				if(vbox.getChildren().contains(plantImage)) {
-					vbox.setStyle("-fx-border-color: rgb(173,216,230); -fx-border-width: 5; -fx-border-radius: 5;");
+					vbox.setStyle("-fx-border-color: #D1EBDC; -fx-border-width: 5; -fx-border-radius: 5;");
 					currVBox = vbox;
 				}
 			}

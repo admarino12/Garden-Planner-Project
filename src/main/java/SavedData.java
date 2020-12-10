@@ -2,7 +2,11 @@ package src.main.java;
 
 /**
  * The SavedData Class holds information on the state of save gardens.
- * @author Elijah Haberman
+ *@author Elijah Haberman
+ * @author Emily Oldham
+ * @author JC Sergent
+ * @author Arthur Marino
+ * @author Caroline Graham
  *
  */
 public class SavedData implements java.io.Serializable {

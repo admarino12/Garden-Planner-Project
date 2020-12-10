@@ -30,7 +30,11 @@ import javafx.stage.Popup;
  * The ToolBarPane class contains all view elements for the ToolBarPane. This is
  * then linked to the main view.
  * 
- *
+ * @author Elijah Haberman
+ * @author Emily Oldham
+ * @author JC Sergent
+ * @author Arthur Marino
+ * @author Caroline Graham
  *
  */
 public class ToolBarPane {

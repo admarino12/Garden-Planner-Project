@@ -3,7 +3,11 @@ package src.main.java;
 /**
  * The Season Enum contains all season options.
  * 
- * @author Elijah Haberman
+  *@author Elijah Haberman
+ * @author Emily Oldham
+ * @author JC Sergent
+ * @author Arthur Marino
+ * @author Caroline Graham
  *
  */
 public enum Season {

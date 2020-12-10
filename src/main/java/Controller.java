@@ -35,7 +35,11 @@ import javafx.stage.Stage;
  * methods. The Controller class is the "main" class and intializes the Java
  * Program.
  * 
- * @author Elijah Haberman
+  *@author Elijah Haberman
+ * @author Emily Oldham
+ * @author JC Sergent
+ * @author Arthur Marino
+ * @author Caroline Graham
  *
  */
 
@@ -132,7 +136,7 @@ public class Controller extends Application {
 	 */
 	public String[] loadHelp() {
 		int lineNumber = 0;
-		String[] helpInfo = new String[13];
+		String[] helpInfo = new String[16];
 		String line = "";
 		try {
 			FileReader file = new FileReader(HELP_TXT);
@@ -208,9 +212,8 @@ public class Controller extends Application {
 	
 	public void setHandlerForDragAndDrop(ImageView imgView) {	
 			imgView.setOnMousePressed (event -> {
-				if(!imageViewsAreToggleable) {
 					view.getScene().setCursor(Cursor.CLOSED_HAND);
-				}
+				
 			});
 			imgView.setOnMouseReleased(event -> {	
 				if(!imageViewsAreToggleable) {
@@ -230,6 +233,7 @@ public class Controller extends Application {
 	 */
 	public void dragAndDrop(MouseEvent event, Image img) {
 		if (!this.isEncyc) {
+			view.getScene().setCursor(Cursor.CLOSED_HAND);
 			view.getScene().setCursor(Cursor.HAND);
 			Node n = (Node) event.getSource();
 			Plant plant = model.getPlant(n.getId());

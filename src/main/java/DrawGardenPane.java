@@ -19,6 +19,10 @@ import javafx.scene.text.Font;
 /**
  * The DrawGardenPane class contains all JavaFx View elements for the Garden Area of the View.
  * @author Elijah Haberman
+ * @author Emily Oldham
+ * @author JC Sergent
+ * @author Arthur Marino
+ * @author Caroline Graham
  *
  */
 public class DrawGardenPane {
@@ -84,10 +88,10 @@ public class DrawGardenPane {
 
 		drawGardenToolBar = new ToolBar();
 		drawGardenToolBar.setStyle("-fx-background-color: #dbd0ab;-fx-border-color: #a8a083;-fx-border-width:1;-fx-border-radius:3;");
-		//drawButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
-		//eraseButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
-		//paintPlantsButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
-		//selectSeason.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		drawButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		eraseButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		paintPlantsButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		selectSeason.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 		HBox hb3 = new HBox();
 		HBox hb2 = new HBox();
 		Separator separator = new Separator();
@@ -224,6 +228,8 @@ public class DrawGardenPane {
 		drawGardenCanvas.maxHeight(height);
 		drawGardenCanvas.maxWidth(width);
 		holder.getChildren().add(drawGardenCanvas);
+		
+		
 		
 		
 	}
