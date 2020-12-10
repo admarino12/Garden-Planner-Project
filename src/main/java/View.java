@@ -288,9 +288,8 @@ public class View {
 		ratingToolBar.updateRating(seasonRatings);
 		drawGardenPane.setSeason(season);
 		drawGardenPane.setSeasonComboBox(season);
-		drawGardenPane.setGardenDim(width, height);
+		drawGardenPane.setGardenDim(width);
 		drawGardenPane.setLines(width, height);
-		drawGardenPane.setRectangle(width, height);
 	}
 	
 	/**

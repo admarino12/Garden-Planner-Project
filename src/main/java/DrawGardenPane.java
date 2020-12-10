@@ -94,7 +94,7 @@ public class DrawGardenPane {
 		gardenDimLabel.setLayoutX(0);
 		gardenDimLabel.setLayoutY(0);
 		gardenDimLabel.setFont(new Font(14));
-		gardenDimLabel.setPadding(new Insets(0, 0, 0, 526));
+		gardenDimLabel.setPadding(new Insets(0, 0, 0, 480));
 		drawGardenToolBar.getItems().addAll(hb3, hb2, gardenDimLabel);
 				
 		drawGardenBorder = new BorderPane();
@@ -174,29 +174,13 @@ public class DrawGardenPane {
 		}
 	}
 	
-	public void setRectangle(int width, int height) {
-		rect.setFill(Color.BLACK);
-		if (width < height) {
-		rect.setHeight(DRAW_GARDENPANE_HEIGHT*(1-1/height));
-		rect.setWidth(900);
-		rect.setX(0);
-		rect.setY(DRAW_GARDENPANE_HEIGHT/height);
-		}
-		else {
-			rect.setHeight(900);
-			rect.setWidth(DRAW_GARDENPANE_WIDTH*(1-1/width));
-			rect.setX(DRAW_GARDENPANE_WIDTH/width);
-			rect.setY(0);
-		}
-		holder.getChildren().add(rect);
-	}
 /**
  * Sets the GardenDimensions Label.
  * @param width Width set by user.
  * @param height Height set by user.
  */
-	public void setGardenDim(int width, int height) {
-		gardenDimLabel.setText("Dimensions: " + width + "ft x " + height + "ft");
+	public void setGardenDim(int width) {
+		gardenDimLabel.setText("Dimensions: " + width + "ft x " + width + "ft");
 	}
 /**
  * Getter for drawGardenBorder.
