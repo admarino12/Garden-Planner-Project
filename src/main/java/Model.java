@@ -76,6 +76,20 @@ public class Model implements java.io.Serializable {
     }
 	
 	/**
+	 * Return Plant given just its name as a string
+	 * @param name Name of Plant
+	 * @return Plant the plant class of the given plant
+	 */
+	public Plant getPlant(String name) {
+		for(Plant plant : plantList) {
+			if(plant.getName().equals(name)) {
+				return plant;
+			}
+		}
+		return null;
+	}
+	
+	/**
 	 * Removes plants for garden list.
 	 * @param p Plant Object.
 	 */

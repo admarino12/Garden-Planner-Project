@@ -36,10 +36,10 @@ public class ToolBarPane {
 	private Circle[] ratingCircles;
 	final private int RATING_TOTAL = 4;
 
-	final private int MIN_GARDEN_WIDTH = 1;
-	final private int MAX_GARDEN_WIDTH = 100;
-	final private int MIN_GARDEN_HEIGHT = 1;
-	final private int MAX_GARDEN_HEIGHT = 100;
+	final private int MIN_GARDEN_WIDTH = 10;
+	final private int MAX_GARDEN_WIDTH = 150;
+	final private int MIN_GARDEN_HEIGHT = 10;
+	final private int MAX_GARDEN_HEIGHT = 150;
 
 	final private String springColor = "rgba:(129, 238, 164";
 	final private String summerColor = "rgba:(129, 238, 164";

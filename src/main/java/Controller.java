@@ -217,14 +217,16 @@ public class Controller extends Application {
 	 */
 	public void dragAndDrop(MouseEvent event, Image img) {
 		if (!this.isEncyc) {
-		view.getScene().setCursor(Cursor.HAND);
-		Node n = (Node) event.getSource();
-		Plant plant = model.Add(event.getSceneX(), event.getSceneY(), n.getId());
-		view.addPlants(plant);
-		garden.setSeasonRatings();
-		view.getToolBarPane().updateRating(garden.getSeasonRatings());
-		System.out.println("Rating Updated");
-
+			view.getScene().setCursor(Cursor.HAND);
+			Node n = (Node) event.getSource();
+			Plant plant = model.getPlant(n.getId());
+			if(plant.getPlantSizeNum()<model.garden.getGardenHeight() && plant.getPlantSizeNum()<model.garden.getGardenWidth()) {
+				plant = model.Add(event.getSceneX(), event.getSceneY(), n.getId());
+				view.addPlants(plant);
+				garden.setSeasonRatings();
+				view.getToolBarPane().updateRating(garden.getSeasonRatings());
+				System.out.println("Rating Updated");
+			}
 		}
 	}
 

@@ -126,7 +126,7 @@ public class View {
 				plantImageView.setId(name);
 				plantImageView.setImage(plantImage);
 				plantImageView.setPreserveRatio(true);
-		    	plantImageView.setFitHeight(100);
+		    	plantImageView.setFitHeight(50);
 				control.setHandlerForDragAndDrop(plantImageView);
 				plantList.put(name, plantImageView);
 			} catch (FileNotFoundException e) {
