@@ -99,6 +99,7 @@ public class View {
 		
 		
 		border = new BorderPane();
+		border.setStyle("-fx-background-color: #dbd0ab;");
 		root.getChildren().add(border);
 		border.setLeft(plantSearchPane.getMainPane());
 		border.setCenter(drawGardenPane.getDrawGardenBorder());
