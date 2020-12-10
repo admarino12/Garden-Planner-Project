@@ -177,16 +177,15 @@ public class PlantSearchPane  {
 	}
 	
 	public void setSelectedImage(ImageView plantImage) {
-		if(plantImage == null) {
+		if(currVBox != null) {
 			currVBox.setStyle("-fx-border-color: transparent;");
+		}
+		if(plantImage == null) {
 			currVBox = null;
 		}
 		else {
 			for(VBox vbox : plantContainers) {
 				if(vbox.getChildren().contains(plantImage)) {
-					if(currVBox != null) {
-						currVBox.setStyle("-fx-border-color: transparent;");
-					}
 					vbox.setStyle("-fx-border-color: rgb(173,216,230); -fx-border-width: 5; -fx-border-radius: 5;");
 					currVBox = vbox;
 				}

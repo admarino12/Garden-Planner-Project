@@ -94,7 +94,7 @@ public class DrawGardenPane {
 		gardenDimLabel.setLayoutX(0);
 		gardenDimLabel.setLayoutY(0);
 		gardenDimLabel.setFont(new Font(14));
-		gardenDimLabel.setPadding(new Insets(0, 0, 0, 526));
+		gardenDimLabel.setPadding(new Insets(0, 0, 0, 426));
 		drawGardenToolBar.getItems().addAll(hb3, hb2, gardenDimLabel);
 				
 		drawGardenBorder = new BorderPane();
