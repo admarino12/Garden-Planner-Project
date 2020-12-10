@@ -290,7 +290,8 @@ public class View {
 		drawGardenPane.setSeason(season);
 		drawGardenPane.setSeasonComboBox(season);
 		drawGardenPane.setGardenDim(width, height);
-		drawGardenPane.setLines(width);
+		drawGardenPane.setLines(width, height);
+		drawGardenPane.setRectangle(width, height);
 	}
 	
 	/**

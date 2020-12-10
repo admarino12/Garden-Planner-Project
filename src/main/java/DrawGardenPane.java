@@ -14,6 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 /**
  * The DrawGardenPane class contains all JavaFx View elements for the Garden Area of the View.
@@ -49,7 +50,7 @@ public class DrawGardenPane {
 	final private int DRAW_GARDENPANE_WIDTH = 900;
 	final private int DRAW_GARDENPANE_HEIGHT = 900;
 	
-	
+	Rectangle rect = new Rectangle();
 	// Increment
 	private int GRID_INCREMENT;
 /**
@@ -150,20 +151,42 @@ public class DrawGardenPane {
  * Sets the scale of the grid based on width set by user.
  * @param width Width set by user.
  */
-	public void setLines(int width) {
+	public void setLines(int width, int height) {
 		holder.getChildren().clear();
 		holder.getChildren().add(drawGardenCanvas);
+		if (width > height) {
 		GRID_INCREMENT = DRAW_GARDENPANE_WIDTH / width;
+		}
+		else {
+			GRID_INCREMENT = DRAW_GARDENPANE_HEIGHT / height;
+		}
 		for (int i = 0; i < DRAW_GARDENPANE_WIDTH; i += GRID_INCREMENT) {
 			Line vertical = new Line(i, 0, i, DRAW_GARDENPANE_WIDTH);
 			vertical.setStroke(Color.DARKGRAY);
 			vertical.setStrokeWidth(0.8);
-			Line horizontal = new Line(0, i, DRAW_GARDENPANE_WIDTH, i);
+			Line horizontal = new Line(0, i, DRAW_GARDENPANE_HEIGHT, i);
 			horizontal.setStroke(Color.DARKGRAY);
 			horizontal.setStrokeWidth(0.8);
 			holder.getChildren().add(vertical);
 			holder.getChildren().add(horizontal);
 		}
+	}
+	
+	public void setRectangle(int width, int height) {
+		rect.setFill(Color.BLACK);
+		if (width < height) {
+		rect.setHeight(DRAW_GARDENPANE_HEIGHT*(1-1/height));
+		rect.setWidth(900);
+		rect.setX(0);
+		rect.setY(DRAW_GARDENPANE_HEIGHT/height);
+		}
+		else {
+			rect.setHeight(900);
+			rect.setWidth(DRAW_GARDENPANE_WIDTH*(1-1/width));
+			rect.setX(DRAW_GARDENPANE_WIDTH/width);
+			rect.setY(0);
+		}
+		holder.getChildren().add(rect);
 	}
 /**
  * Sets the GardenDimensions Label.
