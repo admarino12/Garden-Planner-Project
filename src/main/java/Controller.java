@@ -56,6 +56,8 @@ public class Controller extends Application {
 
 	final int X_DRAW_OFFSET = 369;
 	private final int Y_DRAW_OFFSET = 77;
+	
+	private boolean imageViewsAreToggleable = false;
 
 	/**
 	 * The main method is the start of the Java Program.
@@ -194,20 +196,24 @@ public class Controller extends Application {
 	}
 
 	/**
-	 * Handler for Drag and Drop Event and For encyclopedia. Changes cursor to closed hand when dragging
+	 * Handler for Drag and Drop Event Changes cursor to closed hand when dragging
 	 * Allows user to pick up image from Plant Search Pane and drag it to the
 	 * DrawGardenPane.
 	 * 
 	 * @param imgView ImageView of plant.
 	 */
 	
-		public void setHandlerForDragAndDrop(ImageView imgView) {
-		
-		imgView.setOnMousePressed (event -> {
-			view.getScene().setCursor(Cursor.CLOSED_HAND);
-			encyclopediaChoice(event,imgView);
-		});
-		imgView.setOnMouseReleased(event -> dragAndDrop(event, imgView.getImage()));
+	public void setHandlerForDragAndDrop(ImageView imgView) {	
+			imgView.setOnMousePressed (event -> {
+				if(!imageViewsAreToggleable) {
+					view.getScene().setCursor(Cursor.CLOSED_HAND);
+				}
+			});
+			imgView.setOnMouseReleased(event -> {	
+				if(!imageViewsAreToggleable) {
+					dragAndDrop(event, imgView.getImage());
+				}
+			});
 	}
 
 	/**
@@ -701,6 +707,8 @@ public class Controller extends Application {
 		b.setOnAction(event -> {
 			this.isEncyc = true;
 			view.removePlantsInGarden(garden.getPlantsInGarden());
+			view.getPlantSearchPane().setSelectedImage(null);
+			imageViewsAreToggleable = true;
 			view.showEncyclopedia();
 		});
 	}
@@ -714,8 +722,23 @@ public class Controller extends Application {
 	public void setHandlerForDonePlantEncycClicked(Button b) {
 		b.setOnAction(event -> {
 			this.isEncyc = false;
+			imageViewsAreToggleable = false;
+			view.getPlantSearchPane().setSelectedImage(null);
 			view.showGarden(garden.getPlantsInGarden());
 		});
+	}
+	
+	/**
+	 * Handler for Encyclopedia. Gives information based on image selected.
+	 * 
+	 * @param img ImageView of plant.
+	 */
+
+	public void encyclopediaChoice(MouseEvent event, ImageView imgView ) {
+			if (this.isEncyc) {
+				view.setPlantPage(imgView.getId());
+				view.getScene().setCursor(Cursor.HAND);
+			}
 	}
 
 	/**
@@ -739,19 +762,34 @@ public class Controller extends Application {
 			view.getToolBarPane().getHelpPopUp().hide();
 		});
 	}
-
+	
 	/**
-	 * Handler for Encyclopedia. Gives information based on image selected.
+	 * Handler for The paint with plant ToggleButton. When toggled...
 	 * 
-	 * @param img ImageView of plant.
+	 * @param paintPlantButton
 	 */
-
-	public void encyclopediaChoice(MouseEvent event, ImageView imgView ) {
-			if (this.isEncyc) {
-				view.setPlantPage(imgView.getId());
-				view.getScene().setCursor(Cursor.HAND);
+	public void setHandlerForPaintPlantButton(ToggleButton paintPlantButton) {
+		paintPlantButton.setOnAction(event -> {
+			if(paintPlantButton.isSelected()) {
+				imageViewsAreToggleable = true;
 			}
+			else {
+				imageViewsAreToggleable = false;
+				view.getPlantSearchPane().setSelectedImage(null);
+			}
+		});
 	}
+	
+	public void setHandlerForToggledImageViews(ImageView plantImage) {
+		plantImage.setOnMousePressed(event -> {
+			if(imageViewsAreToggleable) {
+				encyclopediaChoice(event,plantImage);
+				view.getPlantSearchPane().setSelectedImage(plantImage);
+			}
+		});
+	}
+	
+	
 	
 	/**
 	 * Check to see if the plant size is larger than the garden Deminsions return True or False

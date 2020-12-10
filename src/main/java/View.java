@@ -44,8 +44,6 @@ public class View {
 	private StartPageView startPage;
 	private Scene theScene;
 
-			
-
 	final private int ROOT_WIDTH = 1271;
 	final private int ROOT_HEIGHT = 970;
 
@@ -128,6 +126,7 @@ public class View {
 				plantImageView.setPreserveRatio(true);
 		    	plantImageView.setFitHeight(50);
 				control.setHandlerForDragAndDrop(plantImageView);
+				control.setHandlerForToggledImageViews(plantImageView);
 				plantList.put(name, plantImageView);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();

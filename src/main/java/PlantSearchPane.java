@@ -10,6 +10,7 @@ import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -72,6 +73,9 @@ public class PlantSearchPane  {
 	private TilePane imageContainerPane;
 	private ScrollPane scrollPane;
 	
+	private ArrayList<VBox> plantContainers;
+	private VBox currVBox = null;
+	
 	final private int SCROLL_PANE_MAX_HEIGHT = 845;
 	
 	/**
@@ -126,7 +130,7 @@ public class PlantSearchPane  {
 		scrollPane.setFitToWidth(true);
 		scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent; "); 
 		
-
+		plantContainers = new ArrayList<VBox>();
 		update(mainView.getAllPlantNames());
 		
 		scrollPane.setContent(imageContainerPane);
@@ -163,11 +167,31 @@ public class PlantSearchPane  {
 					Tooltip toolTip = new Tooltip(plantDescription);
 					Tooltip.install(vb, toolTip);
 					
+					plantContainers.add(vb);
+					
 					imageContainerPane.getChildren().add(vb);
 				}
 			}
 		}
 		
+	}
+	
+	public void setSelectedImage(ImageView plantImage) {
+		if(plantImage == null) {
+			currVBox.setStyle("-fx-border-color: transparent;");
+			currVBox = null;
+		}
+		else {
+			for(VBox vbox : plantContainers) {
+				if(vbox.getChildren().contains(plantImage)) {
+					if(currVBox != null) {
+						currVBox.setStyle("-fx-border-color: transparent;");
+					}
+					vbox.setStyle("-fx-border-color: rgb(173,216,230); -fx-border-width: 5; -fx-border-radius: 5;");
+					currVBox = vbox;
+				}
+			}
+		}
 	}
 	
 	/**

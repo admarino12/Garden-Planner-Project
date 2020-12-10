@@ -38,6 +38,7 @@ public class DrawGardenPane {
 	private ToolBar drawGardenToolBar;
 	private ToggleButton eraseButton = new ToggleButton("Erase");
 	private ToggleButton drawButton = new ToggleButton("Draw");
+	private ToggleButton paintPlantsButton = new ToggleButton("Paint");
 		
 	// DrawGardenPane MainPane
 	private BorderPane holder;
@@ -74,6 +75,7 @@ public class DrawGardenPane {
 		mainView.control.setHandlerForDrawButton(drawButton);
 		mainView.control.setHandlerForEraseButton(eraseButton);
 		mainView.control.setHandlerForSeasonComboBox(selectSeason);
+		mainView.control.setHandlerForPaintPlantButton(paintPlantsButton);
 
 		holder.setStyle(allSeasonStyle);
 		drawGardenToolBar = new ToolBar();
@@ -84,7 +86,7 @@ public class DrawGardenPane {
 		selectSeason.setMaxWidth(400);
 		hb2.setPadding(new Insets(5, 5, 5, 5));
 		hb2.setSpacing(4);
-		hb2.getChildren().addAll(drawButton, eraseButton);
+		hb2.getChildren().addAll(drawButton, eraseButton, paintPlantsButton);
 		hb3.setPadding(new Insets(5, 5, 5, 0));
 		hb3.getChildren().addAll(selectSeason);
 		
