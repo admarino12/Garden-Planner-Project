@@ -335,12 +335,22 @@ public class View {
 	 * Removes plants from Garden ArrayList.
 	 * @param plants Plant Object.
 	 */
+	
 	public void removePlantsInGarden(ArrayList<Plant> plants) {
 		//Remove plants
 				for (int i = border.getChildren().size() - 1; i >=3; i--){
 					border.getChildren().remove(i);
 				}
 	}
+
+	/**
+	 * Sets the Encyclopedia page based on the plant chosen
+	 * @param name
+	 */
+	public void setPlantPage(String name) {
+		border.setCenter(encyclopediaPane.buildPlantPage(name));
+	}
+
 
 }
 

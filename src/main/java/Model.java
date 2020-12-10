@@ -143,10 +143,12 @@ public class Model implements java.io.Serializable {
 	 * @return plantTraits Traits of plant based on name.
 	 */
 	public ArrayList<String> getPlantTraits(String plantName) {
-		ArrayList<String> plantTraits = null;
+		ArrayList<String> plantTraits = new ArrayList<String>();
 		for(Plant plant : plantList) {
 			if(plant.getName().equals(plantName)) {
-				plantTraits = (ArrayList<String>) Arrays.asList(plant.getTraits());
+				for (String trait: plant.getTraits()) {
+				plantTraits.add(trait);
+				}
 			}
 		}
 		return plantTraits;

@@ -23,6 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -144,9 +145,9 @@ public class PlantSearchPane  {
 			for(String generalName : mainView.getAllPlantNames()) {
 				if(generalName.toLowerCase().contains(inputName.toLowerCase())) {
 					
-					Label plantNameLabel = new Label(generalName.replace("_", " "));
-					plantNameLabel.setTextFill(Color.BLACK);
-					
+					Text plantNameLabel = new Text(generalName.replace("_", " "));
+					plantNameLabel.setFill(Color.BLACK);
+				
 					String plantDescription = mainView.control.getPlantDescription(generalName);
 					
 					VBox vb = new VBox();

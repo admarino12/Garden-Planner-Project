@@ -23,6 +23,8 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -189,15 +191,18 @@ public class Controller extends Application {
 	}
 
 	/**
-	 * Handler for Drag and Drop Event. Changes cursor to closed hand when dragging
+	 * Handler for Drag and Drop Event and For encyclopedia. Changes cursor to closed hand when dragging
 	 * Allows user to pick up image from Plant Search Pane and drag it to the
 	 * DrawGardenPane.
 	 * 
 	 * @param imgView ImageView of plant.
 	 */
-	public void setHandlerForDragAndDrop(ImageView imgView) {
-		imgView.setOnMousePressed(event -> {
+	
+		public void setHandlerForDragAndDrop(ImageView imgView) {
+		
+		imgView.setOnMousePressed (event -> {
 			view.getScene().setCursor(Cursor.CLOSED_HAND);
+			encyclopediaChoice(event,imgView);
 		});
 		imgView.setOnMouseReleased(event -> dragAndDrop(event, imgView.getImage()));
 	}
@@ -211,6 +216,7 @@ public class Controller extends Application {
 	 * @param img   Image the image of the plant.
 	 */
 	public void dragAndDrop(MouseEvent event, Image img) {
+		if (!this.isEncyc) {
 		view.getScene().setCursor(Cursor.HAND);
 		Node n = (Node) event.getSource();
 		Plant plant = model.Add(event.getSceneX(), event.getSceneY(), n.getId());
@@ -219,6 +225,7 @@ public class Controller extends Application {
 		view.getToolBarPane().updateRating(garden.getSeasonRatings());
 		System.out.println("Rating Updated");
 
+		}
 	}
 
 	/**
@@ -310,7 +317,8 @@ public class Controller extends Application {
 	 * @param event MouseEvent for right and double click.
 	 */
 	public void removeClick(MouseEvent event) {
-		Node n = (Node) event.getSource();
+		if (!this.isEncyc) {
+		Node n = (Node)event.getSource();
 		Plant plantRemoved = null;
 		for (Plant p : garden.getPlantsInGarden()) {
 			if (n.getId().equals(p.getName() + p.getxCor() + p.getyCor())) {
@@ -322,6 +330,7 @@ public class Controller extends Application {
 
 		garden.setSeasonRatings();
 		view.getToolBarPane().updateRating(garden.getSeasonRatings());
+		}
 	}
 
 	/**
@@ -331,10 +340,12 @@ public class Controller extends Application {
 	 * @param imgView ImageView image of plant.
 	 */
 	public void setHandlerForPlantDragged(ImageView imgView) {
-		imgView.setOnMousePressed(event -> {
+		
+		imgView.setOnMousePressed (event -> {
 			view.getScene().setCursor(Cursor.CLOSED_HAND);
 		});
 		imgView.setOnMouseReleased(event -> movePlant(event));
+		
 	}
 
 	/**
@@ -343,6 +354,7 @@ public class Controller extends Application {
 	 * @param event MouseEvent for dragging of mouse when plant clicked.
 	 */
 	public void movePlant(MouseEvent event) {
+		if (!this.isEncyc) {
 		view.getScene().setCursor(Cursor.HAND);
 		ImageView imgView = (ImageView) event.getSource();
 		Node n = (Node) event.getSource();
@@ -355,7 +367,7 @@ public class Controller extends Application {
 		}
 		model.move(event.getSceneX(), event.getSceneY(), plantMoved);
 		view.movePlant(imgView, plantMoved);
-
+		}
 	}
 
 	/**
@@ -697,12 +709,12 @@ public class Controller extends Application {
 	 * 
 	 * @param img ImageView of plant.
 	 */
-	public void setHandlerForEncyclopediaChoice(ImageView img) {
-		img.setOnMouseClicked(event -> {
-			if (this.isEncyc) {
 
+	public void encyclopediaChoice(MouseEvent event, ImageView imgView ) {
+			if (this.isEncyc) {
+				view.setPlantPage(imgView.getId());
+				view.getScene().setCursor(Cursor.HAND);
 			}
-		});
 	}
 
 	/**
@@ -731,4 +743,5 @@ public class Controller extends Application {
 	public String[] getHelpText() {
 		return helpText;
 	}
+	
 }

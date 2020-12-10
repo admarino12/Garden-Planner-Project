@@ -123,7 +123,6 @@ public class ToolBarPane {
 	public void createPlantEncyclopediaButton() {
 		plantEncyclopedia = new Button("Plant Encyclopedia");
 		mainView.control.setHandlerForPlantEncyclopediaClicked(plantEncyclopedia);
-		createPlantEncyclopediaPopUp();
 	}
 
 	/**
@@ -280,46 +279,9 @@ public class ToolBarPane {
 	}
 
 	/**
-	 * Creates PlantEncyclopediaPopUp window.
-	 */
-	public void createPlantEncyclopediaPopUp() {
-		plantEncycPopUp = new Popup();
-		plantEncycPopUp.setAutoHide(true);
-
-		TilePane tp = new TilePane();
-
-		Label label = new Label("Plant Encyclopedia");
-		label.setStyle("-fx-font-weight: bold");
-
-		Button done = new Button("Done");
-		mainView.control.setHandlerForDonePlantEncycClicked(done);
-
-		tp.setStyle(
-				"-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;-fx-hgap:4;-fx-vgap:6;");
-		tp.getChildren().add(label);
-		ImageView img = new ImageView();
-		Hyperlink plantData = new Hyperlink();
-		for (String name : mainView.control.getPlantNames()) {
-
-			plantData = new Hyperlink(name.replace("_", " "));
-			plantData.setStyle("-fx-color: black");
-			img = mainView.getPlantList().get(name);
-			tp.getChildren().add(mainView.getPlantList().get(name));
-			// tp.getChildren().add(plantData);
-
-			// plantData[counter].setOnMouseClicked(event -> {
-
-			// });
-		}
-
-		tp.getChildren().add(done);
-		plantEncycPopUp.getContent().addAll(tp, img);
-
-	}
-
-	/**
 	 * Creates HelpPopUp Window.
 	 */
+	
 	public void createHelpPopUp() {
 		helpPopUp = new Popup();
 		helpPopUp.setAutoHide(true);
