@@ -154,13 +154,13 @@ public class DrawGardenPane {
 		holder.getChildren().clear();
 		holder.getChildren().add(drawGardenCanvas);
 		GRID_INCREMENT = DRAW_GARDENPANE_WIDTH / width;
-		for (int i = 0; i < DRAW_GARDENPANE_WIDTH-10; i += GRID_INCREMENT) {
+		for (int i = 0; i < DRAW_GARDENPANE_WIDTH; i += GRID_INCREMENT) {
 			Line vertical = new Line(i, 0, i, DRAW_GARDENPANE_WIDTH);
 			vertical.setStroke(Color.DARKGRAY);
-			vertical.setStrokeWidth(0.9);
+			vertical.setStrokeWidth(0.8);
 			Line horizontal = new Line(0, i, DRAW_GARDENPANE_WIDTH, i);
 			horizontal.setStroke(Color.DARKGRAY);
-			horizontal.setStrokeWidth(0.9);
+			horizontal.setStrokeWidth(0.8);
 			holder.getChildren().add(vertical);
 			holder.getChildren().add(horizontal);
 		}

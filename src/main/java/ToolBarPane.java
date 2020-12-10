@@ -37,9 +37,9 @@ public class ToolBarPane {
 	final private int RATING_TOTAL = 4;
 
 	final private int MIN_GARDEN_WIDTH = 1;
-	final private int MAX_GARDEN_WIDTH = 60;
+	final private int MAX_GARDEN_WIDTH = 100;
 	final private int MIN_GARDEN_HEIGHT = 1;
-	final private int MAX_GARDEN_HEIGHT = 60;
+	final private int MAX_GARDEN_HEIGHT = 100;
 
 	final private String springColor = "rgba:(129, 238, 164";
 	final private String summerColor = "rgba:(129, 238, 164";
