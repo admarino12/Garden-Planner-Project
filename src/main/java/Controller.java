@@ -24,6 +24,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -836,6 +837,13 @@ public class Controller extends Application {
 				view.getPlantSearchPane().setSelectedImage(plantImage);
 				
 			}
+		});
+	}
+	
+	public void setHandlerForRatingPopUp(HBox ratingCircles) {
+		ratingCircles.setOnMousePressed(event -> {
+			System.out.println("Work?");
+			view.getToolBarPane().getRatingPopUp().show(view.getStage());
 		});
 	}
 	

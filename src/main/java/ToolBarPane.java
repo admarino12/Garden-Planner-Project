@@ -16,10 +16,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
@@ -52,6 +54,7 @@ public class ToolBarPane {
 	Popup saveAsPopUp;
 	Popup openPopUp;
 	Popup helpPopUp;
+	Popup ratingPopUp;
 	TextField gardenName;
 	Spinner<Integer> heightSpinner;
 	SpinnerValueFactory<Integer> heightValueFactory;
@@ -59,6 +62,12 @@ public class ToolBarPane {
 	SpinnerValueFactory<Integer> widthValueFactory;
 	ListView<String> files;
 	View mainView;
+	
+	Rectangle springRating;
+	Rectangle summerRating;
+	Rectangle autumnRating;
+	Rectangle winterRating;
+	Label tips;
 
 	/**
 	 * Constructor for ToolBarPane. Initializes the ToolBarPane.
@@ -76,6 +85,7 @@ public class ToolBarPane {
 		createFileButton();
 		createPlantEncyclopediaButton();
 		createHelpButton();
+		createRatingPopUp();
 
 		HBox hb4 = new HBox();
 		ratingCircles = new Circle[RATING_TOTAL];
@@ -88,8 +98,9 @@ public class ToolBarPane {
 			circle.setStrokeWidth(1);
 			ratingCircles[i] = circle;
 		}
-		hb4.setPadding(new Insets(5, 10, 5, 0));
+		hb4.setPadding(new Insets(15, 10, 0, 0));
 		hb4.setSpacing(5);
+		mainView.control.setHandlerForRatingPopUp(hb4);
 		hb4.getChildren().addAll(ratingCircles);
 		ratingToolBar.getItems().addAll(fileButton, plantEncyclopedia, helpButton, rating, hb4);
 		ratingToolBar.setStyle("-fx-background-color:#dbd0ab;-fx-border-color: #a8a083;-fx-border-width:1;-fx-border-radius:3;");
@@ -328,6 +339,106 @@ public class ToolBarPane {
 		helpPopUp.getContent().add(vb);
 
 	}
+	
+	public void createRatingPopUp() {
+		ratingPopUp = new Popup();
+		ratingPopUp.setAutoHide(true);
+
+		Label label = new Label("Continuous Bloom Rating");
+		label.setStyle("-fx-font-weight: bold;-fx-font: 24 Papyrus");
+		label.setPadding(new Insets(0,0,10,0));
+		
+		Text springLabel = new Text("Spring  Plants:   ");
+		
+		Text summerLabel = new Text("Summer Plants: ");
+		Text autumnLabel = new Text("Autumn Plants: ");
+		Text winterLabel = new Text("Winter Plants:   ");
+		
+		HBox hb1 = new HBox();
+		Rectangle springRatingBorder = new Rectangle(300, 20);
+		springRatingBorder.setArcWidth(30);
+		springRatingBorder.setArcHeight(90);
+		springRatingBorder.setFill(Color.TRANSPARENT);
+		springRatingBorder.setStroke(Color.BLACK);
+		springRatingBorder.setStrokeWidth(0.8);
+		springRating = new Rectangle(0, 20);
+		springRating.setArcWidth(30);
+		springRating.setArcHeight(90);
+		springRating.setFill(Color.rgb(129, 238, 164));
+		StackPane stackPane1 = new StackPane();
+		StackPane.setAlignment(springRating, Pos.CENTER_LEFT);
+		stackPane1.getChildren().addAll(springRating, springRatingBorder );
+		hb1.getChildren().addAll(springLabel, stackPane1);
+		hb1.setPadding(new Insets(0,0,5,0));
+		
+		HBox hb2 = new HBox();
+		Rectangle summerRatingBorder = new Rectangle();
+		summerRatingBorder.setWidth(300);
+		summerRatingBorder.setHeight(20);
+		summerRatingBorder.setArcWidth(30);
+		summerRatingBorder.setArcHeight(90);
+		summerRatingBorder.setFill(Color.TRANSPARENT);
+		summerRatingBorder.setStroke(Color.BLACK);
+		summerRatingBorder.setStrokeWidth(0.8);
+		summerRating = new Rectangle(0, 20);
+		summerRating.setArcWidth(30);
+		summerRating.setArcHeight(90);
+		summerRating.setFill(Color.rgb(255, 244, 179));
+		StackPane stackPane2 = new StackPane();
+		StackPane.setAlignment(summerRating, Pos.CENTER_LEFT);
+		stackPane2.getChildren().addAll(summerRating, summerRatingBorder );
+		hb2.getChildren().addAll(summerLabel, stackPane2);
+		hb2.setPadding(new Insets(0,0,5,0));
+		
+		HBox hb3 = new HBox();
+		Rectangle autumnRatingBorder = new Rectangle();
+		autumnRatingBorder.setWidth(300);
+		autumnRatingBorder.setHeight(20);
+		autumnRatingBorder.setArcWidth(30);
+		autumnRatingBorder.setArcHeight(90);
+		autumnRatingBorder.setFill(Color.TRANSPARENT);
+		autumnRatingBorder.setStroke(Color.BLACK);
+		autumnRatingBorder.setStrokeWidth(0.8);
+		autumnRating = new Rectangle(0, 20);
+		autumnRating.setArcWidth(30);
+		autumnRating.setArcHeight(90);
+		autumnRating.setFill(Color.rgb(232, 198, 150));
+		StackPane stackPane3 = new StackPane();
+		StackPane.setAlignment(autumnRating, Pos.CENTER_LEFT);
+		stackPane3.getChildren().addAll(autumnRating, autumnRatingBorder );
+		hb3.getChildren().addAll(autumnLabel, stackPane3);
+		hb3.setPadding(new Insets(0,0,5,0));
+		
+		HBox hb4 = new HBox();
+		Rectangle winterRatingBorder = new Rectangle();
+		winterRatingBorder.setWidth(300);
+		winterRatingBorder.setHeight(20);
+		winterRatingBorder.setArcWidth(30);
+		winterRatingBorder.setArcHeight(90);
+		winterRatingBorder.setFill(Color.TRANSPARENT);
+		winterRatingBorder.setStroke(Color.BLACK);
+		winterRatingBorder.setStrokeWidth(0.8);
+		winterRating = new Rectangle(0, 20);
+		winterRating.setArcWidth(30);
+		winterRating.setArcHeight(90);
+		winterRating.setFill(Color.rgb(230, 255, 255));
+		StackPane stackPane4 = new StackPane();
+		StackPane.setAlignment(winterRating, Pos.CENTER_LEFT);
+		stackPane4.getChildren().addAll(winterRating, winterRatingBorder );
+		hb4.getChildren().addAll(winterLabel, stackPane4);
+		hb4.setPadding(new Insets(0,0,5,0));
+		
+		Label tipsHeader = new Label("Tips for Better Continuous Bloom: ");
+		tipsHeader.setPadding(new Insets(5,0,10,0));
+		tips = new Label();
+		tips.setPadding(new Insets(0,0,10,0));
+		
+		VBox vb = new VBox();
+		vb.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;");
+		vb.getChildren().addAll(label, hb1, hb2, hb3, hb4, tipsHeader, tips);
+		vb.setPadding(new Insets(10,10,10,10));
+		ratingPopUp.getContent().add(vb);
+	}
 
 	/**
 	 * Updates the rating system based on plants. Based on the plants that bloom in
@@ -338,26 +449,67 @@ public class ToolBarPane {
 	 */
 	public void updateRating(ArrayList<Integer> ratings) {
 		double opacity = 0;
+		double width = 0;
 		for (int i = 0; i < ratingCircles.length; i++) {
 			if (ratings.get(i) > 10) {
 				opacity = 1;
-			} else
+				width = 300;
+			} else {
 				opacity = (double) ((double) (ratings.get(i)) / 10.0);
+				width = ratings.get(i) * 30;
+			}
 			switch (i) {
 			case 0:
 				ratingCircles[i].setFill(Color.rgb(129, 238, 164, opacity));
+				springRating.setWidth(width);
 				break;
 			case 1:
 				ratingCircles[i].setFill(Color.rgb(255, 244, 179, opacity));
+				summerRating.setWidth(width);
 				break;
 			case 2:
 				ratingCircles[i].setFill(Color.rgb(232, 198, 150, opacity));
+				autumnRating.setWidth(width);
 				break;
 			case 3:
 				ratingCircles[i].setFill(Color.rgb(230, 255, 255, opacity));
+				winterRating.setWidth(width);
 				break;
 			}
 		}
+		ArrayList<String> seasons = new ArrayList<String>();
+		String tip = "";
+		if(springRating.getWidth()>=300 && summerRating.getWidth()>=300 && autumnRating.getWidth() >= 300 && winterRating.getWidth() >= 300 ) {
+			tip = "Wow! Your garden is ready for all seasons. Great Job!";
+		}
+		else if(springRating.getWidth()<300 && summerRating.getWidth()<300 && autumnRating.getWidth() < 300 && winterRating.getWidth() < 300 ) {
+			tip = "Your garden could use some more plants for each season. Keep planting!";
+			
+		}
+		else {
+			if(springRating.getWidth()<300) {
+				seasons.add("Spring");
+			}
+			if(summerRating.getWidth()<300) {
+				seasons.add("Summer");
+			}
+			if(autumnRating.getWidth()<300) {
+				seasons.add("Autumn");
+			}
+			if(winterRating.getWidth()<300) {
+				seasons.add("Winter");
+			}
+			tip = "Your garden is looking good! Add some more plants for ";
+			for(int i=0;i<seasons.size()-1;i++ ) {
+				tip += seasons.get(i);
+				tip += ", ";
+			}
+			tip += "and "+seasons.get(seasons.size()-1);
+			tip += " to improve your garden.";
+		}
+		tips.setText(tip);
+		
+		
 
 	}
 
@@ -413,6 +565,11 @@ public class ToolBarPane {
 	 */
 	public Popup getHelpPopUp() {
 		return helpPopUp;
+	}
+	
+	
+	public Popup getRatingPopUp() {
+		return ratingPopUp;
 	}
 
 }
