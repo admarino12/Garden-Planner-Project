@@ -19,7 +19,7 @@ public class EncyclopediaPane {
 	
 	// EncyclopediaPane Dimensions
 	final private int EncyclopediaPane_WIDTH = 800;
-	final private int EncyclopediaPane_HEIGHT = 939;
+	final private int EncyclopediaPane_HEIGHT = 760;
 	final View mainView;
 	
 	private TilePane imgContainer;

@@ -92,6 +92,7 @@ public class ToolBarPane {
 		hb4.setSpacing(5);
 		hb4.getChildren().addAll(ratingCircles);
 		ratingToolBar.getItems().addAll(fileButton, plantEncyclopedia, helpButton, rating, hb4);
+		ratingToolBar.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 	}
 
 	/**
@@ -99,6 +100,7 @@ public class ToolBarPane {
 	 */
 	public void createFileButton() {
 		fileButton = new MenuButton("File");
+		fileButton.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 
 		MenuItem newFile = new MenuItem("New File...");
 		mainView.control.setHandlerForNewFilePopUpClicked(newFile);
@@ -123,6 +125,7 @@ public class ToolBarPane {
 	public void createPlantEncyclopediaButton() {
 		plantEncyclopedia = new Button("Plant Encyclopedia");
 		mainView.control.setHandlerForPlantEncyclopediaClicked(plantEncyclopedia);
+		plantEncyclopedia.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 	}
 
 	/**
@@ -131,6 +134,7 @@ public class ToolBarPane {
 	public void createHelpButton() {
 		helpButton = new Button("Help");
 		mainView.control.setHandlerForHelpButton(helpButton);
+		helpButton.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 		createHelpPopUp();
 	}
 

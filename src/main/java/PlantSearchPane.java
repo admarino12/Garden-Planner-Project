@@ -76,7 +76,7 @@ public class PlantSearchPane  {
 	private ArrayList<VBox> plantContainers;
 	private VBox currVBox = null;
 	
-	final private int SCROLL_PANE_MAX_HEIGHT = 845;
+	final private int SCROLL_PANE_MAX_HEIGHT = 700;
 	
 	/**
 	 * Constructor for PlantSearchPane.
@@ -87,12 +87,14 @@ public class PlantSearchPane  {
 		this.mainView = mainView;
 		
 		mainPane = new VBox(0);
-		mainPane.setStyle("-fx-background-color: #E7DEBC;");
+		mainPane.setStyle("-fx-background-color: #E7DEBC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 
 		//Hbox contains the search Bar
 		Label searchlabel = new Label("Search:");
 		searcher = new TextField();
+		searcher.setStyle("-fx-background-color: #D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 		Button searchButton = new Button("Go");
+		searchButton.setStyle("-fx-background-color: #D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 		mainView.control.setHandlerForSearchBar(searchButton);
 		
 		
@@ -105,8 +107,11 @@ public class PlantSearchPane  {
 		
 		//HBox contains the drop down selection box
 		typesOfPlants.setPromptText("Select Plant...");
+		typesOfPlants.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 		typesOfSeasons.setPromptText("Select Season...");
+		typesOfSeasons.setStyle("-fx-background-color: #D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 		typesOfColors.setPromptText("Select Color...");
+		typesOfColors.setStyle("-fx-background-color: #D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 		HBox hb1 = new HBox();
 		mainView.control.setHandlerForSearchTab(typesOfPlants);
 		mainView.control.setHandlerForSearchTab(typesOfSeasons);

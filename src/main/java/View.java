@@ -44,8 +44,8 @@ public class View {
 	private StartPageView startPage;
 	private Scene theScene;
 
-	final private int ROOT_WIDTH = 1271;
-	final private int ROOT_HEIGHT = 970;
+	final private int ROOT_WIDTH = 1275;
+	final private int ROOT_HEIGHT = 760;
 
 	// garden dimensions
 	int gardenWidth, gardenHeight;
