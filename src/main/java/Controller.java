@@ -807,16 +807,18 @@ public class Controller extends Application {
 					if(selectedPlant != null) {
 						ImageView plantName = (ImageView)selectedPlant.getChildren().get(0);
 						Plant plant = model.getPlant(plantName.getId());
-						System.out.println(plant.getPlantSizeNum());
 						double plantSize = plant.getPlantSizeNum() * 15;
-						if(e.getX()>prevX+plantSize || e.getY()>prevY+plantSize || e.getX()<prevX-plantSize || e.getY()<prevY-plantSize) {
-							Plant plant1 = model.Add(e.getSceneX(), e.getSceneY(), plantName.getId() );
-							view.addPlants(plant1);
-							garden.setSeasonRatings();
-							view.getToolBarPane().updateRating(garden.getSeasonRatings());
-							prevX = e.getX();
-							prevY = e.getY();
-					
+						if(e.getSceneX() > view.getPlantSearchPane().getMainPane().getWidth() + plantSize/2 && e.getSceneY() > 100) {	
+							if(e.getSceneX() < view.getPlantSearchPane().getMainPane().getWidth() + view.getDrawGardenPane().gardenRect.getWidth() - plantSize/3 && e.getSceneY() < 100 + view.getDrawGardenPane().gardenRect.getHeight() - plantSize/2) {	
+								if(e.getX()>prevX+plantSize || e.getY()>prevY+plantSize || e.getX()<prevX-plantSize || e.getY()<prevY-plantSize) {
+									Plant plant1 = model.Add(e.getSceneX(), e.getSceneY(), plantName.getId() );
+									view.addPlants(plant1);
+									garden.setSeasonRatings();
+									view.getToolBarPane().updateRating(garden.getSeasonRatings());
+									prevX = e.getX();
+									prevY = e.getY();
+								}
+							}
 						}
 					}
 				});

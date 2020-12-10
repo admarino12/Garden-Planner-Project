@@ -55,7 +55,7 @@ public class DrawGardenPane {
 	public int gardenY = 0;
 	public double largerDim;
 	
-	private Rectangle gardenRect = new Rectangle();
+	public Rectangle gardenRect = new Rectangle();
 	
 	// Increment
 	private double GRID_INCREMENT;
