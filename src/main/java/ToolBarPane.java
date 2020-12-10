@@ -147,18 +147,18 @@ public class ToolBarPane {
 		title.setAlignment(Pos.CENTER);
 
 		VBox hb1 = new VBox();
-		Label gardenNameLabel = new Label("Garden Name");
+		Label gardenNameLabel = new Label("Garden Name: ");
 		gardenNameLabel.setPadding(new Insets(0, 5, 0, 0));
 		gardenName = new TextField();
 		gardenName.setMaxWidth(175);
 		hb1.getChildren().addAll(gardenNameLabel, gardenName);
 		hb1.setPadding(new Insets(0, 0, 20, 0));
 
-		Label gardenDemLabel = new Label("Garden Dimensions");
+		Label gardenDemLabel = new Label("Garden Dimensions: ");
 		gardenDemLabel.setPadding(new Insets(0, 0, 0, 0));
 
 		HBox hb2 = new HBox();
-		Label widthLabel = new Label("Width:  ");
+		Label widthLabel = new Label("Input Value for Height & Width: ");
 		widthSpinner = new Spinner<Integer>();
 		widthValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_GARDEN_WIDTH, MAX_GARDEN_WIDTH, 1);
 		widthSpinner.setValueFactory(widthValueFactory);
@@ -168,8 +168,8 @@ public class ToolBarPane {
 		hb2.getChildren().addAll(widthLabel, widthSpinner, feetLabel2);
 		hb2.setPadding(new Insets(0, 0, 0, 0));
 
-		HBox hb3 = new HBox();
-		Label heightLabel = new Label("Height: ");
+		//HBox hb3 = new HBox();
+		//Label heightLabel = new Label("Height: ");
 		heightSpinner = new Spinner<Integer>();
 		heightValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_GARDEN_HEIGHT, MAX_GARDEN_HEIGHT,
 				1);
@@ -177,8 +177,8 @@ public class ToolBarPane {
 		heightSpinner.setMaxWidth(60);
 		Label feetLabel1 = new Label("ft.");
 		feetLabel1.setPadding(new Insets(0, 5, 0, 2));
-		hb3.getChildren().addAll(heightLabel, heightSpinner, feetLabel1);
-		hb3.setPadding(new Insets(0, 0, 20, 0));
+		//hb3.getChildren().addAll(heightLabel, heightSpinner, feetLabel1);
+		//hb3.setPadding(new Insets(0, 0, 20, 0));
 
 		HBox hb4 = new HBox();
 		Button start = new Button("Start");
@@ -188,6 +188,7 @@ public class ToolBarPane {
 		hb4.getChildren().addAll(start, cancel);
 		hb4.setAlignment(Pos.CENTER);
 		hb4.setSpacing(20);
+		hb4.setPadding(new Insets(10,10,10,10));
 
 		VBox vb = new VBox();
 		vb.setStyle(
@@ -195,7 +196,7 @@ public class ToolBarPane {
 		vb.setPadding(new Insets(10, 20, 10, 20));
 		// vb.setMinWidth(450);
 		// vb.setMinHeight(300);
-		vb.getChildren().addAll(title, hb1, gardenDemLabel, hb2, hb3, hb4);
+		vb.getChildren().addAll(title, hb1, gardenDemLabel, hb2 , hb4);
 
 		newFilePopUp.getContent().add(vb);
 	}
