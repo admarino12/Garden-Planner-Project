@@ -218,7 +218,6 @@ public class Controller extends Application {
 			imgView.setOnMouseReleased(event -> {	
 				if(!imageViewsAreToggleable) {
 					dragAndDrop(event, imgView.getImage());
-					view.getScene().setCursor(Cursor.HAND);
 				}
 			});
 	}
@@ -233,7 +232,6 @@ public class Controller extends Application {
 	 */
 	public void dragAndDrop(MouseEvent event, Image img) {
 		if (!this.isEncyc) {
-			view.getScene().setCursor(Cursor.CLOSED_HAND);
 			view.getScene().setCursor(Cursor.HAND);
 			Node n = (Node) event.getSource();
 			Plant plant = model.getPlant(n.getId());
@@ -838,6 +836,7 @@ public class Controller extends Application {
 
 	public void setHandlerForToggledImageViews(ImageView plantImage) {
 		plantImage.setOnMousePressed(event -> {
+			view.getScene().setCursor(Cursor.CLOSED_HAND);
 			if(imageViewsAreToggleable) {
 				encyclopediaChoice(event,plantImage);
 				view.getPlantSearchPane().setSelectedImage(plantImage);
