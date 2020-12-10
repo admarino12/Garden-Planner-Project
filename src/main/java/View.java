@@ -199,11 +199,19 @@ public class View {
 	public void addPlants(Plant plant) {
 		ImageView plantIV = plantList.get(plant.getName());
 		
+		double boxSize = 0;
+		if (control.getGarden().getGardenWidth() > control.getGarden().getGardenHeight()) {
+			boxSize = drawGardenPane.getGardenPaneWidth()/control.getGarden().getGardenWidth();
+		}
+		else {
+			boxSize = drawGardenPane.getGardenPaneHeight()/control.getGarden().getGardenHeight();
+		}
+		
 		ImageView imgView = new ImageView();
 		imgView.setImage(plantIV.getImage());
     	imgView.setPreserveRatio(true);
-    	imgView.setFitHeight(100);
-    	imgView.setFitWidth(100);
+    	imgView.setFitHeight(boxSize*plant.getPlantSizeNum());
+    	imgView.setFitWidth(boxSize*plant.getPlantSizeNum());
     	imgView.setX(plant.getxCor() - imgView.getFitWidth()/2);
     	imgView.setY(plant.getyCor() - imgView.getFitHeight()/2);
     	imgView.setId(plant.getName() + plant.getxCor() + plant.getyCor());

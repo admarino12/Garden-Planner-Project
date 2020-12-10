@@ -105,7 +105,7 @@ public class Controller extends Application {
 				String[] plantTraits = plant[2].split("-");
 				plantTraits = Arrays.copyOf(plantTraits, plantTraits.length + 1);
 				plantTraits[plantTraits.length - 1] = " ";
-				plantList.add(new Plant(plant[0], plant[1], plantTraits, plant[3], plant[4]));
+				plantList.add(new Plant(plant[0], plant[1], plantTraits, plant[3], plant[4], Integer.parseInt(plant[5])));
 
 			}
 			csvFile.close();
@@ -117,7 +117,7 @@ public class Controller extends Application {
 		return plantList;
 	}
 
-	/**
+	/*
 	 * Loads Help Page information from .txt. Loads help information from help.txt.
 	 * 
 	 * @return helpInfo a String containing the help information
@@ -766,6 +766,10 @@ public class Controller extends Application {
 	 */
 	public String[] getHelpText() {
 		return helpText;
+	}
+	
+	public Garden getGarden() {
+		return garden;
 	}
 	
 }

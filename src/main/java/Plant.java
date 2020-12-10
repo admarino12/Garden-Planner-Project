@@ -8,7 +8,8 @@ package src.main.java;
  *
  */
 public class Plant implements java.io.Serializable {
-
+	
+	private double plantSizeNum;
 	private String plantName;
 	private char plantChar;
 	private String plantDescription;
@@ -27,7 +28,7 @@ public class Plant implements java.io.Serializable {
 	 * @param plantSciencename String scientific name of plant.
 	 * @param plantSize 	   String Size of Plant. 
 	 */
-	public Plant(String plantName, String plantDescription, String[] plantTraits, String plantScienceName, String plantSize) {
+	public Plant(String plantName, String plantDescription, String[] plantTraits, String plantScienceName, String plantSize, double plantSizeNum) {
 		this.plantName = plantName;
 		this.plantScienceName = plantScienceName;
 		this.plantSize = plantSize; 
@@ -35,6 +36,11 @@ public class Plant implements java.io.Serializable {
 		plantChar = plantName.charAt(0);
 		this.plantDescription = plantDescription;
 		this.plantTraits = plantTraits;
+		this.plantSizeNum = plantSizeNum/12;
+	}
+	
+	public double getPlantSizeNum() {
+		return plantSizeNum;
 	}
 
 	/**

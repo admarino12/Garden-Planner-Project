@@ -209,4 +209,12 @@ public class DrawGardenPane {
 	public BorderPane getHolder() {
 		return holder;
 	}
+	
+	public int getGardenPaneWidth() {
+		return DRAW_GARDENPANE_WIDTH;
+	}
+	
+	public int getGardenPaneHeight() {
+		return DRAW_GARDENPANE_HEIGHT;
+	}
 }

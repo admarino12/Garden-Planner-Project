@@ -35,8 +35,8 @@ class Garden implements java.io.Serializable {
 	 * @param plantSizeString, size of the plant as a string.
 	 */
 	//Updated so that it needs a description variable. 
-	public void addPlant(double xCord, double yCord, String name, String description, String[] traits, String plantScienceName, String plantSizeString) {
-		Plant plant = new Plant(name, description, traits, plantScienceName, plantSizeString );
+	public void addPlant(double xCord, double yCord, String name, String description, String[] traits, String plantScienceName, String plantSizeString, double plantSizeNum) {
+		Plant plant = new Plant(name, description, traits, plantScienceName, plantSizeString, plantSizeNum);
 		plant.setxCor(xCord);
 		plant.setyCor(yCord);
 		getPlantsInGarden().add(plant);
@@ -145,4 +145,5 @@ class Garden implements java.io.Serializable {
 		return ratings;
 	}
 
+	
 }

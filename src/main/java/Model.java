@@ -65,7 +65,7 @@ public class Model implements java.io.Serializable {
 			if (plant.getName().equals(name)){
 				plant.setxCor(getX);
 				plant.setyCor(getY);
-				garden.addPlant(getX, getY, name, plant.getDescription(), plant.getTraits(), plant.getScienceName(), plant.getPlantSizeString()) ;
+				garden.addPlant(getX, getY, name, plant.getDescription(), plant.getTraits(), plant.getScienceName(), plant.getPlantSizeString(), plant.getPlantSizeNum());
 				
 				plantReturned = plant; 
 				
@@ -152,6 +152,17 @@ public class Model implements java.io.Serializable {
 		for(Plant plant : plantList) {
 			if(plant.getName().equals(name)) {
 				plantSize = plant.getPlantSizeString();
+			}
+		}
+		return plantSize;
+	}
+	
+	
+	public double getPlantSizeNum(String name) {
+		double plantSize = 0;
+		for(Plant plant : plantList) {
+			if(plant.getName().equals(name)) {
+				plantSize = plant.getPlantSizeNum();
 			}
 		}
 		return plantSize;
