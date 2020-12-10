@@ -40,14 +40,14 @@ public class EncyclopediaPane {
 		
 		Button done = new Button ("Done");
 		mainView.control.setHandlerForDonePlantEncycClicked(done);
+		done.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;");
 		
-		vb.getChildren().addAll(label, Info, Info2);
+		vb.getChildren().addAll(label, Info, Info2, done);
 		vb.setAlignment(Pos.CENTER);
 		
 		borderPane = new BorderPane();
 		borderPane.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;");
 		borderPane.setCenter(vb);
-		borderPane.setBottom(done);
 		borderPane.setMinWidth(EncyclopediaPane_WIDTH);
 		borderPane.setMinHeight(EncyclopediaPane_HEIGHT);
 		borderPane.setMaxHeight(EncyclopediaPane_HEIGHT);
@@ -101,9 +101,15 @@ public class EncyclopediaPane {
 		Text description = new Text("Description: " + mainView.control.getPlantDescription(name));
 		description.setStyle("-fx-font: 18 garamond");
 		
+		Text sciName = new Text("Scientific Name: " + mainView.control.getPlantScienceName(name).replace("_", " "));
+		sciName.setStyle("-fx-font: 18 garamond");
+		
+		Text size = new Text("Size: " + mainView.control.getPlantSizeString(name));
+		size.setStyle("-fx-font: 18 garamond");
+		
 		//Create Vbox
 			VBox vb = new VBox(8);
-			vb.getChildren().addAll(top,imgContainer,commonName,description);
+			vb.getChildren().addAll(top,imgContainer,commonName,sciName, description, size);
 			vb.setAlignment(Pos.CENTER);
 		
 			HBox hb = new HBox();
@@ -124,6 +130,7 @@ public class EncyclopediaPane {
 
 		Button done = new Button ("Done");
 		mainView.control.setHandlerForDonePlantEncycClicked(done);
+		done.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;");
 		vb.getChildren().add(done);
 		
 		

@@ -13,6 +13,8 @@ public class Plant implements java.io.Serializable {
 	private char plantChar;
 	private String plantDescription;
 	private String[] plantTraits;
+	private String plantSize;
+	private String plantScienceName;
 	private double xCor;
 	private double yCor;
 
@@ -22,9 +24,13 @@ public class Plant implements java.io.Serializable {
 	 * @param plantName        String name of plant.
 	 * @param plantDescription String description of plant.
 	 * @param plantTraits      String[] traits of plant.
+	 * @param plantSciencename String scientific name of plant.
+	 * @param plantSize 	   String Size of Plant. 
 	 */
-	public Plant(String plantName, String plantDescription, String[] plantTraits) {
+	public Plant(String plantName, String plantDescription, String[] plantTraits, String plantScienceName, String plantSize) {
 		this.plantName = plantName;
+		this.plantScienceName = plantScienceName;
+		this.plantSize = plantSize; 
 		// Both of these use the static getData method from Model
 		plantChar = plantName.charAt(0);
 		this.plantDescription = plantDescription;
@@ -101,6 +107,14 @@ public class Plant implements java.io.Serializable {
 	 */
 	public void setyCor(double yCor) {
 		this.yCor = yCor;
+	}
+	
+	public String getScienceName() {
+		return this.plantScienceName;
+	}
+	
+	public String getPlantSizeString() {
+		return this.plantSize;
 	}
 
 }

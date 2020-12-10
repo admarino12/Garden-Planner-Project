@@ -105,7 +105,7 @@ public class Controller extends Application {
 				String[] plantTraits = plant[2].split("-");
 				plantTraits = Arrays.copyOf(plantTraits, plantTraits.length + 1);
 				plantTraits[plantTraits.length - 1] = " ";
-				plantList.add(new Plant(plant[0], plant[1], plantTraits));
+				plantList.add(new Plant(plant[0], plant[1], plantTraits, plant[3], plant[4]));
 
 			}
 			csvFile.close();
@@ -645,6 +645,30 @@ public class Controller extends Application {
 	public String getPlantDescription(String plantName) {
 		return model.getPlantDescription(plantName);
 	}
+	
+	
+	/**
+	 * Getter for plant Size as a string. Returns plants size based on plant
+	 * names from the model
+	 * 
+	 * @param name String for name of plant. 
+	 * @return plant Size based on plant name. 
+	 */
+	public String getPlantSizeString(String name) {
+		return model.getPlantSizeString(name);
+	}
+	
+	/**
+	 * Getter for plant Scientific Name. Returns plants Scientific name based
+	 * on plant name from model
+	 * 
+	 * @param name String for name of Plant.
+	 * @return Size based on plant name.
+	 */
+	public String getPlantScienceName(String name) {
+		return model.getPlantScienceName(name);
+	}
+	
 
 	/**
 	 * Getter for ArrayList of plant traits.

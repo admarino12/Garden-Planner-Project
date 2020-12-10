@@ -31,10 +31,12 @@ class Garden implements java.io.Serializable {
 	 * @param name name of plant.
 	 * @param description description of the plant.
 	 * @param traits traits of the plant.
+	 * @param plantScieneName, scientific name of the plant.
+	 * @param plantSizeString, size of the plant as a string.
 	 */
 	//Updated so that it needs a description variable. 
-	public void addPlant(double xCord, double yCord, String name, String description, String[] traits) {
-		Plant plant = new Plant(name, description, traits);
+	public void addPlant(double xCord, double yCord, String name, String description, String[] traits, String plantScienceName, String plantSizeString) {
+		Plant plant = new Plant(name, description, traits, plantScienceName, plantSizeString );
 		plant.setxCor(xCord);
 		plant.setyCor(yCord);
 		getPlantsInGarden().add(plant);
