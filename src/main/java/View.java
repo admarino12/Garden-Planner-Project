@@ -275,13 +275,15 @@ public class View {
 		for (int i = border.getChildren().size() - 1; i >=3; i--){
 			border.getChildren().remove(i);
 		}
-		//Add Plants
-		for (Plant p: plants) {
-			addPlants(p);
-		}
+		
 		
 		gc.clearRect(0, 0, drawGardenPane.getDrawGardenCanvas().getWidth(), drawGardenPane.getDrawGardenCanvas().getHeight());
 		
+		
+		//Add Plants
+				for (Plant p: plants) {
+					addPlants(p);
+				}
 		
 		//Update Rating
 		ratingToolBar.updateRating(seasonRatings);

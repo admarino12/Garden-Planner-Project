@@ -19,6 +19,7 @@ public class SavedData implements java.io.Serializable {
 		this.fileName = fileName;
 		this.garden = model.garden; 
 		
+		
 	}
 	
 	/**
