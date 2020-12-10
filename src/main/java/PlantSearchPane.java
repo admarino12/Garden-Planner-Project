@@ -30,7 +30,7 @@ import javafx.stage.WindowEvent;
 /**
  * The PlantSearchPane contains the view for the PlantSearchPane portion of the view.
  * This includes the images of the draggable plants, searchbar, and filters.
- * @author Elijah Haberman
+ *
  *
  */
 public class PlantSearchPane  {
@@ -146,7 +146,11 @@ public class PlantSearchPane  {
 				if(generalName.toLowerCase().contains(inputName.toLowerCase())) {
 					
 					Text plantNameLabel = new Text(generalName.replace("_", " "));
-					plantNameLabel.setFill(Color.BLACK);
+					
+					if(mainView.control.checkPlantSize(generalName)) {
+						plantNameLabel.setFill(Color.BLACK);
+					}
+					else plantNameLabel.setFill(Color.RED);
 				
 					String plantDescription = mainView.control.getPlantDescription(generalName);
 					

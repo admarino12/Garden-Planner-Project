@@ -50,6 +50,9 @@ public class Controller extends Application {
 	private final String PLANT_INFO_CSV = "src/resources/plants.csv";
 	private final String HELP_TXT = "src/resources/help.txt";
 	public String[] helpText = loadHelp();
+	
+	private final int GARDEN_HOLDER_XPOS = 370;
+	private final int GARDEN_HOLDER_YPOS = 75;
 
 	final int X_DRAW_OFFSET = 369;
 	private final int Y_DRAW_OFFSET = 77;
@@ -124,7 +127,7 @@ public class Controller extends Application {
 	 */
 	public String[] loadHelp() {
 		int lineNumber = 0;
-		String[] helpInfo = new String[12];
+		String[] helpInfo = new String[13];
 		String line = "";
 		try {
 			FileReader file = new FileReader(HELP_TXT);
@@ -220,12 +223,18 @@ public class Controller extends Application {
 			view.getScene().setCursor(Cursor.HAND);
 			Node n = (Node) event.getSource();
 			Plant plant = model.getPlant(n.getId());
+			
+			System.out.println(event.getSceneX());
+			System.out.println(event.getSceneY());
+			
 			if(plant.getPlantSizeNum()<model.garden.getGardenHeight() && plant.getPlantSizeNum()<model.garden.getGardenWidth()) {
-				plant = model.Add(event.getSceneX(), event.getSceneY(), n.getId());
-				view.addPlants(plant);
-				garden.setSeasonRatings();
-				view.getToolBarPane().updateRating(garden.getSeasonRatings());
-				System.out.println("Rating Updated");
+				if(event.getSceneX()>GARDEN_HOLDER_XPOS && event.getSceneY()>GARDEN_HOLDER_YPOS) {
+					plant = model.Add(event.getSceneX(), event.getSceneY(), n.getId());
+					view.addPlants(plant);
+					garden.setSeasonRatings();
+					view.getToolBarPane().updateRating(garden.getSeasonRatings());
+					System.out.println("Rating Updated");
+				}
 			}
 		}
 	}
@@ -615,6 +624,7 @@ public class Controller extends Application {
 		model.setGarden(sd.getGarden());
 		model.savedData = sd;
 		this.garden = model.getGarden();
+		view.getPlantSearchPane().update(view.getAllPlantNames());
 		this.view.loadNewGarden(garden.getPlantsInGarden(), garden.getSeasonRatings(), garden.getSeason(),
 				garden.getGardenWidth(), garden.getGardenHeight());
 	}
@@ -741,6 +751,20 @@ public class Controller extends Application {
 				view.setPlantPage(imgView.getId());
 				view.getScene().setCursor(Cursor.HAND);
 			}
+	}
+	
+	/**
+	 * Check to see if the plant size is larger than the garden Deminsions return True or False
+	 * 
+	 * @param plantName String of the plantName to search
+	 * @return boolean true if plant fits within garden, false if plant is to large for garden
+	 */
+	public boolean checkPlantSize(String plantName) {
+		Plant plant = model.getPlant(plantName);
+		if(plant.getPlantSizeNum()>model.garden.getGardenHeight() || plant.getPlantSizeNum()>model.garden.getGardenWidth()) {
+			return false;
+		}
+		else return true;
 	}
 
 	/**

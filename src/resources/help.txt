@@ -1,6 +1,6 @@
 Welcome to Garden Planner Spectacular!
 
-You can start by dragging plants from the left to right with left mouse click.
+Start by dragging plants from the left to right with left mouse click.
 Use right mouse click on a plant to remove it.
 There are different dropdowns you can use to sort your plants as well as a search bar you can type a plant into.
 You can click the draw button at the top then click your mouse and drag to draw your own garden perimeter.
@@ -10,3 +10,4 @@ plants you have that bloom for that seasons color.
 You can click the dropdown below the seasons to select a season and only show plants that bloom then.
 In the top left you can click plant encyclopedia to view information on plants.
 Finally in the top left you have the file menu where you can start a new file, save, save as, and open files.
+Plants labeled with red text are to large for your garden and will not display when dragged into the garden.
