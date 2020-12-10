@@ -36,6 +36,7 @@ public class Plant implements java.io.Serializable {
 		plantChar = plantName.charAt(0);
 		this.plantDescription = plantDescription;
 		this.plantTraits = plantTraits;
+		System.out.println(plantSizeNum);
 		this.plantSizeNum = plantSizeNum;
 	}
 	

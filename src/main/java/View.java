@@ -203,7 +203,7 @@ public class View {
 			boxSize = drawGardenPane.getGardenPaneWidth()/control.getGarden().getGardenWidth();
 		}
 		else {
-			boxSize = drawGardenPane.getGardenPaneHeight()/control.getGarden().getGardenHeight();
+			boxSize = drawGardenPane.getGardenPaneWidth()/control.getGarden().getGardenHeight();
 		}
 		
 		ImageView imgView = new ImageView();
