@@ -108,7 +108,7 @@ public class Controller extends Application {
 				String[] plantTraits = plant[2].split("-");
 				plantTraits = Arrays.copyOf(plantTraits, plantTraits.length + 1);
 				plantTraits[plantTraits.length - 1] = " ";
-				plantList.add(new Plant(plant[0], plant[1], plantTraits, plant[3], plant[4], Integer.parseInt(plant[5])));
+				plantList.add(new Plant(plant[0], plant[1], plantTraits, plant[3], plant[4], Integer.parseInt(plant[5])/12));
 
 			}
 			csvFile.close();

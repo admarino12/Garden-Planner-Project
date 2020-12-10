@@ -36,7 +36,7 @@ public class Plant implements java.io.Serializable {
 		plantChar = plantName.charAt(0);
 		this.plantDescription = plantDescription;
 		this.plantTraits = plantTraits;
-		this.plantSizeNum = plantSizeNum/12;
+		this.plantSizeNum = plantSizeNum;
 	}
 	
 	public double getPlantSizeNum() {
