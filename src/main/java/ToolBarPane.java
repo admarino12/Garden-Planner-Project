@@ -92,7 +92,8 @@ public class ToolBarPane {
 		hb4.setSpacing(5);
 		hb4.getChildren().addAll(ratingCircles);
 		ratingToolBar.getItems().addAll(fileButton, plantEncyclopedia, helpButton, rating, hb4);
-		ratingToolBar.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		ratingToolBar.setStyle("-fx-background-color:#dbd0ab;-fx-border-color: #a8a083;-fx-border-width:1;-fx-border-radius:3;");
+		ratingToolBar.setMinHeight(50);
 	}
 
 	/**
@@ -100,7 +101,7 @@ public class ToolBarPane {
 	 */
 	public void createFileButton() {
 		fileButton = new MenuButton("File");
-		fileButton.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		fileButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 
 		MenuItem newFile = new MenuItem("New File...");
 		mainView.control.setHandlerForNewFilePopUpClicked(newFile);
@@ -125,7 +126,7 @@ public class ToolBarPane {
 	public void createPlantEncyclopediaButton() {
 		plantEncyclopedia = new Button("Plant Encyclopedia");
 		mainView.control.setHandlerForPlantEncyclopediaClicked(plantEncyclopedia);
-		plantEncyclopedia.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		plantEncyclopedia.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 	}
 
 	/**
@@ -134,7 +135,7 @@ public class ToolBarPane {
 	public void createHelpButton() {
 		helpButton = new Button("Help");
 		mainView.control.setHandlerForHelpButton(helpButton);
-		helpButton.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		helpButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 		createHelpPopUp();
 	}
 
@@ -295,7 +296,7 @@ public class ToolBarPane {
 		label.setStyle("-fx-font-weight: bold;-fx-font: 24 Papyrus");
 
 		Button done = new Button("Done");
-		done.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;");
+		done.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;-fx-font: 18 Garamond");
 		mainView.control.setHandlerForHelpButtonClose(done);
 		HBox hb = new HBox();
 		hb.setAlignment(Pos.BOTTOM_CENTER);
@@ -313,7 +314,7 @@ public class ToolBarPane {
 
 		VBox vb = new VBox(8);
 		vb.setStyle(
-				"-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;-fx-hgap:4;-fx-vgap:6;");
+				"-fx-background-color:##dbd0ab;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;-fx-hgap:4;-fx-vgap:6;");
 		vb.setPadding(new Insets(10, 5, 5, 10));
 		vb.getChildren().add(label);
 		vb.setMinSize(250, 250);

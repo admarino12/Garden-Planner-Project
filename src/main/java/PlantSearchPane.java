@@ -87,12 +87,12 @@ public class PlantSearchPane  {
 		this.mainView = mainView;
 		
 		mainPane = new VBox(0);
-		mainPane.setStyle("-fx-background-color: #E7DEBC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		mainPane.setStyle("-fx-background-color: #dbd0ab;-fx-border-color: #a8a083;-fx-border-width:1;-fx-border-radius:3;");
 
 		//Hbox contains the search Bar
 		Label searchlabel = new Label("Search:");
 		searcher = new TextField();
-		searcher.setStyle("-fx-background-color: #D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		searcher.setStyle("-fx-focus-color: #D1EBDC");
 		Button searchButton = new Button("Go");
 		searchButton.setStyle("-fx-background-color: #D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 		mainView.control.setHandlerForSearchBar(searchButton);

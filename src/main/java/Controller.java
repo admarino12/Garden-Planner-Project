@@ -212,6 +212,7 @@ public class Controller extends Application {
 			imgView.setOnMouseReleased(event -> {	
 				if(!imageViewsAreToggleable) {
 					dragAndDrop(event, imgView.getImage());
+					view.getScene().setCursor(Cursor.HAND);
 				}
 			});
 	}
@@ -272,7 +273,7 @@ public class Controller extends Application {
 					view.getgc().stroke();
 				});
 			} else {
-				view.getScene().setCursor(Cursor.DEFAULT);
+				view.getScene().setCursor(Cursor.HAND);
 				view.getDrawGardenPane().getDrawGardenCanvas().setOnMousePressed(e -> {
 				});
 				view.getDrawGardenPane().getDrawGardenCanvas().setOnMouseDragged(e -> {
@@ -308,7 +309,7 @@ public class Controller extends Application {
 							e.getSceneY() - Y_DRAW_OFFSET - lineWidth, lineWidth, lineWidth);
 				});
 			} else {
-				view.getScene().setCursor(Cursor.DEFAULT);
+				view.getScene().setCursor(Cursor.HAND);
 				view.getDrawGardenPane().getDrawGardenCanvas().setOnMousePressed(e -> {
 				});
 				view.getDrawGardenPane().getDrawGardenCanvas().setOnMouseDragged(e -> {
@@ -785,6 +786,7 @@ public class Controller extends Application {
 			if(imageViewsAreToggleable) {
 				encyclopediaChoice(event,plantImage);
 				view.getPlantSearchPane().setSelectedImage(plantImage);
+				
 			}
 		});
 	}

@@ -79,7 +79,7 @@ public class DrawGardenPane {
 
 		holder.setStyle(allSeasonStyle);
 		drawGardenToolBar = new ToolBar();
-		drawGardenToolBar.setStyle("-fx-background-color: #E7DEBC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		drawGardenToolBar.setStyle("-fx-background-color: #dbd0ab;-fx-border-color: #a8a083;-fx-border-width:1;-fx-border-radius:3;");
 		drawButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 		eraseButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 		paintPlantsButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");

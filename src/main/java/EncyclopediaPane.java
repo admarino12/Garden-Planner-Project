@@ -40,7 +40,7 @@ public class EncyclopediaPane {
 		
 		Button done = new Button ("Done");
 		mainView.control.setHandlerForDonePlantEncycClicked(done);
-		done.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;");
+		done.setStyle("-fx-background-color:#dbd0ab;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3; -fx-font: 18 Garamond");
 		
 		vb.getChildren().addAll(label, Info, Info2, done);
 		vb.setAlignment(Pos.CENTER);
@@ -130,7 +130,7 @@ public class EncyclopediaPane {
 
 		Button done = new Button ("Done");
 		mainView.control.setHandlerForDonePlantEncycClicked(done);
-		done.setStyle("-fx-background-color:#E7DEBC;-fx-border-color: black;-fx-border-width:2;-fx-border-radius:3;");
+		done.setStyle("-fx-background-color:#dbd0ab;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;-fx-font: 18 Garamond");
 		vb.getChildren().add(done);
 		
 		
