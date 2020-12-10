@@ -343,7 +343,6 @@ public class ToolBarPane {
 				opacity = 1;
 			} else
 				opacity = (double) ((double) (ratings.get(i)) / 10.0);
-			System.out.println(i + "  " + "season rating: " + ratings.get(i) + " opacity: " + opacity);
 			switch (i) {
 			case 0:
 				ratingCircles[i].setFill(Color.rgb(129, 238, 164, opacity));

@@ -286,6 +286,7 @@ public class View {
 				}
 		
 		//Update Rating
+		plantSearchPane.update(allPlantNames);
 		ratingToolBar.updateRating(seasonRatings);
 		drawGardenPane.setSeason(season);
 		drawGardenPane.setSeasonComboBox(season);

@@ -51,8 +51,8 @@ public class DrawGardenPane {
 	final private double DRAW_GARDENPANE_WIDTH = 910;
 	final private double DRAW_GARDENPANE_HEIGHT = 682;
 	
-	private int gardenX = 0;
-	private int gardenY = 0;
+	public int gardenX = 0;
+	public int gardenY = 0;
 	public double largerDim;
 	
 	private Rectangle gardenRect = new Rectangle();
@@ -75,7 +75,7 @@ public class DrawGardenPane {
 		holder = new BorderPane();
 		
 
-		//holder.getChildren().add(drawGardenCanvas);
+		holder.getChildren().add(drawGardenCanvas);
 
 		mainView.control.setHandlerForDrawButton(drawButton);
 		mainView.control.setHandlerForEraseButton(eraseButton);
@@ -84,10 +84,10 @@ public class DrawGardenPane {
 
 		drawGardenToolBar = new ToolBar();
 		drawGardenToolBar.setStyle("-fx-background-color: #dbd0ab;-fx-border-color: #a8a083;-fx-border-width:1;-fx-border-radius:3;");
-		drawButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
-		eraseButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
-		paintPlantsButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
-		selectSeason.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		//drawButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		//eraseButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		//paintPlantsButton.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
+		//selectSeason.setStyle("-fx-background-color:#D1EBDC;-fx-border-color: black;-fx-border-width:.5;-fx-border-radius:3;");
 		HBox hb3 = new HBox();
 		HBox hb2 = new HBox();
 		Separator separator = new Separator();
@@ -209,12 +209,21 @@ public class DrawGardenPane {
 	}
 	
 	public void setRectangle() {
-		gardenRect.setHeight(DRAW_GARDENPANE_HEIGHT - (DRAW_GARDENPANE_HEIGHT - gardenY));
-		gardenRect.setWidth(DRAW_GARDENPANE_WIDTH - (DRAW_GARDENPANE_WIDTH - gardenX));
+		double height = DRAW_GARDENPANE_HEIGHT - (DRAW_GARDENPANE_HEIGHT - gardenY);
+		double width = DRAW_GARDENPANE_WIDTH - (DRAW_GARDENPANE_WIDTH - gardenX);
+		
+		gardenRect.setHeight(height);
+		gardenRect.setWidth(width);
 		gardenRect.setX(0);
 		gardenRect.setY(0);
 		holder.getChildren().clear();
 		holder.getChildren().add(gardenRect);
+		
+		drawGardenCanvas.setHeight(height);
+		drawGardenCanvas.setWidth(width);
+		drawGardenCanvas.maxHeight(height);
+		drawGardenCanvas.maxWidth(width);
+		holder.getChildren().add(drawGardenCanvas);
 		
 		
 	}

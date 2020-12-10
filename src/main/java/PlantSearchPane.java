@@ -197,6 +197,13 @@ public class PlantSearchPane  {
 		}
 	}
 	
+	public VBox getToggledPlant() {
+		if(currVBox==null) {
+			return null;
+		}
+		else return currVBox;
+	}
+	
 	/**
 	 * Getter for mainPane VBox.
 	 * @return mainPane

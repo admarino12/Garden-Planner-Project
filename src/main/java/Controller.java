@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -23,6 +24,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -231,16 +233,19 @@ public class Controller extends Application {
 			Node n = (Node) event.getSource();
 			Plant plant = model.getPlant(n.getId());
 			
-			System.out.println(event.getSceneX());
-			System.out.println(event.getSceneY());
-			
+//			System.out.println("Plant X: "+event.getSceneX());
+//			System.out.println("Plant Y: "+event.getSceneY());
+//			System.out.println("Scene X: "+view.getDrawGardenPane().gardenX);
+//			System.out.println("Scene Y: "+view.getDrawGardenPane().gardenY);
 			if(plant.getPlantSizeNum()<model.garden.getGardenHeight() && plant.getPlantSizeNum()<model.garden.getGardenWidth()) {
 				if(event.getSceneX()>GARDEN_HOLDER_XPOS && event.getSceneY()>GARDEN_HOLDER_YPOS) {
-					plant = model.Add(event.getSceneX(), event.getSceneY(), n.getId());
-					view.addPlants(plant);
-					garden.setSeasonRatings();
-					view.getToolBarPane().updateRating(garden.getSeasonRatings());
-					System.out.println("Rating Updated");
+					if(event.getSceneX()<view.getDrawGardenPane().gardenX+GARDEN_HOLDER_XPOS && event.getSceneY()<view.getDrawGardenPane().gardenY+GARDEN_HOLDER_YPOS) {
+						plant = model.Add(event.getSceneX(), event.getSceneY(), n.getId());
+						view.addPlants(plant);
+						garden.setSeasonRatings();
+						view.getToolBarPane().updateRating(garden.getSeasonRatings());
+						System.out.println("Rating Updated");
+					}
 				}
 			}
 		}
@@ -326,9 +331,12 @@ public class Controller extends Application {
 	 * @param imgView ImageView image of plant.
 	 */
 	public void setHandlerForRemoveClick(ImageView imgView) {
-		imgView.setOnMouseClicked(event -> removeClick(event));
+		imgView.setOnMouseClicked(event -> {
+			if(!deleteImageToggle) {
+				removeClick(event);
+			}
+		});
 	}
-
 	/**
 	 * Sets right click and double click to remove ImageView from DrawGardenPane.
 	 * 
@@ -769,18 +777,58 @@ public class Controller extends Application {
 	 * 
 	 * @param paintPlantButton
 	 */
+	
+	double prevX = 0;
+	double prevY = 0;
+	boolean deleteImageToggle = false;
 	public void setHandlerForPaintPlantButton(ToggleButton paintPlantButton) {
 		paintPlantButton.setOnAction(event -> {
 			if(paintPlantButton.isSelected()) {
 				imageViewsAreToggleable = true;
+				deleteImageToggle = true;
+				
+				view.getDrawGardenPane().getDrawGardenCanvas().setOnMousePressed(e -> {
+					VBox selectedPlant = view.getPlantSearchPane().getToggledPlant();
+					if(selectedPlant!=null) {
+						ImageView plantName = (ImageView)selectedPlant.getChildren().get(0);
+						
+						Plant plant = model.Add(e.getSceneX(), e.getSceneY(), plantName.getId() );
+						view.addPlants(plant);
+						garden.setSeasonRatings();
+						view.getToolBarPane().updateRating(garden.getSeasonRatings());
+						prevX = 0;
+						prevY = 0;
+					}
+				});
+				
+				view.getDrawGardenPane().getDrawGardenCanvas().setOnMouseDragged(e -> {
+					VBox selectedPlant = view.getPlantSearchPane().getToggledPlant();
+					if(selectedPlant != null) {
+						ImageView plantName = (ImageView)selectedPlant.getChildren().get(0);
+						Plant plant = model.getPlant(plantName.getId());
+						System.out.println(plant.getPlantSizeNum());
+						double plantSize = plant.getPlantSizeNum() * 15;
+						if(e.getX()>prevX+plantSize || e.getY()>prevY+plantSize || e.getX()<prevX-plantSize || e.getY()<prevY-plantSize) {
+							Plant plant1 = model.Add(e.getSceneX(), e.getSceneY(), plantName.getId() );
+							view.addPlants(plant1);
+							garden.setSeasonRatings();
+							view.getToolBarPane().updateRating(garden.getSeasonRatings());
+							prevX = e.getX();
+							prevY = e.getY();
+					
+						}
+					}
+				});
+				
 			}
 			else {
 				imageViewsAreToggleable = false;
+				deleteImageToggle = false;
 				view.getPlantSearchPane().setSelectedImage(null);
 			}
 		});
 	}
-	
+
 	public void setHandlerForToggledImageViews(ImageView plantImage) {
 		plantImage.setOnMousePressed(event -> {
 			if(imageViewsAreToggleable) {
@@ -801,7 +849,7 @@ public class Controller extends Application {
 	 */
 	public boolean checkPlantSize(String plantName) {
 		Plant plant = model.getPlant(plantName);
-		if(plant.getPlantSizeNum()<model.garden.getGardenHeight() || plant.getPlantSizeNum()<model.garden.getGardenWidth()) {
+		if(plant.getPlantSizeNum()<model.garden.getGardenHeight() && plant.getPlantSizeNum()<model.garden.getGardenWidth()) {
 			return true;
 		}
 		else return false;
