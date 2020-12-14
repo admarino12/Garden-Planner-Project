@@ -49,7 +49,7 @@ public class View {
 	private Scene theScene;
 
 	final private int ROOT_WIDTH = 1275;
-	final private int ROOT_HEIGHT = 760;
+	final private int ROOT_HEIGHT = 775;
 
 	// garden dimensions
 	int gardenWidth, gardenHeight;
@@ -99,7 +99,7 @@ public class View {
 		
 		
 		border = new BorderPane();
-		border.setStyle("-fx-background-color: #dbd0ab;");
+		border.setStyle("-fx-background-color: #add8e6;");
 		root.getChildren().add(border);
 		border.setLeft(plantSearchPane.getMainPane());
 		border.setCenter(drawGardenPane.getDrawGardenBorder());

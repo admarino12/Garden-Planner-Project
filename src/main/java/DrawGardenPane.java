@@ -53,7 +53,7 @@ public class DrawGardenPane {
 	
 	// DrawGardenPane Dimensions
 	final private double DRAW_GARDENPANE_WIDTH = 910;
-	final private double DRAW_GARDENPANE_HEIGHT = 682;
+	final private double DRAW_GARDENPANE_HEIGHT = 690;
 	
 	public int gardenX = 0;
 	public int gardenY = 0;
@@ -188,7 +188,18 @@ public class DrawGardenPane {
 		}
 		
 	}
-
+	
+	
+	/**
+	 * Set the dimensions of each grid pane according to the users inputed garden width and height.
+	 * The grid increment is set as the given pixel length of the larger dimensions(either width or height)
+	 * Divided by the user inputed larger dimension. Then it loops through the largerDim to determine the
+	 * number of grid_increments the x and y direction will get.
+	 * 
+	 * 
+	 * @param int the user set width of the garden
+	 * @param int the user set height of the garden
+	 */
 	public void setGardenDim(int width, int height) {
 		int tileCounter = 0;
 		if (width > height) {
@@ -212,6 +223,12 @@ public class DrawGardenPane {
 		gardenDimLabel.setText("Dimensions: " + width + "ft x " + height + "ft");
 	}
 	
+	
+	/**
+	 * Create the rectangle that represents the garden size. Create the gardencanvas that stores all
+	 * the imageviews in the garden.
+	 * 
+	 */
 	public void setRectangle() {
 		double height = DRAW_GARDENPANE_HEIGHT - (DRAW_GARDENPANE_HEIGHT - gardenY);
 		double width = DRAW_GARDENPANE_WIDTH - (DRAW_GARDENPANE_WIDTH - gardenX);
@@ -272,10 +289,18 @@ public class DrawGardenPane {
 		return holder;
 	}
 	
+	/**
+	 * Getter for the width of the garden pane.
+	 * @return double DRAW_GARDENPANE_WIDTH
+	 */
 	public double getGardenPaneWidth() {
 		return DRAW_GARDENPANE_WIDTH;
 	}
 	
+	/**
+	 * Getter for the height of the garden pane.
+	 * @return double DRAW_GARDENPANE_HEIGHT
+	 */
 	public double getGardenPaneHeight() {
 		return DRAW_GARDENPANE_HEIGHT;
 	}

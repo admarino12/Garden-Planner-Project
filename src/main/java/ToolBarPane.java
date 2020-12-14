@@ -343,7 +343,9 @@ public class ToolBarPane {
 		helpPopUp.getContent().add(vb);
 
 	}
-	
+	/**
+	 * Creates RatingPopUp Window.
+	 */
 	public void createRatingPopUp() {
 		ratingPopUp = new Popup();
 		ratingPopUp.setAutoHide(true);

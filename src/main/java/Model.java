@@ -155,6 +155,11 @@ public class Model implements java.io.Serializable {
 		return plantDescription;
 	}
 	
+	/**
+	 * Getter for scientific name of a plant
+	 * @param name the name of the plant
+	 * @return String the scientific name of the plant
+	 */
 	public String getPlantScienceName(String name) {
 		String plantScience = null;
 		for(Plant plant : plantList) {
@@ -165,6 +170,11 @@ public class Model implements java.io.Serializable {
 		return plantScience;
 	}
 	
+	/**
+	 * Getter for the size of the plant as a string
+	 * @param plantName Name of plant.
+	 * @return String string that contains the size of the plant.
+	 */
 	public String getPlantSizeString(String name) {
 		String plantSize = null;
 		for(Plant plant : plantList) {
@@ -175,7 +185,11 @@ public class Model implements java.io.Serializable {
 		return plantSize;
 	}
 	
-	
+	/**
+	 * Getter for the size of the plant as an int
+	 * @param plantName Name of plant.
+	 * @return int int that contains the size of the plant
+	 */
 	public double getPlantSizeNum(String name) {
 		double plantSize = 0;
 		for(Plant plant : plantList) {

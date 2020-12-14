@@ -834,6 +834,13 @@ public class Controller extends Application {
 		});
 	}
 
+	
+	/**
+	 * Setting the handler for selecting a single plant image in searchgardenpane at once. When plant image is
+	 * selected, change cursor style, highlight the border of the image, and re-set selected plant image
+	 * 
+	 * @param ImageView the imageview of the plant that the user clicked on
+	 */
 	public void setHandlerForToggledImageViews(ImageView plantImage) {
 		plantImage.setOnMousePressed(event -> {
 			view.getScene().setCursor(Cursor.CLOSED_HAND);
@@ -845,6 +852,12 @@ public class Controller extends Application {
 		});
 	}
 	
+	/**
+	 * Set the handler for opening up the rating pop up. When the rating circles in the top right are clicked
+	 * Show the rating popup
+	 * 
+	 * @param HBox the hbox that shows the four rating circles at all times
+	 */
 	public void setHandlerForRatingPopUp(HBox ratingCircles) {
 		ratingCircles.setOnMousePressed(event -> {
 			System.out.println("Work?");

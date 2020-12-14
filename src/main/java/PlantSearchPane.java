@@ -185,6 +185,12 @@ public class PlantSearchPane  {
 		
 	}
 	
+	/**
+	 * Takes a imageview in the plant search pane and sets it as the selected image, puts a border 
+	 * around the image
+	 * 
+	 * @param ImageView plantImage, the selected plant image
+	 */
 	public void setSelectedImage(ImageView plantImage) {
 		if(currVBox != null) {
 			currVBox.setStyle("-fx-border-color: transparent;");
@@ -201,7 +207,10 @@ public class PlantSearchPane  {
 			}
 		}
 	}
-	
+	/**
+	 * Getter for the currently selected plant
+	 * @return VBox the vbox that stores the label and imageview of the selected plant
+	 */
 	public VBox getToggledPlant() {
 		if(currVBox==null) {
 			return null;
